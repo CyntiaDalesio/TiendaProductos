@@ -1,5 +1,6 @@
-package egg.prueba.demo.entidades;
+package ProductShop.Entity;
 
+import java.io.Serializable;
 import javax.persistence.Basic;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -7,16 +8,16 @@ import javax.persistence.Id;
 import javax.persistence.Lob;
 
 @Entity
-public class Photo {
+public class Photo implements Serializable {
 
     @Id
     private String id;
-    private String nombre;
+    private String name;
     private String mime;
 
     @Lob
     @Basic(fetch = FetchType.LAZY)
-    private byte[] contenido;
+    private byte[] content;
 
     /**
      * @return the id
@@ -28,8 +29,8 @@ public class Photo {
     /**
      * @return the nombre
      */
-    public String getNombre() {
-        return nombre;
+    public String getName() {
+        return name;
     }
 
     /**
@@ -42,8 +43,8 @@ public class Photo {
     /**
      * @return the contenido
      */
-    public byte[] getContenido() {
-        return contenido;
+    public byte[] getContent() {
+        return content;
     }
 
     /**
@@ -54,10 +55,10 @@ public class Photo {
     }
 
     /**
-     * @param nombre the nombre to set
+     * @param name
      */
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setName(String name) {
+        this.name = name;
     }
 
     /**
@@ -68,10 +69,11 @@ public class Photo {
     }
 
     /**
-     * @param contenido the contenido to set
+     * @param content
+    
      */
-    public void setContenido(byte[] contenido) {
-        this.contenido = contenido;
+    public void setContent(byte[] content) {
+        this.content = content;
     }
 
 }
