@@ -1,6 +1,7 @@
-
 package ProductShop.Entity;
 
+import ProductShop.Enums.Role;
+import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
