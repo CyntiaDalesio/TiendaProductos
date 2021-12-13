@@ -28,6 +28,7 @@ public class User implements Serializable{
     private Role rol;
     @Temporal(TemporalType.DATE)
     private Date startDate;
+<<<<<<< HEAD
 //    @OneToMany
 //    private Contact contact;
 //
@@ -39,18 +40,31 @@ public class User implements Serializable{
 //        this.contact = contact;
 //    }
 
+=======
+    @OneToMany
+    private Contact contact;
+
+    public Contact getContact() {
+        return contact;
+    }
+
+    public void setContact(Contact contact) {
+        this.contact = contact;
+    }
+   
+>>>>>>> f1c2cfbc8f9b9dca1877f52b1aa916285b0ad0d7
 
     public User() {
     }
 
     public User(String username,String password){
-
-        this.username = username;
+   
+          this.username = username;
         this.password = password;
-
+       
     }
-
-
+    
+    
     public User(String idUser, String username, String password, String email, String dni, Role rol, Date startDate) {
         this.idUser = idUser;
         this.username = username;
@@ -116,8 +130,8 @@ public class User implements Serializable{
     public void setStartDate(Date startDate) {
         this.startDate = startDate;
     }
-
-
-
+    
+    
+    
 
 }
