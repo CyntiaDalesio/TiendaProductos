@@ -1,6 +1,7 @@
 package ProductShop.Entity;
 
 import ProductShop.Enums.Role;
+import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -13,7 +14,7 @@ import javax.persistence.TemporalType;
 import org.hibernate.annotations.GenericGenerator;
 
 @Entity
-public class User {
+public class User implements Serializable{
 
     @Id
     @GeneratedValue(generator = "uuid")
@@ -27,16 +28,16 @@ public class User {
     private Role rol;
     @Temporal(TemporalType.DATE)
     private Date startDate;
-    @OneToMany
-    private Contact contact;
-
-    public Contact getContact() {
-        return contact;
-    }
-
-    public void setContact(Contact contact) {
-        this.contact = contact;
-    }
+//    @OneToMany
+//    private Contact contact;
+//
+//    public Contact getContact() {
+//        return contact;
+//    }
+//
+//    public void setContact(Contact contact) {
+//        this.contact = contact;
+//    }
 
 
     public User() {
