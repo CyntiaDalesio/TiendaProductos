@@ -27,7 +27,7 @@ public class User {
     private Role rol;
     @Temporal(TemporalType.DATE)
     private Date startDate;
-    @OneToMany
+   /* @OneToMany
     private Contact contact;
 
     public Contact getContact() {
@@ -36,7 +36,7 @@ public class User {
 
     public void setContact(Contact contact) {
         this.contact = contact;
-    }
+    }*/
    
 
     public User() {
@@ -67,8 +67,7 @@ public class User {
     public void setIdUser(String idUser) {
         this.idUser = idUser;
     }
-
-    public String getUsername() {
+  public String getUsername() {
         return username;
     }
 
