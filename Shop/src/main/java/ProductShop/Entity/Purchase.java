@@ -5,6 +5,8 @@ import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import org.hibernate.annotations.GenericGenerator;
 
 @Entity
@@ -16,7 +18,9 @@ public class Purchase {
     private String Id;
     
     private Integer total;
+    @Temporal(TemporalType.DATE)
     private Date date;
+    
     private String code;
 
     public Purchase(String Id, Integer total, Date date, String code) {
