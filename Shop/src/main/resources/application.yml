@@ -14,7 +14,7 @@ spring:
   datasource: 
     url: jdbc:mysql://localhost:3306/tiendaproducto?allowPublicKeyRetrieval=true&useSSL=false&useTimezone=true&serverTimezone=GMT&characterEncoding=UTF-8
     username: root
-    password: Tomasherrera123
+    password: root
     driver-class-name: com.mysql.cj.jdbc.Driver
   jpa:
     show-sql: true
