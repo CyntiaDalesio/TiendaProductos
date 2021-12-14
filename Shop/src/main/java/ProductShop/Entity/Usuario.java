@@ -14,7 +14,7 @@ import javax.persistence.TemporalType;
 import org.hibernate.annotations.GenericGenerator;
 
 @Entity
-public class User implements Serializable{
+public class Usuario implements Serializable{
 
     @Id
     @GeneratedValue(generator = "uuid")
@@ -28,7 +28,7 @@ public class User implements Serializable{
     private Role rol;
     @Temporal(TemporalType.DATE)
     private Date startDate;
-<<<<<<< HEAD
+//
 //    @OneToMany
 //    private Contact contact;
 //
@@ -40,24 +40,11 @@ public class User implements Serializable{
 //        this.contact = contact;
 //    }
 
-=======
-    @OneToMany
-    private Contact contact;
 
-    public Contact getContact() {
-        return contact;
+    public Usuario() {
     }
 
-    public void setContact(Contact contact) {
-        this.contact = contact;
-    }
-   
->>>>>>> f1c2cfbc8f9b9dca1877f52b1aa916285b0ad0d7
-
-    public User() {
-    }
-
-    public User(String username,String password){
+    public Usuario(String username,String password){
    
           this.username = username;
         this.password = password;
@@ -65,7 +52,7 @@ public class User implements Serializable{
     }
     
     
-    public User(String idUser, String username, String password, String email, String dni, Role rol, Date startDate) {
+    public Usuario(String idUser, String username, String password, String email, String dni, Role rol, Date startDate) {
         this.idUser = idUser;
         this.username = username;
         this.password = password;

@@ -1,7 +1,7 @@
 package ProductShop.Service;
 
 import ProductShop.Entity.Contact;
-import ProductShop.Entity.User;
+import ProductShop.Entity.Usuario;
 import ProductShop.Enums.Role;
 import ProductShop.Repository.UserRepository;
 import java.util.ArrayList;
@@ -24,9 +24,9 @@ public class UserService implements UserDetailsService {
     private UserRepository userRepository;
     
     @Transactional
-    public User save(String username, String password, String password2, String email, String dni) throws Error {
+    public Usuario save(String username, String password, String password2, String email, String dni) throws Error {
         
-        User user = new User();
+        Usuario user = new Usuario();
         
         if (email == null || email.isEmpty()) {
             throw new Error("El email no puede ser nulo");
@@ -60,14 +60,14 @@ public class UserService implements UserDetailsService {
         
     }
     
-    public List<User> ListUsers() {
+    public List<Usuario> ListUsers() {
         
         return userRepository.findAll();
     }
     
-    public User searchUserId(String id) {
-        Optional<User> answer = userRepository.findById(id);
-        User user = answer.get();
+    public Usuario searchUserId(String id) {
+        Optional<Usuario> answer = userRepository.findById(id);
+        Usuario user = answer.get();
         return user;
         
     }
@@ -84,9 +84,9 @@ public class UserService implements UserDetailsService {
             throw new Error("El mensaje no puede ser nulo");
         }
         
-        Optional<User> answer = userRepository.findById(idUser);
+        Optional<Usuario> answer = userRepository.findById(idUser);
         if (answer.isPresent()) {
-            User user = answer.get();
+            Usuario user = answer.get();
             
             Contact contact = new Contact();
             
@@ -130,9 +130,9 @@ public class UserService implements UserDetailsService {
             
         }
         
-        Optional<User> answer = userRepository.findById(id);
+        Optional<Usuario> answer = userRepository.findById(id);
         if (answer.isPresent()) {
-            User user = answer.get();
+            Usuario user = answer.get();
             
             user.setUsername(username);
             user.setPassword(password);
@@ -151,9 +151,9 @@ public class UserService implements UserDetailsService {
     @Transactional
     public void changeRolUser(String id, String Rol) {
         
-        Optional<User> answer = userRepository.findById(id);
+        Optional<Usuario> answer = userRepository.findById(id);
         if (answer.isPresent()) {
-            User user = answer.get();
+            Usuario user = answer.get();
             
             user.setRol(Role.valueOf(Rol));
             userRepository.save(user);
@@ -169,7 +169,7 @@ public class UserService implements UserDetailsService {
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         
         try {
-            User usuario = userRepository.findByUsername(username);
+            Usuario usuario = userRepository.findByUsername(username);
             //User user;
 
             List<GrantedAuthority> authorities = new ArrayList<>();
