@@ -36,20 +36,20 @@ public class User {
 
     public void setContact(Contact contact) {
         this.contact = contact;
-    }*/
-   
+    }
+
 
     public User() {
     }
 
     public User(String username,String password){
-   
-          this.username = username;
+
+        this.username = username;
         this.password = password;
-       
+
     }
-    
-    
+
+
     public User(String idUser, String username, String password, String email, String dni, Role rol, Date startDate) {
         this.idUser = idUser;
         this.username = username;
@@ -114,8 +114,8 @@ public class User {
     public void setStartDate(Date startDate) {
         this.startDate = startDate;
     }
-    
-    
-    
+
+
+
 
 }

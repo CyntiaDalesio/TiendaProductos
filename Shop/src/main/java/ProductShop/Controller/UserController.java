@@ -1,6 +1,6 @@
 package ProductShop.Controller;
 
-import ProductShop.Entity.User;
+import ProductShop.Entity.Usuario;
 import ProductShop.Service.UserService;
 import java.util.List;
 import java.util.logging.Level;
@@ -24,7 +24,7 @@ public class UserController {
     @GetMapping("/users")
     public String index(ModelMap model) {
 
-        List<User> users = userService.ListUsers();
+        List<Usuario> users = userService.ListUsers();
         model.put("users", users);
 
         return "users/index";
@@ -68,7 +68,7 @@ public class UserController {
     @GetMapping("/users/edit/{id}")
     public String edit(@PathVariable String id, ModelMap model) throws Error {
 
-        User user = userService.searchUserId(id);
+        Usuario user = userService.searchUserId(id);
 
         model.put("user", user);
 
@@ -86,7 +86,7 @@ public class UserController {
     @GetMapping("/users/editRole/{id}")
     public String editRole(@PathVariable String id, ModelMap model) throws Error {
 
-        User user = userService.searchUserId(id);
+        Usuario user = userService.searchUserId(id);
 
         model.put("user", user);
 
