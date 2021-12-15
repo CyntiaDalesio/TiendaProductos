@@ -21,8 +21,8 @@ public class ProductService {
     
 
     @Transactional
-    public Product CreateProduct(String idProduct, Integer CodeProduct, String Name, Double Price, String TradeMark, Category category, Integer Stock, Photo photo){
-        Product product = new Product( idProduct, CodeProduct,Name,Price,TradeMark,category,Stock, photo);
+    public Product CreateProduct(Integer CodeProduct, String Name, Double Price, String TradeMark, Category category, Integer Stock, Photo photo){
+        Product product = new Product(CodeProduct,Name,Price,TradeMark,category,Stock, photo);
         
         if (Stock > 0){
         product.setAvailableStock(true);}
@@ -41,6 +41,7 @@ public class ProductService {
        product.setStock(Stock);
        product.setTradeMark(TradeMark);
        product.setCategory(category);
+       product.setPhoto(photo);
       
        if (Stock > 0){
         product.setAvailableStock(true);}
@@ -56,7 +57,8 @@ public class ProductService {
      if (respuesta.equals("no")){
          System.out.println("Ingrese el id del producto");
          idProduct = sc.next();
-    
+     }
+     
         do{
         Product product = (Product) productrepository.findByidProduct(idProduct);
      product.toString();
@@ -71,8 +73,4 @@ public class ProductService {
             productrepository.delete(product);
         }
         }while(respuesta.equalsIgnoreCase("no")); }
-    
-}
-
-
         }
