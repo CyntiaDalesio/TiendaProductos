@@ -2,6 +2,7 @@ package ProductShop.Entity;
 
 import ProductShop.Enums.Role;
 import java.util.Date;
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -27,16 +28,16 @@ public class Usuario {
     private Role rol;
     @Temporal(TemporalType.DATE)
     private Date startDate;
-   /* @OneToMany
-    private Contact contact;
+    @OneToMany(mappedBy="user")
+    private List<Contact> contacts;
 
-    public Contact getContact() {
-        return contact;
+    public List<Contact>getContacts() {
+        return contacts;
     }
 
-    public void setContact(Contact contact) {
-        this.contact = contact;
-    }*/
+    public void setContacts(List<Contact> contact) {
+        this.contacts = contact;
+    }
 
 
     public Usuario() {
