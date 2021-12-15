@@ -1,3 +1,4 @@
+
 package ProductShop.Repository;
 
 import ProductShop.Entity.Usuario;
@@ -6,10 +7,12 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface UserRepository extends JpaRepository<Usuario, String> {
+public interface UserRepository extends JpaRepository<Usuario, String>{
 
-//    public List<Usuario> findByNombre(String nombre);
+    
+     //public List<User> findByNombre(String nombre);
 
     public Usuario findByUsername(String username);
-
+    
+    
 }
