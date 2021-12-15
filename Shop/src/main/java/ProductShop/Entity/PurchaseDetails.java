@@ -8,7 +8,7 @@ import javax.persistence.OneToOne;
 import org.hibernate.annotations.GenericGenerator;
 
 @Entity
-public class Details implements Serializable {
+public class PurchaseDetails implements Serializable {
 
     @Id
     @GeneratedValue(generator = "uuid")
@@ -20,10 +20,10 @@ public class Details implements Serializable {
     @OneToOne
     private Product product;
 
-    public Details() {
+    public PurchaseDetails() {
     }
 
-    public Details(Double priceUnit, Integer cantity, Product product) {
+    public PurchaseDetails(Double priceUnit, Integer cantity, Product product) {
         this.priceUnit = priceUnit;
         this.cantity = cantity;
         this.product = product;

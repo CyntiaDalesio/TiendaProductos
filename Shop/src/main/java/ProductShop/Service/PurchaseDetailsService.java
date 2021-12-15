@@ -1,19 +1,15 @@
 package ProductShop.Service;
 
-import ProductShop.Repository.DetailsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import ProductShop.Repository.PurchaseDetailsRepository;
 
 @Service
-public class DetailsService {
+public class PurchaseDetailsService {
     
     @Autowired
-    private DetailsRepository detailsRepository;
+    private PurchaseDetailsRepository purchaseDetailsRepository;
     
-    public void createDetail(){
         
-        
-    }
-    
     
 }
