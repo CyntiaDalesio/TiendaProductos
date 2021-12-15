@@ -10,5 +10,5 @@ package ProductShop.Enums;
  * @author Cyntia Dalesio
  */
 public enum issue {
-    CONSULTING;
+    CONSULTA,COMPRA,PAGO,REGISTRO,RECLAMO,DEVOLUCION;
 }

@@ -2,6 +2,7 @@ package ProductShop.Entity;
 
 import ProductShop.Enums.Role;
 import java.util.Date;
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -13,7 +14,7 @@ import javax.persistence.TemporalType;
 import org.hibernate.annotations.GenericGenerator;
 
 @Entity
-public class User {
+public class Usuario {
 
     @Id
     @GeneratedValue(generator = "uuid")
@@ -27,22 +28,22 @@ public class User {
     private Role rol;
     @Temporal(TemporalType.DATE)
     private Date startDate;
-    @OneToMany
-    private Contact contact;
+    @OneToMany(mappedBy="user")
+    private List<Contact> contacts;
 
-    public Contact getContact() {
-        return contact;
+    public List<Contact>getContacts() {
+        return contacts;
     }
 
-    public void setContact(Contact contact) {
-        this.contact = contact;
+    public void setContacts(List<Contact> contact) {
+        this.contacts = contact;
     }
 
 
-    public User() {
+    public Usuario() {
     }
 
-    public User(String username,String password){
+    public Usuario(String username,String password){
 
         this.username = username;
         this.password = password;
@@ -50,7 +51,7 @@ public class User {
     }
 
 
-    public User(String idUser, String username, String password, String email, String dni, Role rol, Date startDate) {
+    public Usuario(String idUser, String username, String password, String email, String dni, Role rol, Date startDate) {
         this.idUser = idUser;
         this.username = username;
         this.password = password;
@@ -67,8 +68,7 @@ public class User {
     public void setIdUser(String idUser) {
         this.idUser = idUser;
     }
-
-    public String getUsername() {
+  public String getUsername() {
         return username;
     }
 
