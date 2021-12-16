@@ -3,8 +3,12 @@
     padding: 0px;
     box-sizing: border-box;
     font-family: 'Times New Roman', Times, serif;
-    background-color:#2B2B2B;
     color: #FFFFFF;
+}
+body{
+    background: #000000;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #434343, #000000);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #434343, #000000); 
 }
 h1{
     text-align: center;
@@ -38,6 +42,14 @@ form{
     font-size:32px;
     color: #E78A00;
 }
+a{
+    margin-left: 5px;
+    color: #E78A00;
+    text-decoration: none;
+}
+a:active{
+    background-color: #E78A00;
+}
 
 input{
     width: 250px;
@@ -47,6 +59,9 @@ input{
     border: 1px solid #ffff;
     margin:0.5rem;
     cursor: pointer;
+    background: #000000;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #434343, #000000);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #434343, #000000); 
 }
 input:hover{
     border-color: #E78A00;
