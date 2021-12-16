@@ -2,12 +2,16 @@ package ProductShop.Controller;
 
 
 
+import ProductShop.Entity.Photo;
+import ProductShop.Entity.Product;
 import ProductShop.Repository.ProductRepository;
 import ProductShop.Service.ProductService;
+import java.util.Locale.Category;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.multipart.MultipartFile;
 
 @Controller
 
@@ -24,8 +28,21 @@ public class ProductController {
         return "product/index";
         
     }
-    @PostMapping("/saveproduct")
-      public String SaveProduct(String idProduct, Integer CodeProduct, String Name, Double Price, String TradeMark, String Category, Integer Stock){
-       productservice.CreateProduct(idProduct,CodeProduct,Name,Price,TradeMark,Category,Stock);
+    @PostMapping("/addproduct")
+      public String SaveProduct(Integer CodeProduct, String Name, Double Price, String TradeMark, Category category, Integer Stock, MultipartFile archivo){
+       productservice.CreateProduct(CodeProduct,Name,Price,TradeMark,category,Stock, archivo);
         return "product/index";}
+      
+      @PostMapping("/modifyproduct")
+      public String ModifyProduct(String idProduct, Integer CodeProduct, String Name, Double Price, String TradeMark, Category category, Integer Stock, Photo photo){
+          Product product = (Product) productrepository.findByidProduct(idProduct);
+          productservice.ModifyProduct(idProduct, CodeProduct, Name, Price, TradeMark, category, Stock, photo);
+        return "product/index";
+        
+         
+      }
+@PostMapping("/deleteproduct")
+public String DeleteProduct(String idProduct){
+    productservice.DeleteProduct(idProduct);
+return "product/index";}
 }

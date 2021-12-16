@@ -1,63 +1,69 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shop</title>
-    <link rel="stylesheet" type="text/css" media="all"
-          href="/src/main/resources/static/styles/style.css" th:href="@{/styles/style.css}" />
-</head>
-<body>
-    <header>
-    <section class="main-title">
-        <h1>E-Game<span>Egg</span></h1>
-    </section>
-    <nav>
-        <ul>
-            <li>Home</li>
-            <li>About</li>
-            <li>Shop</li>
-        </ul>
-        <button type="submit" id="signIn">Sign In</button>
-        
-        <!--shopping cart??-->
-    </nav>
-    </header>
-    <main>
-        <div class="search">
-            <input type="text" placeholder="search">
-        </div>
-        <section class="banner">
-            <div class="banner-image">
-                <!--banner-->
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Shop</title>
+        <link rel="stylesheet" type="text/css" media="all"
+              href="/src/main/resources/static/styles/style.css" th:href="@{/styles/style.css}" />
+    </head>
+    <body>
+        <header>
+            <section class="main-title">
+                <h1>E-Game<span>Egg</span></h1>
+            </section>
+            <nav>
+                <ul>
+                    <li>Home</li>
+                    <li>About</li>
+                    <li>Shop</li>
+                </ul>
+                <button type="submit" id="signIn">Sign In</button>
+
+                <!--shopping cart??-->
+            </nav>
+        </header>
+        <main>
+            <div class="search">
+                <input type="text" placeholder="search">
+            </div>
+            <section class="banner">
+                <div class="banner-image">
+                    <!--banner-->
                 </div>
-        </section>
-        <section class="top-products">
-            <!--icon??-->
-            <h2>Products</h2>
-        </section>
-        <section class="cards-conteiner">
-            <div class="cards-product">
-                <img src="https://via.placeholder.com/150" alt="auriculares">
-                <h3>product 1</h3>
-                <p>$$$$</p>
-            </div>
-            <div class="cards-product">
-                <img src="https://via.placeholder.com/150" alt="auriculares">
-                <h3>product 2</h3>
-                <p>$$$$</p>
-            </div>
-            <div class="cards-product">
-                <img src="https://via.placeholder.com/150" alt="auriculares">
-                <h3>product 3</h3>
-                <p>$$$$</p>
-            </div>
-        </section>
+            </section>
+            <section class="top-products">
+                <!--icon??-->
+                <h2>Products</h2>
+            </section>
+            <section class="cards-conteiner">
+                <div class="cards-product">
+                    <form action="fileUpload" method="post" enctype="multipart/form-data">
+                        <p>Seleccionar archivo:<input type="file" name="file" /></p>
+                        <p><input type="submit" value="Enviar"/></p>   
+                    </form>
+                    <div>
+                    <img src="/show?fileName=2.JPG" style="width: 200px"/>
+                    </div>
+                    <h3>product 1</h3>
+                    <p>$$$$</p>
+                </div>
+                <div class="cards-product">
+                    <img src="https://via.placeholder.com/150" alt="auriculares">
+                    <h3>product 2</h3>
+                    <p>$$$$</p>
+                </div>
+                <div class="cards-product">
+                    <img src="https://via.placeholder.com/150" alt="auriculares">
+                    <h3>product 3</h3>
+                    <p>$$$$</p>
+                </div>
+            </section>
 
-    </main>
-    <footer>
+        </main>
+        <footer>
 
-    </footer>
-</body>
+        </footer>
+    </body>
 </html>
