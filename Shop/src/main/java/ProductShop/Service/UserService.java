@@ -5,6 +5,7 @@ import ProductShop.Entity.Usuario;
 import ProductShop.Enums.Role;
 import ProductShop.Repository.UserRepository;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 import java.util.Optional;
 import javax.transaction.Transactional;
@@ -53,7 +54,7 @@ public class UserService implements UserDetailsService {
         user.setUsername(username);
         user.setDni(dni);
         user.setEmail(email);
-        
+        user.setStartDate(Calendar.getInstance().getTime());
         user.setRol(Role.USER);
         
         return userRepository.save(user);

@@ -30,9 +30,9 @@ public class UserController {
         return "users/index";
     }
 
-    @GetMapping("/users/new")
+    @GetMapping("/register")
     public String newUser() {
-        return "user/new.html";
+        return "register.html";
     }
     
      @GetMapping("/users/contact")
@@ -55,7 +55,7 @@ public class UserController {
     
     
 
-    @PostMapping("/users")
+    @PostMapping("/register")
     public String create(@RequestParam String username, @RequestParam String password, @RequestParam String password2, @RequestParam String email, @RequestParam String dni) {
         try {
             userService.save(username, password, password2, email, dni);
