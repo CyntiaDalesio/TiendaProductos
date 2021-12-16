@@ -7,9 +7,9 @@ package ProductShop.Service;
 
 import ProductShop.Entity.Photo;
 import ProductShop.Repository.PhotoRepository;
-
-import egg.prueba.demo.errores.ErrorServicio;
+import ProductShop.errores.ErrorServicio;
 import java.util.Optional;
+import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -20,6 +20,7 @@ public class PhotoService {
     @Autowired
     private PhotoRepository photoRepository;
 
+    @Transactional
     public Photo save(MultipartFile archivo) throws ErrorServicio {
 
         if (archivo != null) {
@@ -38,6 +39,7 @@ public class PhotoService {
         return null;
     }
 
+    @Transactional
     public Photo updatePhoto(String idPhoto, MultipartFile archivo) throws ErrorServicio {
 
         if (archivo != null) {
@@ -46,7 +48,7 @@ public class PhotoService {
 
                 if (idPhoto != null) {
                     Optional<Photo> rta = photoRepository.findById(idPhoto);
-                    if (rta.isPresent()) {  
+                    if (rta.isPresent()) {
                         photo = rta.get();
                     }
                 }

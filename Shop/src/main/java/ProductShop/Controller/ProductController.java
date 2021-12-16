@@ -2,10 +2,10 @@ package ProductShop.Controller;
 
 
 
-import ProductShop.Entity.Photo;
 import ProductShop.Entity.Product;
 import ProductShop.Repository.ProductRepository;
 import ProductShop.Service.ProductService;
+import ProductShop.errores.ErrorServicio;
 import java.util.Locale.Category;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -29,14 +29,14 @@ public class ProductController {
         
     }
     @PostMapping("/addproduct")
-      public String SaveProduct(Integer CodeProduct, String Name, Double Price, String TradeMark, Category category, Integer Stock, MultipartFile archivo){
-       productservice.CreateProduct(CodeProduct,Name,Price,TradeMark,category,Stock, archivo);
+      public String SaveProduct(MultipartFile archivo,Integer CodeProduct, String Name, Double Price, String TradeMark, Category category, Integer Stock) throws ErrorServicio{
+       productservice.CreateProduct(archivo,CodeProduct,Name,Price,TradeMark,category,Stock);
         return "product/index";}
       
       @PostMapping("/modifyproduct")
-      public String ModifyProduct(String idProduct, Integer CodeProduct, String Name, Double Price, String TradeMark, Category category, Integer Stock, Photo photo){
+      public String ModifyProduct( MultipartFile archivo,String idProduct, Integer CodeProduct, String Name, Double Price, String TradeMark, Category category, Integer Stock) throws ErrorServicio{
           Product product = (Product) productrepository.findByidProduct(idProduct);
-          productservice.ModifyProduct(idProduct, CodeProduct, Name, Price, TradeMark, category, Stock, photo);
+          productservice.ModifyProduct(archivo, idProduct, CodeProduct, Name, Price, TradeMark, category, Stock);
         return "product/index";
         
          

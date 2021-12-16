@@ -3,7 +3,7 @@ package ProductShop.Service;
 import ProductShop.Entity.Photo;
 import ProductShop.Entity.Product;
 import ProductShop.Repository.ProductRepository;
-import egg.prueba.demo.errores.ErrorServicio;
+import ProductShop.errores.ErrorServicio;
 import java.util.Locale.Category;
 import java.util.Scanner;
 
