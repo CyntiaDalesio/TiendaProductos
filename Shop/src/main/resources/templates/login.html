@@ -22,11 +22,18 @@
     <div class="container">
         <h2>Log <span>In</span></h2>
     <form th:action="@{/logincheck}" method="post">
-        <label for="login" name="email">Email</label>
+       <!-- <label for="login" name="email">Email</label>
         <input type="text" name="email"placeholder="Enter your email">
-        <label for="password" name="password" placeholder="Enter your password">Password</label>
-        <input type="password" name="password" placeholder="Enter your password">
-        <input type="submit" name="login" value="Submit" class="button">
+       -->
+        
+        <label>Username</label>
+        <input type="text" th:value="${username}" name="username" autocomplete="off" >
+
+        <label>Password</label>  
+        <input type="password" name="password" placeholder="Enter your password" autocomplete="off">
+        
+        
+        <input type="submit" name="login" value="Submit" class="button" >
     </form>
         
                                 <button class="btn-dark px-5 py-2 ms-auto"> <a  href="/register">Registrarse</a>

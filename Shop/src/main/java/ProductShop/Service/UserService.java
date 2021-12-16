@@ -51,6 +51,7 @@ public class UserService implements UserDetailsService {
         }
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
         user.setPassword(encoder.encode(password)); // encripta la contraseña
+        
         user.setUsername(username);
         user.setDni(dni);
         user.setEmail(email);

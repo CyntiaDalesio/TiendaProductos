@@ -48,7 +48,7 @@ public class UserController {
         } catch (Error ex) {
             Logger.getLogger(UserController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return "redirect:/users";
+        return "redirect:/";
     }
     
     
@@ -62,7 +62,7 @@ public class UserController {
         } catch (Error ex) {
             Logger.getLogger(UserController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return "redirect:/users";
+        return "redirect:/login";
     }
 
     @GetMapping("/users/edit/{id}")
