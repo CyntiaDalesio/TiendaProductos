@@ -3,8 +3,13 @@
     padding: 0px;
     box-sizing: border-box;
     font-family: 'Times New Roman', Times, serif;
-    background-color:#2B2B2B;
-    color: #FFFFFF;
+   /*background-color:#2B2B2B;*/
+   color: #ffffff;
+}
+body{
+    background: #000000;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #434343, #000000);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #434343, #000000); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 header{
     display: flex;
@@ -16,6 +21,9 @@ header{
 .main-title{
     margin-left: 15px;
     
+}
+.main-title h1{
+    font-size:27px;
 }
 .main-title span{
     color: #E78A00;
@@ -34,7 +42,7 @@ nav ul{
 }
 nav li{
     margin-left: 25px;
-    
+    cursor: pointer;
 }
 nav button{
     margin-left: 25px;
@@ -44,6 +52,7 @@ nav button{
     width: 75px;
     cursor: pointer;
     border: 1px solid #FFFFFF;
+    background-color: #000000;
 }
 nav button:hover{
     background-color: #ffffff;
@@ -62,26 +71,37 @@ nav button:hover{
     border-style: none;
     text-align: center;
     height: 30px;
-    background-color: rgba(80, 79, 79, 0.274)
+    background-color: rgba(80, 79, 79, 0.274);
+    border: 1px solid #000000;
+}
+.search input:hover{
+    border-color: #E78A00;
 }
 .banner{
     display: flex;
     justify-content: center;
 }
 .banner-image{
-    background-image: url("../images/ps5-banner-new_44e07ae9-bbc2-469d-aeba-09c6af05b4a4.jpeg") ;
-    margin-top: 20px;
+   /* background-image: url("../images/banner.jpeg");
+    
     background-size: contain;
     background-repeat: no-repeat;
     height: 350px;
-    width: 80%;
+    width: 80%;*/
+    height: 50vh;
+    width: 100%;
+    margin-top: 20px;
+}
+.banner-image img{
+  height:100%;
+  width: 100%;
 }
 .top-products{
     text-align: center;
     margin-top: 20px;
 }
 .top-products h2{
-    color: #E78A00;
+   color: rgba(255, 255, 255, 0.678);;
     font-size: 2rem;
 }
 .cards-conteiner{
@@ -91,7 +111,10 @@ nav button:hover{
     align-items: center;
 }
 .cards-product{
-    background-color: rgba(251, 250, 246, 1);
+   /* background-color: rgba(251, 250, 246, 1);*/
+    background: #e65c00;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #F9D423, #e65c00);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #F9D423, #e65c00); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
     border: 1px solid;
     border-radius: 2px;
     margin: 20px;
@@ -99,6 +122,48 @@ nav button:hover{
     transition: transform 1s;
     cursor:pointer;
 }
+.cards-product h3{
+    color: #000000;
+}
+.cards-product p{
+    color: #000000;
+}
 .cards-product:hover{
     transform: scale(1.1);
+}
+.cards-product i{
+    color: #000000;
+}
+.modify{
+    color: #ffffff; 
+    background-color: #000000;
+    height: 30px;
+    width: 100px;
+    border-radius:5px;
+    border-style: none;
+    cursor: pointer;
+}
+.modify:hover{
+    color: #000000;
+    background-color: rgba(255, 255, 255, 0.678);
+}
+.add-product{
+    background: #e65c00;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #F9D423, #e65c00);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #F9D423, #e65c00); 
+    border-style: none;
+    border-radius: 5px;
+}
+footer{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #e65c00;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #F9D423, #e65c00);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #F9D423, #e65c00); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    height: 30px;
+}
+footer h3{
+    font-size: 20px;
+    color: #000000;
 }

@@ -1,7 +1,8 @@
 package ProductShop.Entity;
 
+
+import ProductShop.Enums.Category;
 import java.io.Serializable;
-import java.util.Locale.Category;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -30,15 +31,15 @@ public class Product implements Serializable {
     @OneToOne
     private Photo photo;
     
-//    @OneToOne
-//    private PurchaseDetails detail;
+    @OneToOne
+    private PurchaseDetails detail;
     
     public Product() {
     }
 
     @Override
     public String toString() {
-        return "Product{" + "idProduct=" + getIdProduct() + ", CodeProduct=" + getCodeProduct() + ", Name=" + getName() + ", Price=" + getPrice() + ", TradeMark=" + getTradeMark() +  ", Stock=" + getStock() + ", AvailableStock=" + getAvailableStock() + '}';
+        return "Product{" + "idProduct=" + idProduct + ", CodeProduct=" + CodeProduct + ", Name=" + Name + ", Price=" + Price + ", TradeMark=" + TradeMark +  ", Stock=" + Stock + ", AvailableStock=" + AvailableStock + '}';
     }
 
     public Product(Integer CodeProduct, String Name, Double Price, String TradeMark, Category category, Integer Stock, Photo photo) {
@@ -126,14 +127,15 @@ public class Product implements Serializable {
     public void setPhoto(Photo photo) {
         this.photo = photo;
     }
-//
-//    public PurchaseDetails getDetail() {
-//        return detail;
-//    }
-//
-//    public void setDetail(PurchaseDetails detail) {
-//        this.detail = detail;
-//    }
-//    
+
+    public PurchaseDetails getDetail() {
+        return detail;
+    }
+
+    public void setDetail(PurchaseDetails detail) {
+        this.detail = detail;
+    }
+    
    
 }
+
