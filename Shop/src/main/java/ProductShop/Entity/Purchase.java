@@ -15,26 +15,34 @@ import org.hibernate.annotations.GenericGenerator;
 
 @Entity
 public class Purchase {
-    
+
     @Id
-    @GeneratedValue(generator ="uuid")
-    @GenericGenerator(name ="uuid",strategy = "uuid2")
+    @GeneratedValue(generator = "uuid")
+    @GenericGenerator(name = "uuid", strategy = "uuid2")
     private String Id;
-    
-    private Integer total;
-    
+
+    private Double total;
+
     @Enumerated(EnumType.STRING)
     private PaymentMethod paymentMethod;
-    
+
     @Temporal(TemporalType.DATE)
     private Date date;
     
+    private String code;
+
+    private Integer quantity;
+
+    @OneToOne
+    private Product product;
+
     
-    
+    //agreagar cuando iniciemos carrito
     //@OneToOne
     //private Detail detail;
-
-    public Purchase(String Id, Integer total, Date date/*,Detail detail*/,PaymentMethod paymentMethod) {
+    
+    
+    public Purchase(String Id, Double total, Date date/*,Detail detail*/, PaymentMethod paymentMethod) {
         this.Id = Id;
         this.total = total;
         this.date = date;
@@ -53,11 +61,11 @@ public class Purchase {
         this.Id = Id;
     }
 
-    public Integer getTotal() {
+    public Double getTotal() {
         return total;
     }
 
-    public void setTotal(Integer total) {
+    public void setTotal(Double total) {
         this.total = total;
     }
 
@@ -69,8 +77,6 @@ public class Purchase {
         this.date = date;
     }
 
-    
-    
     /*public void getDetail(){
       return detail;
     }
@@ -78,13 +84,43 @@ public class Purchase {
     public void setDetail(Detail detail){
     this.detail=detail;
     }
-    */
-
+     */
     public PaymentMethod getPaymentMethod() {
         return paymentMethod;
     }
 
     public void setPaymentMethod(PaymentMethod paymentMethod) {
         this.paymentMethod = paymentMethod;
+    }
+
+    
+    
+    public Integer getQuantity() {
+        return quantity;
+    }
+
+    
+    public void setQuantity(Integer quantity) {
+        this.quantity = quantity;
+    }
+
+    
+    public Product getProduct() {
+        return product;
+    }
+
+    
+    public void setProduct(Product product) {
+        this.product = product;
+    }
+
+    
+    public String getCode() {
+        return code;
+    }
+
+    
+    public void setCode(String code) {
+        this.code = code;
     }
 }
