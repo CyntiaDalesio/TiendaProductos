@@ -42,8 +42,7 @@ public class Product implements Serializable {
         return "Product{" + "idProduct=" + idProduct + ", CodeProduct=" + CodeProduct + ", Name=" + Name + ", Price=" + Price + ", TradeMark=" + TradeMark +  ", Stock=" + Stock + ", AvailableStock=" + AvailableStock + '}';
     }
 
-    public Product(String idProduct, Integer CodeProduct, String Name, Double Price, String TradeMark, Category category, Integer Stock, Photo photo) {
-        this.idProduct = idProduct;
+    public Product(Integer CodeProduct, String Name, Double Price, String TradeMark, Category category, Integer Stock, Photo photo) {
         this.CodeProduct = CodeProduct;
         this.Name = Name;
         this.Price = Price;
