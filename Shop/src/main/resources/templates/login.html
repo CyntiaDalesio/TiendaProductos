@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -23,6 +23,9 @@
         <h2>Log <span>In</span></h2>
     <form th:action="@{/logincheck}" method="post">
        <!-- <label for="login" name="email">Email</label>
+        <p>No tienes una cuenta?<a href="/register.html">Registrate</a></p>
+    <form>
+        <label for="login" name="email">Email</label>
         <input type="text" name="email"placeholder="Enter your email">
        -->
         
