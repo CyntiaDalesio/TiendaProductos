@@ -42,7 +42,7 @@ nav ul{
 }
 nav li{
     margin-left: 25px;
-    
+    cursor: pointer;
 }
 nav button{
     margin-left: 25px;
@@ -101,7 +101,7 @@ nav button:hover{
     margin-top: 20px;
 }
 .top-products h2{
-    color: #E78A00;
+   color: rgba(255, 255, 255, 0.678);;
     font-size: 2rem;
 }
 .cards-conteiner{
@@ -111,7 +111,10 @@ nav button:hover{
     align-items: center;
 }
 .cards-product{
-    background-color: rgba(251, 250, 246, 1);
+   /* background-color: rgba(251, 250, 246, 1);*/
+    background: #e65c00;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #F9D423, #e65c00);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #F9D423, #e65c00); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
     border: 1px solid;
     border-radius: 2px;
     margin: 20px;
@@ -128,14 +131,36 @@ nav button:hover{
 .cards-product:hover{
     transform: scale(1.1);
 }
+.modify{
+    color: #ffffff; 
+    background-color: #000000;
+    height: 30px;
+    width: 100px;
+    border-radius:5px;
+    border-style: none;
+    cursor: pointer;
+}
+.modify:hover{
+    color: #000000;
+    background-color: rgba(255, 255, 255, 0.678);
+}
+.add-product{
+    background: #e65c00;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #F9D423, #e65c00);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #F9D423, #e65c00); 
+    border-style: none;
+    border-radius: 5px;
+}
 footer{
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color:#E78A00;
+    background: #e65c00;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #F9D423, #e65c00);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #F9D423, #e65c00); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
     height: 30px;
 }
 footer h3{
-    background-color: #E78A00;
-    font-size: 16px;
+    color: #000000;
 }
