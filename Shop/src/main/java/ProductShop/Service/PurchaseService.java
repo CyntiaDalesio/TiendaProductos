@@ -24,8 +24,22 @@ public class PurchaseService {
         P.setProduct(optionalP.get());
         P.setQuantity(quantity);
         P.setDate(new Date());
-        P.setTotal(P.getQuantity()* P.getProduct().getPrice());
-        
+        P.setTotal(P.getQuantity() * P.getProduct().getPrice());
+        P.getPaymentMethod();
 
     }
+
+    public void editPurchase(String id, Integer quantity) {
+        Purchase P = purchaseRepository.findById(id).get();
+
+        P.setQuantity(quantity);
+
+    }
+
+    public void cancelPurchase(String id) {
+        Purchase P = purchaseRepository.findById(id).get();
+
+        purchaseRepository.delete(P);
+    }
+
 }
