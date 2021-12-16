@@ -17,8 +17,8 @@ public class PurchaseDetails implements Serializable {
     private Double priceUnit;
     private Double subtotal;
     private Integer cantity;
-//    @OneToOne
-//    private Product product;
+    @OneToOne
+    private Product product;
 
     public PurchaseDetails() {
     }
@@ -53,13 +53,13 @@ public class PurchaseDetails implements Serializable {
         this.cantity = cantity;
     }
 
-//    public Product getProduct() {
-//        return product;
-//    }
-//
-//    public void setProduct(Product product) {
-//        this.product = product;
-//    }
+    public Product getProduct() {
+        return product;
+    }
+
+    public void setProduct(Product product) {
+        this.product = product;
+    }
 
     public Double getSubtotal() {
         return subtotal;
