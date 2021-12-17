@@ -1,0 +1,16 @@
+*{
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+    font-family: 'Times New Roman', Times, serif;
+   /*background-color:#2B2B2B;*/
+    color:#ffffff;
+}
+
+body{
+    background-image: url("/src/main/resources/static/images/backgroundModify.png");
+    background-size: cover;
+    width: 100%;
+    height: 100%;
+    position:absolute;
+}
