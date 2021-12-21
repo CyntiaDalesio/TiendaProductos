@@ -18,7 +18,11 @@ public class PurchaseDetails implements Serializable {
     private Double subtotal;
     private Integer cantity;
     @OneToOne
+    private Usuario users;
+    @OneToOne
     private Product product;
+    @OneToOne
+    private Purchase purchase;
 
     public PurchaseDetails() {
     }
