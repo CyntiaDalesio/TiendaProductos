@@ -24,6 +24,7 @@ header{
 }
 .main-title h1{
     font-size:27px;
+    cursor: pointer;
 }
 .main-title span{
     color: #E78A00;
