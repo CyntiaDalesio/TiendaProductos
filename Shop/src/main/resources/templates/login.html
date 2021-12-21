@@ -6,21 +6,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
      <link rel="stylesheet" type="text/css" media="all"
           href="/src/main/resources/static/styles/login.css" th:href="@{/styles/login.css}" />
+          <link rel="stylesheet" type="text/css" media="all"
+          href="/src/main/resources/static/styles/style.css" th:href="@{/styles/style.css}" />
     <title>Login</title>
 </head>
 <body>
     <header>
-    
+        <section class="main-title">
+            <h1 id="home">E-Game<span>Egg</span></h1>
+        </section>
     </header>
     <main>
-        <div th:if="${error}" class="alert alert-danger" role="alert"> 
+        <!--<div th:if="${error}" class="alert alert-danger" role="alert"> 
                 <span th:text="${error}"></span>
             </div>
               <div th:if="${param.logout}" class="alert alert-success" role="alert"> 
                 <span>Has finalizado la sesión con éxito!</span>
-            </div>
+            </div>-->
     <div class="container">
         <h2>Log <span>In</span></h2>
+        <p>No tienes cuenta?<a href="/register">Registrate</a></p>
     <form th:action="@{/logincheck}" method="post">
        <!-- <label for="login" name="email">Email</label>
         <p>No tienes una cuenta?<a href="/register.html">Registrate</a></p>
@@ -38,10 +43,12 @@
         
         <input type="submit" name="login" value="Submit" class="button" >
     </form>
-        
-                                <button class="btn-dark px-5 py-2 ms-auto"> <a  href="/register">Registrarse</a>
-
-        
+    <div th:if="${error}" class="alert alert-danger" role="alert"> 
+        <p th:text="${error}"></p>
+    </div>
+      <div th:if="${param.logout}" class="alert alert-success" role="alert"> 
+        <p>Has finalizado la sesión con éxito!</p>
+    </div>
     </div>
    </main>
 </body>

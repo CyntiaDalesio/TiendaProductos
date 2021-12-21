@@ -6,16 +6,43 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" media="all"
           href="/src/main/resources/static/styles/modify.css" th:href="@{/styles/modify.css}" />
+    <link rel="stylesheet" type="text/css" media="all"
+          href="/src/main/resources/static/styles/style.css" th:href="@{/styles/style.css}" />
     <title>modificarProducto</title>
 </head>
 <body>
     <header>
-     <h1>Cargar Producto</h1>
+    <section class="main-title">
+        <h1 id="home">E-Game<span>Egg</span></h1>
+    </section>
     </header>
-    <main>
-        <form>
-            
+    
+    <main class="main-product">
+        <div class="container-image">
+            <h2>Modificar Producto</h2>
+        </div>
+        <div>
+        <form class="modify-product">
+            <label for="producto">Nombre</label>
+            <input type="text" placeholder="ingrese el nombre del producto">
+            <label for="precio">Precio</label>
+            <input type="number" placeholder="ingrese el precio del producto">
+            <label for="TradeMark">Marca del producto</label>
+            <input type="text" placeholder="ingrese la marca del producto">
+            <select name="categoria">
+                <option value="categoria1"selected>categoria1</option>
+                <option value="categoria2">categoria2</option>
+                <option value="categoria3">categoria3</option>
+            </select>
+            <label for="photo">Foto</label>
+            <input type="file" class="" placeholder="seleccione una Foto para subir">
+            <input type="submit" name="login" value="Submit" class="button" >
         </form>
+        </div>
     </main>
+    <footer>
+        <h3>Todos los derechos reservados E-GameEgg</h3>
+    </footer>
+    <script src="../assets/index.js"></script>
 </body>
 </html>
