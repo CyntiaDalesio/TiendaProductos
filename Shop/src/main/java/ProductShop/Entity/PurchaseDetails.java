@@ -14,11 +14,10 @@ public class PurchaseDetails implements Serializable {
     @GeneratedValue(generator = "uuid")
     @GenericGenerator(name = "uuid", strategy = "uuid2")
     private String idDetails;
+    private String idUser;
     private Double priceUnit;
     private Double subtotal;
-    private Integer cantity;
-    @OneToOne
-    private Usuario users;
+    private Integer cantity;    
     @OneToOne
     private Product product;
     @OneToOne
@@ -27,11 +26,16 @@ public class PurchaseDetails implements Serializable {
     public PurchaseDetails() {
     }
 
-    public PurchaseDetails(Double priceUnit, Integer cantity, Product product) {
+    public PurchaseDetails(String idUser, Double priceUnit, Double subtotal, Integer cantity, Product product, Purchase purchase) {
+        this.idUser = idUser;
         this.priceUnit = priceUnit;
+        this.subtotal = subtotal;
         this.cantity = cantity;
-//        this.product = product;
+        this.product = product;
+        this.purchase = purchase;
     }
+
+    
 
     public String getIdDetails() {
         return idDetails;
@@ -71,6 +75,14 @@ public class PurchaseDetails implements Serializable {
 
     public void setSubtotal(Double subtotal) {
         this.subtotal = subtotal;
+    }
+
+    public Purchase getPurchase() {
+        return purchase;
+    }
+
+    public void setPurchase(Purchase purchase) {
+        this.purchase = purchase;
     }
     
     
