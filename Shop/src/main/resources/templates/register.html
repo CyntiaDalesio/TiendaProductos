@@ -1,52 +1,52 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
-      rel="stylesheet"
-      type="text/css"
-      media="all"
-      href="/src/main/resources/static/styles/style.css"
-      th:href="@{/styles/style.css}"
-    />
-    <title>Registrar usuario</title>
-  </head>
-  <body>
-    <header>
-      <section class="main-title">
-        <h1>E-Game<span>Egg</span></h1>
-      </section>
-    </header>
-    <main>
-      <form th:action="@{/register}" method="post" class="col-6 mx-auto">
-        <label> Nombre y Apellido </label><br />
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link
+            rel="stylesheet"
+            type="text/css"
+            media="all"
+            href="/src/main/resources/static/styles/style.css"
+            th:href="@{/styles/style.css}"
+            />
+        <title>Registrar usuario</title>
+    </head>
+    <body>
+        <header>
+            <section class="main-title">
+                <h1>E-Game<span>Egg</span></h1>
+            </section>
+        </header>
+        <main>
+            <form th:action="@{/register}" method="post" class="col-6 mx-auto">
+                <label> Nombre y Apellido </label><br />
 
-        <input type="text" name="username" /><br />
+                <input type="text" name="username" /><br />
 
-        <label> Email </label><br />
+                <label> Email </label><br />
 
-        <input type="text" name="email" /><br />
+                <input type="text" name="email" /><br />
 
-        <label> DNI </label><br />
+                <label> DNI </label><br />
 
-        <input type="number" name="dni" /><br />
+                <input type="number" name="dni" /><br />
 
-        <label> password </label><br />
+                <label> password </label><br />
 
-        <input type="text" name="password" /><br />
+                <input type="text" name="password" /><br />
 
-        <label> password </label><br />
+                <label> password </label><br />
 
-        <input type="text" name="password2" /><br />
+                <input type="text" name="password2" /><br />
 
-        <br />
+                <br />
 
-        <button type="submit">Enviar</button>
+                <button type="submit">Enviar</button>
 
-        <button type="reset">Borrar</button>
-      </form>
-    </main>
-  </body>
+                <button type="reset">Borrar</button>
+            </form>
+        </main>
+    </body>
 </html>
