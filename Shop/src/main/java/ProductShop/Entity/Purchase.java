@@ -35,6 +35,9 @@ public class Purchase {
 
     @OneToOne
     private Product product;
+    
+    @OneToOne
+    private Usuario usuario;
 
     
     //agreagar cuando iniciemos carrito
@@ -42,12 +45,13 @@ public class Purchase {
     //private Detail detail;
     
     
-    public Purchase(String Id, Double total, Date date/*,Detail detail*/, PaymentMethod paymentMethod) {
+    public Purchase(String Id, Double total, Date date/*,Detail detail*/, PaymentMethod paymentMethod,Usuario usuario) {
         this.Id = Id;
         this.total = total;
         this.date = date;
         //this.detail=detail;
         this.paymentMethod = paymentMethod;
+        this.usuario=usuario;
     }
 
     public Purchase() {
@@ -122,5 +126,15 @@ public class Purchase {
     
     public void setCode(String code) {
         this.code = code;
+    }
+
+    
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
     }
 }
