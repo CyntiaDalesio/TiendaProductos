@@ -35,11 +35,18 @@ public class PurchaseDetailsService {
         
         purchaseDetails.setCantity(cantity);
         purchaseDetails.setPriceUnit(purchaseDetails.getProduct().getPrice());
-        purchaseDetails.setSubtotal(Double.NaN);
+        purchaseDetails.setSubtotal(calcularSubtotal(purchaseDetails.getPriceUnit(), purchaseDetails.getCantity()));
 
         return purchaseDetails;
     }
 
+    
+    public Double calcularSubtotal(Double priceUnit, Integer cantity){
+        Double subtotal = 0.00;
+        subtotal = priceUnit * cantity;
+        return subtotal;
+    }
+    
     public void validate(String idUser, String idProduct) {
 
         
