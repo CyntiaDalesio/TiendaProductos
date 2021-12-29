@@ -26,7 +26,7 @@ public class ProductController {
      
     @GetMapping("/product")
     public String Index(){
-        return "/index";
+        return "modify";
         
     }
     @PostMapping("/addproduct")
