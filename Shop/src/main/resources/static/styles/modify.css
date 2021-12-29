@@ -29,6 +29,7 @@ body{
     width: 50%;
     margin: 50px;
 }
+
 input, select{
     width: 250px;
     height: 50px;
@@ -59,6 +60,9 @@ label{
     color: rgba(255, 255, 255, 0.863);
     border-radius: 10px ;
     padding: 15px;
+}
+.button{
+    color: #ffff;
 }
 
 @media screen and (max-width: 768px){
