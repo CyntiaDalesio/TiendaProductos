@@ -27,7 +27,7 @@ public class ProductService {
     private PhotoService photoService;
 
     @Transactional
-    public Product CreateProduct(MultipartFile archivo, Integer CodeProduct, String Name, Double Price, String TradeMark, Category category, Integer Stock) throws ErrorServicio {
+    public Product CreateProduct(MultipartFile archivo, Integer CodeProduct, String Name, Double Price, String TradeMark, String category, Integer Stock) throws ErrorServicio {
 
         Product product = new Product();
         product.setCodeProduct(CodeProduct);
@@ -47,14 +47,14 @@ public class ProductService {
     }
 
     @Transactional
-    public Product ModifyProduct(MultipartFile archivo,String idProduct, Integer CodeProduct, String Name, Double Price, String TradeMark, Category category, Integer Stock) throws ErrorServicio {
+    public Product ModifyProduct(MultipartFile archivo,String idProduct, Integer CodeProduct, String Name, Double Price, String TradeMark, String category, Integer Stock) throws ErrorServicio {
         Product product = (Product) productrepository.findByidProduct(idProduct);
         product.setCodeProduct(CodeProduct);
         product.setName(Name);
         product.setPrice(Price);
         product.setStock(Stock);
         product.setTradeMark(TradeMark);
-        product.setCategory(category);
+        product.setCategory(Category.valueOf(category));
      String idPhoto=null;
         if (product.getPhoto()!=null) {
             idPhoto=product.getPhoto().getId();
