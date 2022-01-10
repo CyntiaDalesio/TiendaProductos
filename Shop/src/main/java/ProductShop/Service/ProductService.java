@@ -5,7 +5,6 @@ import ProductShop.Entity.Product;
 import ProductShop.Enums.Category;
 import ProductShop.Repository.ProductRepository;
 import ProductShop.errores.ErrorServicio;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.Scanner;
@@ -31,7 +30,11 @@ public class ProductService {
 
         Product product = new Product();
         product.setCodeProduct(CodeProduct);
+        if (CodeProduct == null){
+           product.setCodeProduct(CodeProduct);
+        }
         product.setName(Name);
+        product.setStock(Stock);
         product.setPrice(Price);
         product.setTradeMark(TradeMark);
         product.setCategory(Category.valueOf(category));
@@ -47,14 +50,17 @@ public class ProductService {
     }
 
     @Transactional
-    public Product ModifyProduct(MultipartFile archivo,String idProduct, Integer CodeProduct, String Name, Double Price, String TradeMark, String category, Integer Stock) throws ErrorServicio {
-        Product product = (Product) productrepository.findByidProduct(idProduct);
+
+    public Product ModifyProduct(MultipartFile archivo, Integer CodeProduct, String Name, Double Price, String TradeMark, Category category, Integer Stock) throws ErrorServicio {
+            Product product = (Product) productrepository.findByCodeProduct(CodeProduct);
+
         product.setCodeProduct(CodeProduct);
+        
         product.setName(Name);
         product.setPrice(Price);
         product.setStock(Stock);
         product.setTradeMark(TradeMark);
-        product.setCategory(Category.valueOf(category));
+        product.setCategory(category);
      String idPhoto=null;
         if (product.getPhoto()!=null) {
             idPhoto=product.getPhoto().getId();
