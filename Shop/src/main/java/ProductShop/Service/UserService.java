@@ -95,7 +95,7 @@ public class UserService implements UserDetailsService {
             contact.setMessage(message);
             contact.setName(name);
             
-//            user.setContact(contact);
+      
             userRepository.save(user);
             
         } else {

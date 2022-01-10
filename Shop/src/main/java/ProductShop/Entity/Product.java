@@ -52,7 +52,16 @@ public class Product implements Serializable {
         this.photo = photo;
     }
 
-   
+    public Product(Integer CodeProduct, String Name, Double Price, String TradeMark, Category category, Integer Stock) {
+        this.CodeProduct = CodeProduct;
+        this.Name = Name;
+        this.Price = Price;
+        this.TradeMark = TradeMark;
+        this.category = category;
+        this.Stock = Stock;
+      
+    }
+
 
     public String getIdProduct() {
         return idProduct;
