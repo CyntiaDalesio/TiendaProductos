@@ -22,15 +22,21 @@ public class ProductController {
      @Autowired
     private ProductRepository productrepository;
      
-    @GetMapping("/product")
-    public String Index(){
-        return "product/index";
+//    @GetMapping("/product")
+//    public String Index(){
+//        return "product/index";
+//        
+//    }
+      @GetMapping("addproduct")
+    public String addProduct(){
+        return "addProduct.html";
         
     }
+    
     @PostMapping("/addproduct")
-      public String SaveProduct(Integer CodeProduct, String Name, Double Price, String TradeMark, Category category, Integer Stock, Photo photo){
-       productservice.CreateProduct(CodeProduct,Name,Price,TradeMark,category,Stock, photo);
-        return "product/index";}
+      public String SaveProduct(Integer CodeProduct, String Name, Double Price, String TradeMark, String category, Integer Stock,Photo photo){
+       productservice.CreateProduct(CodeProduct,Name,Price,TradeMark,category,Stock,photo);
+        return "index";}
       
       @PostMapping("/modifyproduct")
       public String ModifyProduct(String idProduct, Integer CodeProduct, String Name, Double Price, String TradeMark, Category category, Integer Stock, Photo photo){

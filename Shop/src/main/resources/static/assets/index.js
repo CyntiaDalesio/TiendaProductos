@@ -6,6 +6,8 @@ login.addEventListener("click", ()=>{
 
 /*reditect to home page*/
 let home =  document.getElementById("home");
-home.addEventListener("click", ()=>{
-    location.href = "/";
-})
+if (home) {
+    home.addEventListener("click", ()=>{
+        location.href = "/";
+    })
+}

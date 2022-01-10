@@ -21,8 +21,8 @@ public class ProductService {
     
 
     @Transactional
-    public Product CreateProduct(Integer CodeProduct, String Name, Double Price, String TradeMark, Category category, Integer Stock, Photo photo){
-        Product product = new Product(CodeProduct,Name,Price,TradeMark,category,Stock, photo);
+    public Product CreateProduct(Integer CodeProduct, String Name, Double Price, String TradeMark, String category, Integer Stock, Photo photo){
+        Product product = new Product(CodeProduct,Name,Price,TradeMark,Category.valueOf(category),Stock,photo);
         
         if (Stock > 0){
         product.setAvailableStock(true);}
