@@ -31,9 +31,6 @@ public class Product implements Serializable {
     @OneToOne
     private Photo photo;
     
-    @OneToOne
-    private PurchaseDetails detail;
-    
     public Product() {
     }
 
@@ -135,14 +132,6 @@ public class Product implements Serializable {
 
     public void setPhoto(Photo photo) {
         this.photo = photo;
-    }
-
-    public PurchaseDetails getDetail() {
-        return detail;
-    }
-
-    public void setDetail(PurchaseDetails detail) {
-        this.detail = detail;
     }
     
    
