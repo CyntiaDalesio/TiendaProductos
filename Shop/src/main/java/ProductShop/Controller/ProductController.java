@@ -29,9 +29,7 @@ public class ProductController {
         return "modify";}
 //    @GetMapping("/product")
 //    public String Index(){
-//        return "product/index";
-//        
-//    }
+
       @GetMapping("addproduct")
     public String addProduct(){
         return "addProduct.html";
@@ -45,23 +43,25 @@ public class ProductController {
         return "index";}
       
       @PostMapping("/modifyproduct")
-      public String ModifyProduct(MultipartFile archivo,String idProduct, Integer CodeProduct, String Name, Double Price, String TradeMark, String category, Integer Stock, Photo photo) throws ErrorServicio{
-          productservice.ModifyProduct(archivo,idProduct, CodeProduct, Name, Price, TradeMark, category, Stock);
+      public String ModifyProduct(MultipartFile archivo, Integer CodeProduct, String Name, Double Price, String TradeMark, Category category, Integer Stock, Photo photo) throws ErrorServicio{
+          productservice.ModifyProduct(archivo, CodeProduct, Name, Price, TradeMark, category, Stock);
         return "product/index";
-    }
+    }}
+   
 
 }
         
 //      @PostMapping("/searchbyname")
+//      @PostMapping("/findbyname")
 //      public String SearchByName(String Name) {
-//            productservice.SearchByName(Name);
-//          return "/searchproductname";
+//            productrepository.findByName(Name);
+//          return "index";
 //      }
-//      @PostMapping("/searchbycategory")
-//      public String SearchByCategory(Category category) {
-//      productservice.SearchByCategory(category);
-//      return "/product/index";
-//      }
+//      @PostMapping("/findbycategory")
+//      public String FindByCategory(Category category) {
+//      productrepository.findByCategory(category);
+//      return "index";
+      
       
         
 //        
