@@ -27,8 +27,6 @@ public class ProductController {
     @GetMapping("/product")
     public String Index(){
         return "modify";}
-//    @GetMapping("/product")
-//    public String Index(){
 
       @GetMapping("addproduct")
     public String addProduct(){
@@ -47,11 +45,11 @@ public class ProductController {
           productservice.ModifyProduct(archivo, CodeProduct, Name, Price, TradeMark, category, Stock);
         return "product/index";
     }}
+
+
    
 
-}
         
-//      @PostMapping("/searchbyname")
 //      @PostMapping("/findbyname")
 //      public String SearchByName(String Name) {
 //            productrepository.findByName(Name);
