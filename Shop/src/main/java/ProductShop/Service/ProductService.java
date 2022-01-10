@@ -34,7 +34,7 @@ public class ProductService {
         product.setName(Name);
         product.setPrice(Price);
         product.setTradeMark(TradeMark);
-        product.setCategory(category);
+        product.setCategory(Category.valueOf(category));
         Photo photo = photoService.save(archivo);
         product.setPhoto(photo);
         if (Stock > 0) {
