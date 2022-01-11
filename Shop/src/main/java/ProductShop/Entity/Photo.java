@@ -4,14 +4,20 @@ import java.io.Serializable;
 import javax.persistence.Basic;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Lob;
+import org.hibernate.annotations.GenericGenerator;
 
 @Entity
 public class Photo implements Serializable {
 
     @Id
+    @GeneratedValue(generator = "uuid")
+    @GenericGenerator(name= "uuid",strategy = "uuid2")
     private String id;
+    
+    
     private String name;
     private String mime;
 
@@ -24,6 +30,16 @@ public class Photo implements Serializable {
      */
     public String getId() {
         return id;
+    }
+
+    public Photo() {
+    }
+
+    public Photo(String name, String mime, byte[] content) {
+      
+        this.name = name;
+        this.mime = mime;
+        this.content = content;
     }
 
     /**
