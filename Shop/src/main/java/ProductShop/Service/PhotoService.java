@@ -8,6 +8,7 @@ package ProductShop.Service;
 import ProductShop.Entity.Photo;
 import ProductShop.Repository.PhotoRepository;
 import ProductShop.errores.ErrorServicio;
+import java.io.IOException;
 import java.util.Optional;
 import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,22 +23,25 @@ public class PhotoService {
 
     @Transactional
     public Photo save(MultipartFile archivo) throws ErrorServicio {
-
+       
+        Photo photo = new Photo();
         if (archivo != null) {
             try {
-                Photo photo = new Photo();
+               
+                
                 photo.setMime(archivo.getContentType());
                 photo.setName(archivo.getName());
                 photo.setContent(archivo.getBytes());
-
-                return photoRepository.save(photo);
-
-            } catch (Exception e) {
-                System.err.println(e.getMessage());
+                
+               
+            } catch (IOException e) {
+             System.out.println(e.getMessage());
+            return null;
             }
-        }
-        return null;
-    }
+        
+        }return photoRepository.save(photo);}
+       
+   
 
     @Transactional
     public Photo updatePhoto(String idPhoto, MultipartFile archivo) throws ErrorServicio {
@@ -56,8 +60,8 @@ public class PhotoService {
                 photo.setName(archivo.getName());
                 photo.setContent(archivo.getBytes());
                 return photoRepository.save(photo);
-            } catch (Exception e) {
-                System.err.println(e.getMessage());
+            } catch (IOException e) {
+                 System.out.println(e.getMessage());
             }
         }
         return null;
