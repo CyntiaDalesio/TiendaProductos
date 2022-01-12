@@ -14,10 +14,9 @@ public class PurchaseDetails implements Serializable {
     @GeneratedValue(generator = "uuid")
     @GenericGenerator(name = "uuid", strategy = "uuid2")
     private String idDetails;
-    private String idUser;
     private Double priceUnit;
     private Double subtotal;
-    private Integer cantity;    
+    private Integer cantity;
     @OneToOne
     private Product product;
     @OneToOne
@@ -26,8 +25,7 @@ public class PurchaseDetails implements Serializable {
     public PurchaseDetails() {
     }
 
-    public PurchaseDetails(String idUser, Double priceUnit, Double subtotal, Integer cantity, Product product, Purchase purchase) {
-        this.idUser = idUser;
+    public PurchaseDetails(Double priceUnit, Double subtotal, Integer cantity, Product product, Purchase purchase) {
         this.priceUnit = priceUnit;
         this.subtotal = subtotal;
         this.cantity = cantity;
