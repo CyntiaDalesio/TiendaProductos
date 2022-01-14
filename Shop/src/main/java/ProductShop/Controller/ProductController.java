@@ -38,7 +38,7 @@ public class ProductController {
       public String SaveProduct(MultipartFile archivo,Integer CodeProduct, String Name, Double Price, String TradeMark, String category, Integer Stock,Photo photo) throws ErrorServicio{
        productservice.CreateProduct(archivo,CodeProduct,Name,Price,TradeMark,category,Stock);
        //MultipartFile archivo, Integer CodeProduct, String Name, Double Price, String TradeMark, Category category, Integer Stock
-        return "index";}
+        return "redirect:/";}
       
       @PostMapping("/modifyproduct")
       public String ModifyProduct(MultipartFile archivo, Integer CodeProduct, String Name, Double Price, String TradeMark, Category category, Integer Stock, Photo photo) throws ErrorServicio{

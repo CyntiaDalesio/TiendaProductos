@@ -29,11 +29,13 @@
             <input type="number" placeholder="ingrese el precio del producto">
             <label for="TradeMark">Marca del producto</label>
             <input type="text" placeholder="ingrese la marca del producto">
-            <select name="categoria">
-                <option value="categoria1"selected>categoria1</option>
-                <option value="categoria2">categoria2</option>
-                <option value="categoria3">categoria3</option>
-            </select>
+            
+                <label >Categoría</label>
+                <select name="category">
+                  <option th:each="Category : ${T(ProductShop.Enums.Category).values()}" th:value="${Category}"
+                    th:text="${Category}"></option>
+                  <br>
+              
             <label for="photo">Foto</label>
             <input type="file" class="" placeholder="seleccione una Foto para subir">
             <input type="submit" name="" value="Submit" class="button" >

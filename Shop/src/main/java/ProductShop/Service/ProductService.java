@@ -87,8 +87,19 @@ public class ProductService {
       
     }else{
                System.out.println("No se encontro el producto");  
-        }}}
+        }}
     
+
+
+  public List<Product> listarProduct(){
+    
+    
+    return productrepository.findAll();
+    }
+      
+
+
+}
     //Revisar Metodos por fallas
     
 //    public Product SearchByName(String Name){
