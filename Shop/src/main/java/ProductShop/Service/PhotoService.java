@@ -21,27 +21,45 @@ public class PhotoService {
     @Autowired
     private PhotoRepository photoRepository;
 
+    public Photo findById(String id) {
+
+        if (id != null) {
+            Optional<Photo> rta = photoRepository.findById(id);
+            if (rta.isPresent()) {
+                Photo photo = rta.get();
+
+                return photo;
+            }
+        }
+        return null;
+    }
+
     @Transactional
     public Photo save(MultipartFile archivo) throws ErrorServicio {
-       
+
         Photo photo = new Photo();
-        if (archivo != null) {
-            try {
-               
-                
-                photo.setMime(archivo.getContentType());
-                photo.setName(archivo.getName());
-                photo.setContent(archivo.getBytes());
-                
-               
-            } catch (IOException e) {
-             System.out.println(e.getMessage());
+
+        try {
+
+            photo.setMime(archivo.getContentType());
+            photo.setName(archivo.getName());
+            photo.setContent(archivo.getBytes());
+
+            photoRepository.save(photo);
+
+            return photo;
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+
             return null;
-            }
-        
-        }return photoRepository.save(photo);}
-       
-   
+        } catch (NullPointerException ee) {
+
+            System.out.println(ee.getMessage());
+
+            return null;
+        }
+
+    }
 
     @Transactional
     public Photo updatePhoto(String idPhoto, MultipartFile archivo) throws ErrorServicio {
@@ -61,7 +79,7 @@ public class PhotoService {
                 photo.setContent(archivo.getBytes());
                 return photoRepository.save(photo);
             } catch (IOException e) {
-                 System.out.println(e.getMessage());
+                System.out.println(e.getMessage());
             }
         }
         return null;
