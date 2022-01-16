@@ -11,15 +11,13 @@ import java.util.Scanner;
 
 import javax.transaction.Transactional;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 @Service
 public class ProductService {
-    Scanner sc = new Scanner(System.in);
-    
+
     @Autowired
     private ProductRepository productrepository;
     @Autowired
@@ -30,8 +28,8 @@ public class ProductService {
 
         Product product = new Product();
         product.setCodeProduct(CodeProduct);
-        if (CodeProduct == null){
-           product.setCodeProduct(CodeProduct);
+        if (CodeProduct == null) {
+            product.setCodeProduct(CodeProduct);
         }
         product.setName(Name);
         product.setStock(Stock);
@@ -51,62 +49,81 @@ public class ProductService {
 
     @Transactional
 
-    public Product ModifyProduct(MultipartFile archivo, Integer CodeProduct, String Name, Double Price, String TradeMark, Category category, Integer Stock) throws ErrorServicio {
-            Product product = (Product) productrepository.findByCodeProduct(CodeProduct);
+    public void ModifyProduct(MultipartFile archivo, String idProduct, String Name, Double Price, String TradeMark, String category, Integer Stock, Integer CodeProduct) throws ErrorServicio {
 
-        product.setCodeProduct(CodeProduct);
+        Optional<Product> answer = productrepository.findById(idProduct);
+        if (answer.isPresent()) {
+            Product product = answer.get();
+
+            product.setCodeProduct(CodeProduct);
+
+            product.setName(Name);
+            product.setPrice(Price);
+            product.setStock(Stock);
+            product.setTradeMark(TradeMark);
+            product.setCategory(Category.valueOf(category));
+
+            String idPhoto = null;
+            
+            if (archivo != null) {
+                if (product.getPhoto() != null) {
+                    idPhoto = product.getPhoto().getId();
+
+                    Photo photo = photoService.updatePhoto(idPhoto, archivo);
+                    product.setPhoto(photo);
+                } else {
+                    Photo photo = photoService.save(archivo);
+                    product.setPhoto(photo);
+
+                }
+            }
         
-        product.setName(Name);
-        product.setPrice(Price);
-        product.setStock(Stock);
-        product.setTradeMark(TradeMark);
-        product.setCategory(category);
-     String idPhoto=null;
-        if (product.getPhoto()!=null) {
-            idPhoto=product.getPhoto().getId();
-        }
-        Photo photo= photoService.updatePhoto(idPhoto, archivo);
-        product.setPhoto(photo);
+
         if (Stock > 0) {
             product.setAvailableStock(true);
         } else {
             product.setAvailableStock(false);
         }
-        return productrepository.save(product);
-
+        productrepository.save(product);
     }
-    @Transactional
-    public void DeleteProduct(String idProduct){
-    
-     
-        
-       Optional<Product> answer = productrepository.findById(idProduct);
-           if(answer.isPresent()){
-    Product product = answer.get();
-    productrepository.delete(product);
-      
-    }else{
-               System.out.println("No se encontro el producto");  
-        }}
-    
+}
 
+@Transactional
+        public void DeleteProduct(String idProduct) {
 
-  public List<Product> listarProduct(){
-    
-    
-    return productrepository.findAll();
+        Optional<Product> answer = productrepository.findById(idProduct);
+        if (answer.isPresent()) {
+            Product product = answer.get();
+            productrepository.delete(product);
+
+        } else {
+            System.out.println("No se encontro el producto");
+        }
     }
-      
 
+    public List<Product> listarProduct() {
+
+        return productrepository.findAll();
+    }
+
+    public Product findProductById(String idProduct) {
+
+        Optional<Product> answer = productrepository.findById(idProduct);
+        if (answer.isPresent()) {
+            Product product = answer.get();
+            return product;
+        } else {
+            return null;
+        }
+    }
 
 }
-    //Revisar Metodos por fallas
-    
+//Revisar Metodos por fallas
+
 //    public Product SearchByName(String Name){
 //        Product products =  (Product) productrepository.findByName(Name);
 //        return products;
 //    }
-    
 //    public List<Product> SearchByCategory(Category category){
 //       Product products =  (Product) productrepository.findByCategory(category);
 //  
