@@ -27,9 +27,13 @@ public class Product implements Serializable {
     private Category category;
     
     private Integer Stock;
+    
     private Boolean AvailableStock;
+    
     @OneToOne
     private Photo photo;
+    
+   
     
     public Product() {
     }

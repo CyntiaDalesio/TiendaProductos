@@ -8,6 +8,7 @@ package ProductShop.Service;
 import ProductShop.Entity.Photo;
 import ProductShop.Repository.PhotoRepository;
 import ProductShop.errores.ErrorServicio;
+import java.io.IOException;
 import java.util.Optional;
 import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,23 +21,44 @@ public class PhotoService {
     @Autowired
     private PhotoRepository photoRepository;
 
-    @Transactional
-    public Photo save(MultipartFile archivo) throws ErrorServicio {
+    public Photo findById(String id) {
 
-        if (archivo != null) {
-            try {
-                Photo photo = new Photo();
-                photo.setMime(archivo.getContentType());
-                photo.setName(archivo.getName());
-                photo.setContent(archivo.getBytes());
+        if (id != null) {
+            Optional<Photo> rta = photoRepository.findById(id);
+            if (rta.isPresent()) {
+                Photo photo = rta.get();
 
-                return photoRepository.save(photo);
-
-            } catch (Exception e) {
-                System.err.println(e.getMessage());
+                return photo;
             }
         }
         return null;
+    }
+
+    @Transactional
+    public Photo save(MultipartFile archivo) throws ErrorServicio {
+
+        Photo photo = new Photo();
+
+        try {
+
+            photo.setMime(archivo.getContentType());
+            photo.setName(archivo.getName());
+            photo.setContent(archivo.getBytes());
+
+            photoRepository.save(photo);
+
+            return photo;
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+
+            return null;
+        } catch (NullPointerException ee) {
+
+            System.out.println(ee.getMessage());
+
+            return null;
+        }
+
     }
 
     @Transactional
@@ -56,8 +78,8 @@ public class PhotoService {
                 photo.setName(archivo.getName());
                 photo.setContent(archivo.getBytes());
                 return photoRepository.save(photo);
-            } catch (Exception e) {
-                System.err.println(e.getMessage());
+            } catch (IOException e) {
+                System.out.println(e.getMessage());
             }
         }
         return null;
