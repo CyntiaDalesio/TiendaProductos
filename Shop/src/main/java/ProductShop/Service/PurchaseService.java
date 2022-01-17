@@ -3,6 +3,7 @@ package ProductShop.Service;
 import ProductShop.Entity.Product;
 import ProductShop.Entity.Purchase;
 import ProductShop.Entity.Usuario;
+import ProductShop.Enums.PaymentMethod;
 import ProductShop.Repository.ProductRepository;
 import ProductShop.Repository.PurchaseRepository;
 import ProductShop.Repository.UserRepository;
@@ -25,7 +26,7 @@ public class PurchaseService {
     private UserRepository userRepository;
 
     @Transactional
-    public Purchase createPurchase(String idProduct, Integer quantity, String idUsuario) {
+    public Purchase createPurchase(String idProduct, Integer quantity,String paymentMehtod, String idUsuario) {
         Purchase purchase = new Purchase();
          
         Optional<Usuario> optionalU = userRepository.findById(idUsuario);
@@ -44,7 +45,7 @@ public class PurchaseService {
             purchase.setQuantity(quantity);
             purchase.setDate(new Date());
             purchase.setTotal(purchase.getQuantity() * purchase.getProduct().getPrice());
-            purchase.getPaymentMethod();
+            purchase.setPaymentMethod(PaymentMethod.valueOf(paymentMehtod));
         }else{
             throw new Error("no se encontro el producto");
         }
@@ -56,6 +57,7 @@ public class PurchaseService {
         Purchase P = purchaseRepository.findById(id).get();
 
         P.setQuantity(quantity);
+        P.setTotal(P.getQuantity() * P.getProduct().getPrice());
 
     }
 
@@ -64,5 +66,13 @@ public class PurchaseService {
 
         purchaseRepository.delete(P);
     }
+    
+//    DUDA
+//    public Optional<Product> listProcduct(String idProduct){
+//        return productRepository.findById(idProduct);
+//       
+//    }
+    
+    
 
 }
