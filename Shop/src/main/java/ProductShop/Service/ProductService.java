@@ -69,8 +69,8 @@ public class ProductService {
                 if (product.getPhoto() != null) {
                     idPhoto = product.getPhoto().getId();
 
-                    Photo photo = photoService.updatePhoto(idPhoto, archivo);
-                    product.setPhoto(photo);
+                   
+                    product.getPhoto();
                 } else {
                     Photo photo = photoService.save(archivo);
                     product.setPhoto(photo);
