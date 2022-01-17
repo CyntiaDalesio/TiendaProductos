@@ -20,38 +20,34 @@ public class PurchaseService {
 
     @Autowired
     private ProductRepository productRepository;
-    
+
     @Autowired
     private UserRepository userRepository;
-    
+
     @Transactional
-    public Purchase createPurchase(String idProduct, Integer quantity,String idUsuario) {
+    public Purchase createPurchase(String idProduct, Integer quantity, String idUsuario) {
         Purchase purchase = new Purchase();
-        
+         
         Optional<Usuario> optionalU = userRepository.findById(idUsuario);
-        try{
+       
         if(optionalU.isPresent()){
             purchase.setUsuario(optionalU.get());
-        }
-        }catch(Exception e){
-            throw new Error("no se ha encontrado el usuario");
+        }else{
+            throw new Error("no se encontro el usuario");
         }
         
         Optional<Product> optionalP = productRepository.findById(idProduct);
-        try{
-            if(optionalP.isPresent()){
+
+        if(optionalP.isPresent()){
             purchase.setProduct(optionalP.get());
+            
+            purchase.setQuantity(quantity);
+            purchase.setDate(new Date());
+            purchase.setTotal(purchase.getQuantity() * purchase.getProduct().getPrice());
+            purchase.getPaymentMethod();
+        }else{
+            throw new Error("no se encontro el producto");
         }
-        }
-        catch(Exception e){
-            throw new Error("no se ha encontrado el producto");
-        }
-        
-        
-        purchase.setQuantity(quantity);
-        purchase.setDate(new Date());
-        purchase.setTotal(purchase.getQuantity() * purchase.getProduct().getPrice());
-        purchase.getPaymentMethod();
 
         return purchase;
     }
