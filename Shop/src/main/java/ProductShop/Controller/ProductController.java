@@ -1,7 +1,5 @@
 package ProductShop.Controller;
 
-
-
 import ProductShop.Entity.Photo;
 import ProductShop.Entity.Product;
 import ProductShop.Enums.Category;
@@ -10,63 +8,64 @@ import ProductShop.Service.ProductService;
 import ProductShop.errores.ErrorServicio;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.multipart.MultipartFile;
 
 @Controller
 
 public class ProductController {
-    
+
     @Autowired
-        private ProductService productservice;
-     @Autowired
+    private ProductService productservice;
+    @Autowired
     private ProductRepository productrepository;
-     
-    @GetMapping("/product")
-    public String Index(){
-        return "modify";}
-//    @GetMapping("/product")
-//    public String Index(){
-//        return "product/index";
-//        
-//    }
-      @GetMapping("addproduct")
-    public String addProduct(){
+
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN')")
+    @GetMapping("/modifyproduct/{idProduct}")
+    public String Index(@PathVariable String idProduct, ModelMap model) {
+        
+        Product product= productservice.findProductById(idProduct);
+        
+        model.put("product", product);
+        
+        return "modify";
+    }
+
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN')")
+    @GetMapping("addproduct")
+    public String addProduct() {
         return "addProduct.html";
-        
+
     }
-    
+
     @PostMapping("/addproduct")
-      public String SaveProduct(MultipartFile archivo,Integer CodeProduct, String Name, Double Price, String TradeMark, String category, Integer Stock,Photo photo) throws ErrorServicio{
-       productservice.CreateProduct(archivo,CodeProduct,Name,Price,TradeMark,category,Stock);
-       //MultipartFile archivo, Integer CodeProduct, String Name, Double Price, String TradeMark, Category category, Integer Stock
-        return "index";}
-      
-      @PostMapping("/modifyproduct")
-      public String ModifyProduct(MultipartFile archivo,String idProduct, Integer CodeProduct, String Name, Double Price, String TradeMark, String category, Integer Stock, Photo photo) throws ErrorServicio{
-          productservice.ModifyProduct(archivo,idProduct, CodeProduct, Name, Price, TradeMark, category, Stock);
-        return "product/index";
+    public String SaveProduct(MultipartFile archivo, Integer CodeProduct, String Name, Double Price, String TradeMark, String category, Integer Stock, Photo photo) throws ErrorServicio {
+        productservice.CreateProduct(archivo, CodeProduct, Name, Price, TradeMark, category, Stock);
+        //MultipartFile archivo, Integer CodeProduct, String Name, Double Price, String TradeMark, Category category, Integer Stock
+        return "redirect:/";
     }
 
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN')")
+    @PostMapping("/modifyproduct/{idProduct}")
+    public String ModifyProduct(MultipartFile archivo, @PathVariable String idProduct, String Name, Double Price, String TradeMark, String category, Integer Stock, Photo photo, Integer codeProduct) throws ErrorServicio {
+        productservice.ModifyProduct(archivo, idProduct, Name, Price, TradeMark, category, Stock,codeProduct);
+        return "redirect:/";
+    }
 }
-        
-//      @PostMapping("/searchbyname")
+
+//      @PostMapping("/findbyname")
 //      public String SearchByName(String Name) {
-//            productservice.SearchByName(Name);
-//          return "/searchproductname";
+//            productrepository.findByName(Name);
+//          return "index";
 //      }
-//      @PostMapping("/searchbycategory")
-//      public String SearchByCategory(Category category) {
-//      productservice.SearchByCategory(category);
-//      return "/product/index";
-//      }
-      
-        
+//      @PostMapping("/findbycategory")
+//      public String FindByCategory(Category category) {
+//      productrepository.findByCategory(category);
+//      return "index";
 //        
-      
-
-      
-
 
