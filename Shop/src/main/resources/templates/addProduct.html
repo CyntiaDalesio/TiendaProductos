@@ -18,7 +18,7 @@
 <body>
   <div class="container">
 
-    <form class="well form-horizontal" action=" " method="post" id="contact_form">
+    <form class="well form-horizontal"  id="contact_form" action="/addproduct" method="post" enctype="multipart/form-data">
       <fieldset>
 
         <!-- Form Name -->
@@ -102,20 +102,12 @@
             </div>
           </div>
 
-          <form action="/addproduct" method="post" enctype="multipart/form-data">
-            <form action="/addproduct" method="post" enctype="multipart/form-data">
-                        <p>Seleccionar archivo:<input type="file" name="file" /></p>
+         
+           
+                        <p>Seleccionar archivo:<input type="file" name="archivo" /></p>
             <p><input type="submit" value="Enviar" /></p>
-          </form>
-          <!-- Button -->
-          <div class="form-group">
-            <label class="col-md-4 control-label"></label>
-            <div class="col-md-4"><br>
-              &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<button type="Cargar"
-                class="btn btn-warning">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspCargar <span
-                  class="glyphicon glyphicon-send"></span>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</button>
-            </div>
-          </div>
+     
+      
 
       </fieldset>
     </form>

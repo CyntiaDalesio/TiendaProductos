@@ -12,7 +12,7 @@ home.forEach((item) => {
     })
 })
 
-let buttonsModify = document.querySelectorAll(".modify");
+// let buttonsModify = document.querySelectorAll(".modify");
 
 buttonsModify.forEach((button) => {
     button.addEventListener("click", () => {

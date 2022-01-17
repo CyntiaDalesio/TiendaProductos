@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -22,20 +22,26 @@
             <h2>Modificar Producto</h2>
         </div>
         <div>
-        <form class="modify-product">
+        <form enctype="multipart/form-data" class="modify-product" th:action="@{/modifyproduct/}+${product.idProduct}" method="post">
             <label for="producto">Nombre</label>
-            <input type="text" placeholder="ingrese el nombre del producto">
+            <input name="Name" type="text" th:value="${product.Name}">
+            <label for="producto">Código producto</label>
+            <input name="codeProduct" type="text" th:value="${product.CodeProduct}">
             <label for="precio">Precio</label>
-            <input type="number" placeholder="ingrese el precio del producto">
+            <input name="Price" type="number" th:value="${product.Price}" >
             <label for="TradeMark">Marca del producto</label>
-            <input type="text" placeholder="ingrese la marca del producto">
-            <select name="categoria">
-                <option value="categoria1"selected>categoria1</option>
-                <option value="categoria2">categoria2</option>
-                <option value="categoria3">categoria3</option>
-            </select>
-            <label for="photo">Foto</label>
-            <input type="file" class="" placeholder="seleccione una Foto para subir">
+            <input name="TradeMark" type="text" th:value="${product.TradeMark}">
+            <label for="TradeMark">Stock</label>
+            <input name="Stock" type="text" th:value="${product.Stock}">
+                <label >Categoría</label>
+                <select name="category">
+                  <option th:each="Category : ${T(ProductShop.Enums.Category).values()}" th:value="${product.category}"
+                    th:text="${Category}"></option>
+                    </select>
+                  <br>
+              
+            <label for="photo">Foto [[${product.photo?.name}]] </label>
+            <input name="archivo" type="file" class="" placeholder="seleccione una Foto para subir" >
             <input type="submit" name="" value="Submit" class="button" >
         </form>
         </div>
