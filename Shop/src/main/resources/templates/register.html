@@ -11,42 +11,53 @@
             href="/src/main/resources/static/styles/style.css"
             th:href="@{/styles/style.css}"
             />
+            <link
+            rel="stylesheet"
+            type="text/css"
+            media="all"
+            href="/src/main/resources/static/styles/register.css"
+            th:href="@{/styles/register.css}"
+            />
         <title>Registrar usuario</title>
     </head>
     <body>
         <header>
             <section class="main-title">
-                <h1>E-Game<span>Egg</span></h1>
+                <a href="/"><h1 id="home">E-Game<span>Egg</span></h1></a>
             </section>
         </header>
-        <main>
+        <main class="main">
+            <div class="container">
+                <h2 class="register-title">Regis<span>trate</span></h2>
             <form th:action="@{/register}" method="post" class="col-6 mx-auto">
                 <label> Nombre y Apellido </label><br />
 
-                <input type="text" name="username" /><br />
+                <input type="text" name="username" placeholder="Nombre y apellido"/><br />
 
                 <label> Email </label><br />
 
-                <input type="text" name="email" /><br />
+                <input type="text" name="email" placeholder="Email"/><br />
 
                 <label> DNI </label><br />
 
-                <input type="number" name="dni" /><br />
+                <input type="number" name="dni" placeholder="DNI" /><br />
 
-                <label> password </label><br />
+                <label> Contraseña </label><br />
 
-                <input type="text" name="password" /><br />
+                <input type="text" name="password" placeholder="Contraseña"/><br />
 
-                <label> password </label><br />
+                <label> Repita su contraseña </label><br />
 
-                <input type="text" name="password2" /><br />
+                <input type="text" name="password2" placeholder="Repita su contraseña" /><br />
 
                 <br />
 
-                <button type="submit">Enviar</button>
-
-                <button type="reset">Borrar</button>
+                <input type="submit" name="login" value="Submit" class="button" >
             </form>
+             </div>
         </main>
+        <footer>
+            <h3>Todos los derechos reservados E-GameEgg</h3>
+        </footer>
     </body>
 </html>

@@ -10,7 +10,7 @@
   <link rel="stylesheet" type="text/css" media="all" href="/src/main/resources/static/styles/style.css"
     th:href="@{/styles/style.css}" />
     <link rel="stylesheet" type="text/css" media="all" href="/src/main/resources/static/styles/addProduct.css"
-    th:href="@{/styles/addProduct}" />
+    th:href="@{/styles/addProduct.css}" />
   <title>Products</title>
 
 </head>
@@ -33,7 +33,7 @@
         <div class="form-group">
           <label class="col-md-4 control-label">CODE PRODUCT</label>
           <div class="col-md-4 inputGroupContainer">
-            <div class="input-group">
+            <div class="input-group form-box">
               <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
               <input name="CodeProduct" placeholder="Code Product" class="form-control" type="text">
             </div>
@@ -85,7 +85,7 @@
             <div class="input-group">
               <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
               <div>
-                <select name="category">
+                <select name="category" class="form-control">
                   <option th:each="Category : ${T(ProductShop.Enums.Category).values()}" th:value="${Category}"
                     th:text="${Category}"></option>
                   <br>
@@ -94,7 +94,7 @@
           </div>
           <div class="form-group">
             <label class="col-md-4 control-label">STOCK</label>
-            <div class="col-md-4 inputGroupContainer">
+            <div class="col-md-4 inputGroupContainer form-box">
               <div class="input-group">
                 <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
                 <input name="Stock" placeholder="Stock" class="form-control" type="text">
