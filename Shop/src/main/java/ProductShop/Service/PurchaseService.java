@@ -25,23 +25,24 @@ public class PurchaseService {
 
     @Autowired
     private UserRepository userRepository;
+    
+    
+    public void validar (String idProduct,String idUsuario ){
+        if (idProduct.isEmpty()) {
+            throw new Error("no se ha encontrado el producto");
+        }else if(idUsuario.isEmpty()){
+            throw new Error("no se ha encontrado el usuario");
+
+        }
+    }
 
     @Transactional
     public Purchase createPurchase(String idProduct, Integer quantity,String paymentMehtod, String idUsuario) {
-        Purchase purchase = new Purchase();
-         
-//        Optional<Usuario> optionalU = userRepository.findById(idUsuario);
-//       
-//        if(optionalU.isPresent()){
-//            purchase.setUsuario(optionalU.get());
-//        }else{
-//            throw new Error("no se encontro el usuario");
-//        }
-//        
-        Optional<Product> optionalP = productRepository.findById(idProduct);
+            Purchase purchase = new Purchase();
+        
+            validar(idProduct,idUsuario);
 
-        if(optionalP.isPresent()){
-            purchase.setProduct(optionalP.get());
+            purchase.setProduct(productRepository.getById(idProduct));
             
             purchase.setQuantity(quantity);
             purchase.setDate(new Date());
@@ -50,11 +51,6 @@ public class PurchaseService {
             
             return purchaseRepository.save(purchase);
             
-        }else{
-            throw new Error("no se encontro el producto");
-        }
-
-       
     }
 
     public void editPurchase(String id, Integer quantity) {
@@ -71,20 +67,6 @@ public class PurchaseService {
         purchaseRepository.delete(P);
     }
     
-//    DUDA List o Optional
-//    public Product listProduct(String idProduct){
-//        Optional <Product> productO = productRepository.findById(idProduct);
-//        if(productO.isPresent()){
-//            Product product= productO.get();
-//            product.getName();
-//            product.getPrice();
-//            product.getPhoto();
-//            return product;
-//        }else{
-//            return null;
-//        }
-//      
-//    }
     
     
 
