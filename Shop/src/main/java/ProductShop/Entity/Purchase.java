@@ -39,17 +39,15 @@ public class Purchase {
     @OneToOne
     private Usuario usuario;
 
-    
-    //agreagar cuando iniciemos carrito
-    //@OneToOne
-    //private Detail detail;
+    @OneToOne
+    private PurchaseDetails purchaseDetail;
     
     
-    public Purchase(String Id, Double total, Date date/*,Detail detail*/, PaymentMethod paymentMethod,Usuario usuario) {
+    public Purchase(String Id, Double total, Date date,PurchaseDetails purchaseDetail, PaymentMethod paymentMethod,Usuario usuario) {
         this.Id = Id;
         this.total = total;
         this.date = date;
-        //this.detail=detail;
+        this.purchaseDetail=purchaseDetail;
         this.paymentMethod = paymentMethod;
         this.usuario=usuario;
     }
@@ -81,14 +79,15 @@ public class Purchase {
         this.date = date;
     }
 
-    /*public void getDetail(){
-      return detail;
+    public PurchaseDetails getPurchaseDetail() {
+        return purchaseDetail;
     }
+
+    public void setPurchaseDetail(PurchaseDetails purchaseDetail) {
+        this.purchaseDetail = purchaseDetail;
+    }
+
     
-    public void setDetail(Detail detail){
-    this.detail=detail;
-    }
-     */
     public PaymentMethod getPaymentMethod() {
         return paymentMethod;
     }

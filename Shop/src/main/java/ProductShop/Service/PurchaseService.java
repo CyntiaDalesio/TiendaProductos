@@ -8,6 +8,7 @@ import ProductShop.Repository.ProductRepository;
 import ProductShop.Repository.PurchaseRepository;
 import ProductShop.Repository.UserRepository;
 import java.util.Date;
+import java.util.List;
 import java.util.Optional;
 import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,14 +30,14 @@ public class PurchaseService {
     public Purchase createPurchase(String idProduct, Integer quantity,String paymentMehtod, String idUsuario) {
         Purchase purchase = new Purchase();
          
-        Optional<Usuario> optionalU = userRepository.findById(idUsuario);
-       
-        if(optionalU.isPresent()){
-            purchase.setUsuario(optionalU.get());
-        }else{
-            throw new Error("no se encontro el usuario");
-        }
-        
+//        Optional<Usuario> optionalU = userRepository.findById(idUsuario);
+//       
+//        if(optionalU.isPresent()){
+//            purchase.setUsuario(optionalU.get());
+//        }else{
+//            throw new Error("no se encontro el usuario");
+//        }
+//        
         Optional<Product> optionalP = productRepository.findById(idProduct);
 
         if(optionalP.isPresent()){
@@ -46,11 +47,14 @@ public class PurchaseService {
             purchase.setDate(new Date());
             purchase.setTotal(purchase.getQuantity() * purchase.getProduct().getPrice());
             purchase.setPaymentMethod(PaymentMethod.valueOf(paymentMehtod));
+            
+            return purchaseRepository.save(purchase);
+            
         }else{
             throw new Error("no se encontro el producto");
         }
 
-        return purchase;
+       
     }
 
     public void editPurchase(String id, Integer quantity) {
@@ -67,10 +71,19 @@ public class PurchaseService {
         purchaseRepository.delete(P);
     }
     
-//    DUDA
-//    public Optional<Product> listProcduct(String idProduct){
-//        return productRepository.findById(idProduct);
-//       
+//    DUDA List o Optional
+//    public Product listProduct(String idProduct){
+//        Optional <Product> productO = productRepository.findById(idProduct);
+//        if(productO.isPresent()){
+//            Product product= productO.get();
+//            product.getName();
+//            product.getPrice();
+//            product.getPhoto();
+//            return product;
+//        }else{
+//            return null;
+//        }
+//      
 //    }
     
     
