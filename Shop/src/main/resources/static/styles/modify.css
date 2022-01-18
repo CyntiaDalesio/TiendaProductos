@@ -29,8 +29,12 @@ body{
     width: 50%;
     margin: 50px;
 }
-
+.input-modify{
+    color: #ffff;
+    padding: 10px;
+}
 input, select{
+    padding: 10px;
     width: 250px;
     height: 50px;
     border-style: none;

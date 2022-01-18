@@ -24,15 +24,15 @@
         <div>
         <form enctype="multipart/form-data" class="modify-product" th:action="@{/modifyproduct/}+${product.idProduct}" method="post">
             <label for="producto">Nombre</label>
-            <input name="Name" type="text" th:value="${product.Name}">
+            <input name="Name" type="text" th:value="${product.Name}" class="input-modify">
             <label for="producto">Código producto</label>
-            <input name="codeProduct" type="text" th:value="${product.CodeProduct}">
+            <input name="codeProduct" type="text" th:value="${product.CodeProduct}" class="input-modify">
             <label for="precio">Precio</label>
-            <input name="Price" type="number" th:value="${product.Price}" >
+            <input name="Price" type="number" th:value="${product.Price}" class="input-modify" >
             <label for="TradeMark">Marca del producto</label>
-            <input name="TradeMark" type="text" th:value="${product.TradeMark}">
+            <input name="TradeMark" type="text" th:value="${product.TradeMark}" class="input-modify">
             <label for="TradeMark">Stock</label>
-            <input name="Stock" type="text" th:value="${product.Stock}">
+            <input name="Stock" type="text" th:value="${product.Stock}" class="input-modify">
                 <label >Categoría</label>
                 <select name="category">
                   <option th:each="Category : ${T(ProductShop.Enums.Category).values()}" th:value="${product.category}"

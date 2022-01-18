@@ -1,31 +1,11 @@
-*{
-    margin: 0px;
-    padding: 0px;
-    box-sizing: border-box;
-    font-family: 'Times New Roman', Times, serif;
-    color: #FFFFFF;
-}
-body{
-    background: #000000;  /* fallback for old browsers */
-    background: -webkit-linear-gradient(to right, #434343, #000000);  /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(to right, #434343, #000000); 
-}
-h1{
-    text-align: center;
-}
-main{
+.main{
     display: flex;
     justify-content: center;
     width: 100%;
     height: 100%;
     align-items: center;
-    margin-top: 100px;
+    margin-top: 50px;
     margin-bottom: auto;
-}
-
-form{
-    display: flex;
-    flex-direction: column;
 }
 .container{
     display: flex;
@@ -33,26 +13,20 @@ form{
     align-items:center;
     justify-content: space-evenly;
     width: 50%;
-    height: 500px;
+    height: 50%;
     border: 1px solid #ffffff;
     border-radius:10px;
     background-color: transparent;
-    margin-bottom: 130px;
+    margin-bottom:75px;
 }
-.container h2{
-    font-size:32px;
+.register-title{
+    margin: 10px;
+    font-size: 32px;
+    color: #ffffff;
+}
+.register-title span{
     color: #E78A00;
-    
 }
-a{
-    margin-left: 5px;
-    color: #E78A00;
-    text-decoration: none;
-}
-a:active{
-    background-color: #E78A00;
-}
-
 input{
     width: 250px;
     height: 50px;
@@ -65,16 +39,8 @@ input{
     background: #000000;  /* fallback for old browsers */
     background: -webkit-linear-gradient(to right, #434343, #000000);  /* Chrome 10-25, Safari 5.1-6 */
     background: linear-gradient(to right, #434343, #000000); 
+    margin-bottom: 15px;
 }
 input:hover{
     border-color: #E78A00;
-}
-label{
-    font-size: 20px;
-}
-.button{
-    color: #ffffff;
-}
-.button:hover{
-    background-color: #E78A00;
 }
