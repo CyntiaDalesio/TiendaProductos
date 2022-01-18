@@ -33,27 +33,35 @@ nav{
     margin: 15px;
     display: flex;
     justify-content: space-between;
-}
-nav ul{
-    list-style: none;
-    display: flex;
-    justify-content: space-around;
-    align-items:center;
     
 }
-nav li{
+nav h3{
+    display: flex;
+    align-items: center;
+    justify-content: center;
     margin-left: 25px;
+    border-style: none;
+    border-radius: 10px;
+    height:50px;
+    width: 100px;
     cursor: pointer;
+    font-size: 12px;
+    border: 1px solid #FFFFFF;
+    background-color: #000000;
+}
+nav h3:hover{
+    background-color: #ffffff;
+    color: #2B2B2B;
 }
 nav button{
     margin-left: 25px;
     border-style: none;
     border-radius: 10px;
-    height:25px;
+    height:50px;
     width: 75px;
     cursor: pointer;
-    border: 1px solid #FFFFFF;
-    background-color: #000000;
+    border: 1px solid transparent;
+    background-color: transparent;
 }
 nav button:hover{
     background-color: #ffffff;
@@ -134,6 +142,7 @@ nav button:hover{
 }
 .cards-product i{
     color: #000000;
+    
 }
 .modify{
     color: #ffffff; 
@@ -155,6 +164,9 @@ nav button:hover{
     border-style: none;
     border-radius: 5px;
 }
+a{
+    text-decoration: none;
+}
 footer{
     display: flex;
     align-items: center;
@@ -167,10 +179,6 @@ footer{
 footer h3{
     font-size: 20px;
     color: #000000;
-}
-input {
-
-    color:black;
 }
 
 .imgProduct{
