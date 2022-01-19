@@ -33,23 +33,23 @@ public class Purchase {
 
     private Integer quantity;
 
-    @OneToOne
-    private Product product;
-    
-    @OneToOne
-    private Usuario usuario;
+//    @OneToOne
+//    private Product product;
+//    
+//    @OneToOne
+//    private Usuario usuario;
 
     @OneToOne
     private PurchaseDetails purchaseDetail;
     
     
-    public Purchase(String Id, Double total, Date date,PurchaseDetails purchaseDetail, PaymentMethod paymentMethod,Usuario usuario) {
+    public Purchase(String Id, Double total, Date date,PurchaseDetails purchaseDetail, PaymentMethod paymentMethod) {
         this.Id = Id;
         this.total = total;
         this.date = date;
         this.purchaseDetail=purchaseDetail;
         this.paymentMethod = paymentMethod;
-        this.usuario=usuario;
+       
     }
 
     public Purchase() {
@@ -108,14 +108,7 @@ public class Purchase {
     }
 
     
-    public Product getProduct() {
-        return product;
-    }
-
     
-    public void setProduct(Product product) {
-        this.product = product;
-    }
 
     
     public String getCode() {
@@ -128,12 +121,5 @@ public class Purchase {
     }
 
     
-    public Usuario getUsuario() {
-        return usuario;
-    }
-
     
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
-    }
 }

@@ -37,28 +37,26 @@ public class PurchaseService {
     }
 
     @Transactional
-    public Purchase createPurchase(String idProduct, Integer quantity,String paymentMehtod, String idUsuario) {
+    public Purchase createPurchase( Integer quantity,String paymentMehtod, Double priceUnit) {
             Purchase purchase = new Purchase();
-        
-            validar(idProduct,idUsuario);
-
-            purchase.setProduct(productRepository.getById(idProduct));
             
             purchase.setQuantity(quantity);
             purchase.setDate(new Date());
-            purchase.setTotal(purchase.getQuantity() * purchase.getProduct().getPrice());
+            purchase.setTotal(purchase.getQuantity() * priceUnit);
             purchase.setPaymentMethod(PaymentMethod.valueOf(paymentMehtod));
             
             return purchaseRepository.save(purchase);
             
     }
 
-    public void editPurchase(String id, Integer quantity) {
+    public Purchase editPurchase(String id, Integer quantity, Double priceUnit) {
         Purchase P = purchaseRepository.findById(id).get();
 
         P.setQuantity(quantity);
-        P.setTotal(P.getQuantity() * P.getProduct().getPrice());
-
+        P.setTotal(P.getQuantity() * priceUnit);
+        
+        return purchaseRepository.save(P);
+        
     }
 
     public void cancelPurchase(String id) {
