@@ -35,13 +35,17 @@ public class UserController {
         return "register.html";
     }
     
-     @GetMapping("/users/contact")
-    public String newContact() {
-        return "user/newContact.html";
+     @GetMapping("/contact/{id}")
+    public String newContact(@PathVariable String id, ModelMap model) {
+        
+        Usuario user= userService.searchUserId(id);
+        
+        model.put("user", user);
+        return "contact.html";
     }
     
     
-     @PostMapping("/users/contact{id}")
+     @PostMapping("/contact/{id}")
     public String createContact(@PathVariable String id, @RequestParam String name, @RequestParam String email) {
         try {
             userService.createContact(id, name, email);

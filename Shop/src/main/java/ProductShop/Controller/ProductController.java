@@ -42,7 +42,7 @@ public class ProductController {
         return "addProduct.html";
 
     }
-
+@PreAuthorize("hasAnyRole('ROLE_ADMIN')")
     @PostMapping("/addproduct")
     public String SaveProduct(MultipartFile archivo, Integer CodeProduct, String Name, Double Price, String TradeMark, String category, Integer Stock, Photo photo) throws ErrorServicio {
         productservice.CreateProduct(archivo, CodeProduct, Name, Price, TradeMark, category, Stock);

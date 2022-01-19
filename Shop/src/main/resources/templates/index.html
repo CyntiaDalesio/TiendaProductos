@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+</html>
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -70,22 +72,21 @@
                 <a sec:authorize="hasRole('ROLE_ADMIN')" type="button" class="modify" th:href="@{/modifyproduct/}+${product.idProduct}">
                     Modificar
                 </a>
-                 <button sec:authorize="hasRole('ROLE_USER')" type="button" class="modify">
+                 <a sec:authorize="hasRole('ROLE_USER')" type="button" class="modify">
                     comprar
-                </button>
+                 </a>
             </div>
         </th:block>
 
         </div>
-        <div sec:authorize="hasRole('ROLE_ADMIN')" class="cards-product" >
-            <a class="add-product" th:href="addproduct" >
+        <div  class="cards-product" >
+            <a sec:authorize="hasRole('ROLE_ADMIN')" class="add-product" th:href="addproduct" >
               
                 <i class="fas fa-plus fa-2x"></i>
                 <h3 >Agregar Producto</h3>
             </a>
         </div>  
     </section>
-    <!-- <a href="#" sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/autores/editar/}+${autor.id}" class="btn btn-primary">Editar </a> -->
 </main>
 <footer>
     <h3>Todos los derechos reservados E-GameEgg</h3>
