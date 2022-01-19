@@ -72,7 +72,7 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
                 <a sec:authorize="hasRole('ROLE_ADMIN')" type="button" class="modify" th:href="@{/modifyproduct/}+${product.idProduct}">
                     Modificar
                 </a>
-                 <a  type="button" class="modify">
+                 <a sec:authorize="hasRole('ROLE_USER')" type="button" class="modify">
                     comprar
                  </a>
             </div>
@@ -87,7 +87,6 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
             </a>
         </div>  
     </section>
-    <!-- <a href="#" sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/autores/editar/}+${autor.id}" class="btn btn-primary">Editar </a> -->
 </main>
 <footer>
     <h3>Todos los derechos reservados E-GameEgg</h3>
