@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+</html>
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -14,16 +16,12 @@
 
 <header>
     <section class="main-title">
-        <h1 id="home">E-Game<span>Egg</span></h1>
+        <a href="/"><h1 id="home">E-Game<span>Egg</span></h1></a>
     </section>
     <nav>
-        <ul>
-            <li>Home</li>
-            <li>Categorias</li>
-            <li>Shop</li>
-        </ul>
-        <button type="submit" id="signIn">Sign In</button>
-
+        <button type="submit" id="signIn">Iniciar Sesión </button>
+        <h3 class="user-Loged">NombreUsuario</h3>
+        <button type="logOut" id="LogOut">Salir</button>
         <!--shopping cart??-->
     </nav>
 </header>
@@ -59,7 +57,7 @@
     </div>
     <!---fin del baner-->
     <section class="top-products">
-        <h2>Products</h2>
+        <h2>Productos</h2>
     </section>
 
     <section class="cards-conteiner">
@@ -70,26 +68,25 @@
                 <img class="imgProduct" th:if="${product.photo ne null}" th:src="@{/photo/}+${product.photo.id}"/>   
 
                 <h3 th:text="${product.Name}"></h3>
-                <p > [[${product.Price}]] $</p>
+                <p > $[[${product.Price}]] </p>
                 <a sec:authorize="hasRole('ROLE_ADMIN')" type="button" class="modify" th:href="@{/modifyproduct/}+${product.idProduct}">
                     Modificar
                 </a>
-                 <button sec:authorize="hasRole('ROLE_USER')" type="button" class="modify">
+                 <a sec:authorize="hasRole('ROLE_USER')" type="button" class="modify">
                     comprar
-                </button>
+                 </a>
             </div>
         </th:block>
 
         </div>
-        <div sec:authorize="hasRole('ROLE_ADMIN')" class="cards-product" >
-            <a class="add-product" th:href="addproduct" >
+        <div  class="cards-product" >
+            <a sec:authorize="hasRole('ROLE_ADMIN')" class="add-product" th:href="addproduct" >
               
                 <i class="fas fa-plus fa-2x"></i>
                 <h3 >Agregar Producto</h3>
             </a>
         </div>  
     </section>
-    <!-- <a href="#" sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/autores/editar/}+${autor.id}" class="btn btn-primary">Editar </a> -->
 </main>
 <footer>
     <h3>Todos los derechos reservados E-GameEgg</h3>

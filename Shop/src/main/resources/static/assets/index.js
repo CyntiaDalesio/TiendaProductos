@@ -14,8 +14,14 @@ home.forEach((item) => {
 
 // let buttonsModify = document.querySelectorAll(".modify");
 
-// buttonsModify.forEach((button) => {
-//     button.addEventListener("click", () => {
-//         location.href = "/product";
-//     })
-// })
+buttonsModify.forEach((button) => {
+    button.addEventListener("click", () => {
+        location.href = "/product";
+    })
+})
+
+let addProduct= document.getElementById("add-product");
+
+addProduct.addEventListener("click", () =>{
+    location.href = "/addproduct"
+})

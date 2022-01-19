@@ -64,16 +64,26 @@ public class ProductService {
             product.setCategory(Category.valueOf(category));
 
             String idPhoto = null;
-             if (product.getPhoto() != null) {
+            
+            if (archivo != null) {
+                if (product.getPhoto() != null) {
                     idPhoto = product.getPhoto().getId();
 
-                    Photo photo = photoService.updatePhoto(idPhoto, archivo);
-                    product.setPhoto(photo);
+
+                    // Photo photo = photoService.updatePhoto(idPhoto, archivo);
+                    product.getPhoto();
+
+
+                    
+
                    
-             
+                    product.getPhoto();
+
                 } else {
                     Photo photo = photoService.save(archivo);
                     product.setPhoto(photo);
+
+                }
             }
         
 
