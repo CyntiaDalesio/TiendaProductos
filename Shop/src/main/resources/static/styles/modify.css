@@ -69,6 +69,7 @@ label{
     color: #ffff;
 }
 
+
 @media screen and (max-width: 768px){
     .main-product {
        background-image: url("");
