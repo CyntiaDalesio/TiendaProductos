@@ -27,8 +27,6 @@ public class PurchaseService {
     @Autowired
     private UserRepository userRepository;
     
-    
-   
 
     @Transactional
     public Purchase createPurchase( Integer quantity,String paymentMehtod, Double priceUnit) {
