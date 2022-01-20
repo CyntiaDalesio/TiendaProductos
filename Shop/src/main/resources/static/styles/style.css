@@ -33,7 +33,7 @@ nav{
     margin: 15px;
     display: flex;
     justify-content: space-between;
-    
+    align-items: center;
 }
 nav h3{
     display: flex;
@@ -64,6 +64,24 @@ nav button{
     background-color: transparent;
 }
 nav button:hover{
+    background-color: #ffffff;
+    color: #2B2B2B;
+}
+.a-button{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 25px;
+    border-style: none;
+    border-radius: 10px;
+    height:50px;
+    width: 75px;
+    color: #ffffff;
+    cursor: pointer;
+    border: 1px solid transparent;
+    background-color: transparent;
+}
+.a-button:hover{
     background-color: #ffffff;
     color: #2B2B2B;
 }
