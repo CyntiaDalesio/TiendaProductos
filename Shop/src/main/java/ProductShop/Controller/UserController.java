@@ -35,20 +35,21 @@ public class UserController {
         return "register.html";
     }
     
-     @GetMapping("/contact/{id}")
-    public String newContact(@PathVariable String id, ModelMap model) {
+     @GetMapping("/contact")
+    public String newContact(ModelMap model) {
         
-        Usuario user= userService.searchUserId(id);
-        
-        model.put("user", user);
-        return "contact.html";
+    
+             return "contact.html";
     }
     
     
-     @PostMapping("/contact/{id}")
-    public String createContact(@PathVariable String id, @RequestParam String name, @RequestParam String email) {
+     @PostMapping("/contact/")
+    public String createContact( @RequestParam String name, @RequestParam String message) {
         try {
-            userService.createContact(id, name, email);
+            
+            
+            Usuario user=userService.obtenerUsuarioSesion();
+            userService.createContact( user,name, message);
         } catch (Error ex) {
             Logger.getLogger(UserController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -62,6 +63,8 @@ public class UserController {
     @PostMapping("/register")
     public String create(@RequestParam String username, @RequestParam String password, @RequestParam String password2, @RequestParam String email, @RequestParam String dni) {
         try {
+            
+            
             userService.save(username, password, password2, email, dni);
         } catch (Error ex) {
             Logger.getLogger(UserController.class.getName()).log(Level.SEVERE, null, ex);
