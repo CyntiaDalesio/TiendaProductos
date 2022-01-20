@@ -52,4 +52,12 @@ public class Contact implements Serializable {
         this.message = message;
     }
 
+    public Usuario getUser() {
+        return user;
+    }
+
+    public void setUser(Usuario user) {
+        this.user = user;
+    }
+
 }

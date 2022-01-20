@@ -32,23 +32,23 @@
             <form th:action="@{/register}" method="post" class="col-6 mx-auto">
                 <label> Nombre y Apellido </label><br />
 
-                <input type="text" name="username" placeholder="Nombre y apellido"/><br />
+                <input type="text" name="username" placeholder="Nombre y apellido" required/><br />
 
                 <label> Email </label><br />
 
-                <input type="text" name="email" placeholder="Email"/><br />
+                <input type="text" name="email" placeholder="Email" required/><br />
 
                 <label> DNI </label><br />
 
-                <input type="number" name="dni" placeholder="DNI" /><br />
+                <input type="number" name="dni" placeholder="DNI" required/><br />
 
                 <label> Contraseña </label><br />
 
-                <input type="password" name="password" placeholder="Contraseña"/><br />
+                <input type="password" name="password" placeholder="Contraseña" required/><br />
 
                 <label> Repita su contraseña </label><br />
 
-                <input type="password" name="password2" placeholder="Repita su contraseña" /><br />
+                <input type="password" name="password2" placeholder="Repita su contraseña" required/><br />
 
                 <br />
 
