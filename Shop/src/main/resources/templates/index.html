@@ -19,11 +19,13 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
         <a href="/"><h1 id="home">E-Game<span>Egg</span></h1></a>
     </section>
     <nav>
+        <a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/users/}">Listar Usuarios</a>
+        <a sec:authorize="isAuthenticated()" th:href="@{/users/edit}">Modificar perfil</a>
         <button type="submit" id="signIn">Iniciar Sesión </button>
         <h3 class="user-Loged">NombreUsuario</h3>
         <a  sec:authorize="isAuthenticated()" href="/logout"  type="logOut" id="LogOut">Salir</a> <br>
         <br>
-        <a sec:authorize="hasRole('ROLE_USER')" th:href="@{/contact/}">Contactanos</a>
+        <a sec:authorize="hasRole('ROLE_USER') or hasRole('ROLE_SELLER')" th:href="@{/contact/}">Contactanos</a>
 
 
         <!--shopping cart??-->
@@ -73,10 +75,10 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 
                 <h3 th:text="${product.Name}"></h3>
                 <p > $[[${product.Price}]] </p>
-                <a sec:authorize="hasRole('ROLE_ADMIN')" type="button" class="modify" th:href="@{/modifyproduct/}+${product.idProduct}">
+                <a sec:authorize="hasRole('ROLE_ADMIN') or hasRole('ROLE_SELLER') " type="button" class="modify" th:href="@{/modifyproduct/}+${product.idProduct}">
                     Modificar
                 </a>
-                 <a sec:authorize="hasRole('ROLE_USER')" type="button" class="modify">
+                 <a sec:authorize="hasRole('ROLE_USER') or isAnonymous()" type="button" class="modify">
                     comprar
                  </a>
             </div>
@@ -84,7 +86,7 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 
         </div>
         <div  class="cards-product" >
-            <a sec:authorize="hasRole('ROLE_ADMIN')" class="add-product" th:href="addproduct" >
+            <a sec:authorize="hasRole('ROLE_ADMIN') or hasRole('ROLE_SELLER')" class="add-product" th:href="addproduct" >
               
                 <i class="fas fa-plus fa-2x"></i>
                 <h3 >Agregar Producto</h3>

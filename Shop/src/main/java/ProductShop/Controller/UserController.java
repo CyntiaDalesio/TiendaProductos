@@ -25,9 +25,9 @@ public class UserController {
     public String index(ModelMap model) {
 
         List<Usuario> users = userService.ListUsers();
-        model.put("users", users);
+        model.put("usuarios", users);
 
-        return "users/index";
+        return "users.html";
     }
 
     @GetMapping("/register")
@@ -72,14 +72,13 @@ public class UserController {
         return "redirect:/login";
     }
 
-    @GetMapping("/users/edit/{id}")
-    public String edit(@PathVariable String id, ModelMap model) throws Error {
-
-        Usuario user = userService.searchUserId(id);
+    @GetMapping("/users/edit")
+    public String edit( ModelMap model) throws Error {
+  Usuario user=userService.obtenerUsuarioSesion();
 
         model.put("user", user);
 
-        return "users/edit.html";
+        return "editUser.html";
     }
 
     @PostMapping("clientes/update/{id}")
@@ -93,13 +92,17 @@ public class UserController {
     @GetMapping("/users/editRole/{id}")
     public String editRole(@PathVariable String id, ModelMap model) throws Error {
 
-        Usuario user = userService.searchUserId(id);
+       
+        userService.changeRolUser(id);
+   
 
-        model.put("user", user);
-
-        return "users/edit.html";
+        return "redirect:/users";
     }
 
+    
+    
+    
+    
     @PreAuthorize("hasAnyRole('ROLE_ADMIN')")
     @PostMapping("clientes/updateRole/{id}")
     public String updateRole(@PathVariable String id, @RequestParam String username, @RequestParam String password, @RequestParam String password2, @RequestParam String email, @RequestParam String dni) throws Error {
