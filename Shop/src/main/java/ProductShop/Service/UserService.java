@@ -57,8 +57,9 @@ public class UserService implements UserDetailsService {
         }
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
         user.setPassword(encoder.encode(password)); // encripta la contraseña
-
-        if (userRepository.findByUsername(username).getUsername().equals(username)) {
+        
+        Usuario userExist=userRepository.findByUsername(username);
+        if (userExist!= null) {
 
             throw new Error("El username ya existe");
         } else {
@@ -159,13 +160,13 @@ public class UserService implements UserDetailsService {
 
     //modificar desde el rol admin un user 
     @Transactional
-    public void changeRolUser(String id, String Rol) {
+    public void changeRolUser(String id) {
 
         Optional<Usuario> answer = userRepository.findById(id);
         if (answer.isPresent()) {
             Usuario user = answer.get();
 
-            user.setRol(Role.valueOf(Rol));
+            user.setRol(Role.SELLER);
             userRepository.save(user);
 
         } else {
