@@ -19,13 +19,13 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
         <a href="/"><h1 id="home">E-Game<span>Egg</span></h1></a>
     </section>
     <nav>
-        <a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/users/}">Listar Usuarios</a>
-        <a sec:authorize="isAuthenticated()" th:href="@{/users/edit}">Modificar perfil</a>
+        <a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/users/}" class="a-button">Listar Usuarios</a>
+        <a sec:authorize="isAuthenticated()" th:href="@{/users/edit}" class="a-button">Modificar perfil</a>
         <button type="submit" id="signIn">Iniciar Sesión </button>
         <h3 class="user-Loged">NombreUsuario</h3>
         <a  sec:authorize="isAuthenticated()" href="/logout"  type="logOut" id="LogOut" class="a-button">Salir</a> <br>
         <br>
-        <a sec:authorize="hasRole('ROLE_USER') or hasRole('ROLE_SELLER')" th:href="@{/contact/}">Contactanos</a>
+        <a sec:authorize="hasRole('ROLE_USER') or hasRole('ROLE_SELLER')" th:href="@{/contact/}" class="a-button">Contactanos</a>
 
 
         <!--shopping cart??-->
