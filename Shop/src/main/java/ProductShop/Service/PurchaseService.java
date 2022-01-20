@@ -2,6 +2,7 @@ package ProductShop.Service;
 
 import ProductShop.Entity.Product;
 import ProductShop.Entity.Purchase;
+import ProductShop.Entity.PurchaseDetails;
 import ProductShop.Entity.Usuario;
 import ProductShop.Enums.PaymentMethod;
 import ProductShop.Repository.ProductRepository;
@@ -19,22 +20,15 @@ public class PurchaseService {
 
     @Autowired
     private PurchaseRepository purchaseRepository;
-
     @Autowired
-    private ProductRepository productRepository;
+    private PurchaseDetails purchaseDetailsRepository;
+
 
     @Autowired
     private UserRepository userRepository;
     
     
-    public void validar (String idProduct,String idUsuario ){
-        if (idProduct.isEmpty()) {
-            throw new Error("no se ha encontrado el producto");
-        }else if(idUsuario.isEmpty()){
-            throw new Error("no se ha encontrado el usuario");
-
-        }
-    }
+   
 
     @Transactional
     public Purchase createPurchase( Integer quantity,String paymentMehtod, Double priceUnit) {
@@ -61,7 +55,7 @@ public class PurchaseService {
 
     public void cancelPurchase(String id) {
         Purchase P = purchaseRepository.findById(id).get();
-
+        
         purchaseRepository.delete(P);
     }
     
