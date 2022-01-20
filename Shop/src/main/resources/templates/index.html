@@ -21,9 +21,9 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
     <nav>
         <button type="submit" id="signIn">Iniciar Sesión </button>
         <h3 class="user-Loged">NombreUsuario</h3>
-        <a  sec:authorize="isAuthenticated()" href="/logout"  type="logOut" id="LogOut">Salir</a> <br>
+        <a  sec:authorize="isAuthenticated()" href="/logout"  type="logOut" id="LogOut" class="a-button">Salir</a> <br>
         <br>
-        <a sec:authorize="hasRole('ROLE_USER')" th:href="@{/contact/}">Contactanos</a>
+        <a sec:authorize="hasRole('ROLE_USER')" th:href="@{/contact/}" class="a-button">Contactanos</a>
 
 
         <!--shopping cart??-->
