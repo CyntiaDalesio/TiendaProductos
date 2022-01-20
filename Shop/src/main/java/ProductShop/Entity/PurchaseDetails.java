@@ -17,18 +17,26 @@ public class PurchaseDetails implements Serializable {
     private Double priceUnit;
     private Double subtotal;
     private Integer cantity;
-    
     @OneToOne
     private Product product;
+//    @OneToOne
+//    private Purchase purchase;
+    
+    
 
     public PurchaseDetails() {
     }
 
-    public PurchaseDetails(Double priceUnit, Integer cantity, Product product) {
+    public PurchaseDetails(Double priceUnit, Double subtotal, Integer cantity, Product product) {
         this.priceUnit = priceUnit;
+        this.subtotal = subtotal;
         this.cantity = cantity;
         this.product = product;
+//        this.purchase = purchase;
+        
     }
+
+    
 
     public String getIdDetails() {
         return idDetails;
@@ -69,8 +77,14 @@ public class PurchaseDetails implements Serializable {
     public void setSubtotal(Double subtotal) {
         this.subtotal = subtotal;
     }
-    
-    
-    
 
+//    public Purchase getPurchase() {
+//        return purchase;
+//    }
+//
+//    public void setPurchase(Purchase purchase) {
+//        this.purchase = purchase;
+//    }
+
+    
 }
