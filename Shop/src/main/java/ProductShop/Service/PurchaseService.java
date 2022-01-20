@@ -20,9 +20,8 @@ public class PurchaseService {
 
     @Autowired
     private PurchaseRepository purchaseRepository;
-    @Autowired
-    private PurchaseDetails purchaseDetailsRepository;
-
+    
+    
 
     @Autowired
     private UserRepository userRepository;

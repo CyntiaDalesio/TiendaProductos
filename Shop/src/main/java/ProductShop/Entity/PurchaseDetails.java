@@ -27,7 +27,7 @@ public class PurchaseDetails implements Serializable {
     public PurchaseDetails() {
     }
 
-    public PurchaseDetails(Double priceUnit, Double subtotal, Integer cantity, Product product, Purchase purchase, Usuario user) {
+    public PurchaseDetails(Double priceUnit, Double subtotal, Integer cantity, Product product) {
         this.priceUnit = priceUnit;
         this.subtotal = subtotal;
         this.cantity = cantity;
