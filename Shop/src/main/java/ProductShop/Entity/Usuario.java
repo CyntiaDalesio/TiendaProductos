@@ -3,6 +3,7 @@ package ProductShop.Entity;
 import ProductShop.Enums.Role;
 import java.util.Date;
 import java.util.List;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -20,6 +21,7 @@ public class Usuario {
     @GeneratedValue(generator = "uuid")
     @GenericGenerator(name = "uuid", strategy = "uuid2")
     private String idUser;
+     @Column(unique = true)
     private String username;
     private String password;
     private String email;
@@ -29,7 +31,7 @@ public class Usuario {
     @Temporal(TemporalType.DATE)
     private Date startDate;
     @OneToMany(mappedBy="user")
-    private List<Contact> contacts;
+    public List<Contact> contacts;
 
     public List<Contact>getContacts() {
         return contacts;
