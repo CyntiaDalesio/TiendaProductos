@@ -75,9 +75,10 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 
                 <h3 th:text="${product.Name}"></h3>
                 <p > $[[${product.Price}]] </p>
-                <a sec:authorize="hasRole('ROLE_ADMIN') or hasRole('ROLE_SELLER') " type="button" class="modify" th:href="@{/modifyproduct/}+${product.idProduct}">
+                <a sec:authorize="hasRole('ROLE_ADMIN') or hasRole('ROLE_SELLER')" type="button" class="modify" th:href="@{/modifyproduct/}+${product.idProduct}">
                     Modificar
                 </a>
+                
                  <a sec:authorize="hasRole('ROLE_USER') or isAnonymous()" type="button" class="modify">
                     comprar
                  </a>
