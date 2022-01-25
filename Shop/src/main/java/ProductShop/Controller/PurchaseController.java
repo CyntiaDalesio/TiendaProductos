@@ -44,27 +44,29 @@ public class PurchaseController {
         return "purchase.html";
     }
 
-    
     @PostMapping("detail/finished")
-    public String purchaseFinish(ModelMap model, String idPurchase,String idPurchaseDetails) throws ErrorServicio {
+    public String purchaseFinish(ModelMap model, String idPurchase, String idPurchaseDetails) throws ErrorServicio {
         Optional<Purchase> PO = purchaseService.findById(idPurchase);
         if (PO.isPresent()) {
             model.put("exito", "compra realizada con exito");
             purchaseDetService.decreaseStock(idPurchaseDetails);
-        }else{
+        } else {
             throw new ErrorServicio("La compra no fue creado");
         }
-        
+
         return "index.html";
     }
-    
+
     @PostMapping("detail/canceled")
-    public String  purchaseCanceled(ModelMap model, String idPurchase,String idPurchaseDetails) throws ErrorServicio{
+    public String purchaseCanceled(ModelMap model, String idPurchase) throws ErrorServicio {
         Optional<Purchase> PO = purchaseService.findById(idPurchase);
         if (PO.isPresent()) {
             model.put("cancel", "la compra ha sido cancelada");
-            purchaseService.deletePurchase(idPurchase);
-            purchaseDetService.deleteDetail(idPurchaseDetails);
+            PurchaseDetails PD = PO.get().getPurchaseDetail();
+            Purchase purchase = PO.get();
+
+            purchaseDetService.deleteDetail(PD.getIdDetails());
+            purchaseService.deletePurchase(purchase.getId());
         }
         return "index.html";
     }

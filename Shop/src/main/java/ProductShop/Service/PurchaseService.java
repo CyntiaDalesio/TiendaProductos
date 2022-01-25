@@ -20,32 +20,19 @@ public class PurchaseService {
 
     @Autowired
     private PurchaseRepository purchaseRepository;
-    
-    
 
     @Autowired
     private UserRepository userRepository;
-    
 
     @Transactional
-    public Purchase createPurchase( String paymentMehtod, Double priceUnit) {
-            Purchase purchase = new Purchase();
-            purchase.setDate(new Date());
-            purchase.setPaymentMethod(PaymentMethod.valueOf(paymentMehtod));
-            
-            return purchaseRepository.save(purchase);
-            
-    }
+    public Purchase createPurchase(String paymentMehtod, Double priceUnit) {
+        Purchase purchase = new Purchase();
+        purchase.setDate(new Date());
+        purchase.setPaymentMethod(PaymentMethod.valueOf(paymentMehtod));
 
-//    public Purchase editPurchase(String id, Integer quantity, Double priceUnit) {
-//        Purchase P = purchaseRepository.findById(id).get();
-//
-//        P.setQuantity(quantity);
-//        P.setTotal(P.getQuantity() * priceUnit);
-//        
-//        return purchaseRepository.save(P);
-//        
-//    }
+        return purchaseRepository.save(purchase);
+
+    }
 
     public void deletePurchase(String idPurchase) {
         Optional<Purchase> optionalPruchase = purchaseRepository.findById(idPurchase);
@@ -55,16 +42,14 @@ public class PurchaseService {
         } else {
             throw new Error("La compra no existe");
         }
-        
-        
+
     }
-    
-    
-    public List<Purchase> showPurchase(){
+
+    public List<Purchase> showPurchase() {
         return purchaseRepository.findAll();
     }
-    
-    public Optional<Purchase> findById(String idPurchase){
+
+    public Optional<Purchase> findById(String idPurchase) {
         return purchaseRepository.findById(idPurchase);
     }
 

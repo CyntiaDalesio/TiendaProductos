@@ -182,7 +182,7 @@ public class PurchaseDetailsService {
     }
 
     public Product showStock(String idPurchaseDetails) {
-        Product product =new Product();
+        Product product = new Product();
         try {
             Optional<PurchaseDetails> optionalDetail = purchaseDetailsRepository.findById(idPurchaseDetails);
             if (optionalDetail.isPresent()) {
@@ -197,7 +197,7 @@ public class PurchaseDetailsService {
             return product;
         }
         return product;
-        
+
     }
 
 }
