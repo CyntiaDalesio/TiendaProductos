@@ -30,8 +30,6 @@ public class Purchase {
     @Temporal(TemporalType.DATE)
     private Date date;
     
-//    @OneToOne
-//    private Product product;
     
     @ManyToOne
     private Usuario usuario;
