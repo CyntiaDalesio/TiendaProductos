@@ -37,12 +37,6 @@ public class PurchaseController {
         return "purchase.html";
     }
 
-//    @GetMapping("/detailpurchase")
-//    public String showDetail(ModelMap model) {
-//        List <PurchaseDetails> purchaseDetails= purchaseDetService.showDetail();
-//        model.put("purchaseDetails", purchaseDetails);
-//        return "purchase.html";
-//    }
     @GetMapping("/detailpurchase")
     public String showDetail(ModelMap model) {
         List<Purchase> purchase = purchaseService.showPurchase();
@@ -50,17 +44,6 @@ public class PurchaseController {
         return "purchase.html";
     }
 
-//    @PostMapping("detail/finished")
-//    public String purchaseFinish(ModelMap model, String idPurchaseDetails) {
-//        Optional<PurchaseDetails> PDO = purchaseDetService.findById(idPurchaseDetails);
-//        if (PDO.isPresent()) {
-//            model.put("exito", "compra realizada con exito");
-//        } else {
-//            model.put("error", "compra no realizada");
-//        }
-//        //Regresa al index porque al finalizar la compra, aparecera un pop out verde que diga "Compra realizada con exito" con un link al lado que rediriga al detalle de la compra(Muy de mas)
-//        return "index.html";
-//    }
     
     @PostMapping("detail/finished")
     public String purchaseFinish(ModelMap model, String idPurchase,String idPurchaseDetails) throws ErrorServicio {
@@ -83,7 +66,6 @@ public class PurchaseController {
             purchaseService.deletePurchase(idPurchase);
             purchaseDetService.deleteDetail(idPurchaseDetails);
         }
-        
         return "index.html";
     }
 
