@@ -13,8 +13,7 @@ home.forEach((item) => {
 })
 
 // let buttonsModify = document.querySelectorAll(".modify");
-// PLEAAAAAASE DON'T TOUCH THIS CODE :(((((
-// NOOO TOQUEN ESTE CODIGO O  RENUNCIO
+
 buttonsModify.forEach((button) => {
     button.addEventListener("click", () => {
         location.href = "/product";
