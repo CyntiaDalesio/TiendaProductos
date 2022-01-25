@@ -90,18 +90,6 @@ public class ProductService {
     }
 }
 
-@Transactional
-        public void DeleteProduct(String idProduct) {
-
-        Optional<Product> answer = productrepository.findById(idProduct);
-        if (answer.isPresent()) {
-            Product product = answer.get();
-            productrepository.delete(product);
-
-        } else {
-            System.out.println("No se encontro el producto");
-        }
-    }
 
     public List<Product> listarProduct() {
 
