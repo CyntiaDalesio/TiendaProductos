@@ -11,6 +11,7 @@ import ProductShop.Repository.PurchaseDetailsRepository;
 import ProductShop.Repository.PurchaseRepository;
 import ProductShop.Repository.UserRepository;
 import ProductShop.errores.ErrorServicio;
+import java.util.List;
 import java.util.Optional;
 import javax.transaction.Transactional;
 
@@ -23,33 +24,42 @@ public class PurchaseDetailsService {
     private ProductRepository productRepository;
     @Autowired
     private PurchaseRepository purchaseRepository;
+    @Autowired
+    private UserRepository userRepository;
+    @Autowired
+    private PurchaseService purchaseService;
 
     @Transactional
-    public PurchaseDetails createDetailsPurchase(String idProduct, String idPurchase, Integer cantity, String payMethod) throws ErrorServicio {
+    public PurchaseDetails createDetailsPurchase(String idProduct, String idUser, Integer quantity, String payMethod) throws ErrorServicio {
 
-        validateNull(idProduct, idPurchase, payMethod, cantity);
+        validateNull(idProduct, idUser, payMethod, quantity);
 
         PurchaseDetails purchaseDetails = new PurchaseDetails();
 
         purchaseDetails.setProduct(validateProduct(idProduct));
-        purchaseDetails.setPurchase(validatePurchase(idPurchase));
-        purchaseDetails.setCantity(cantity);
+        purchaseDetails.setUser(validateUser(idUser));
+//        purchaseDetails.setPurchase(purchaseService);
+        if (validateStock(quantity, purchaseDetails.getProduct().getStock())) {
+            throw new ErrorServicio("No hay stock disponible");
+        } else {
+            purchaseDetails.setCantity(quantity);
+        }
         purchaseDetails.setPriceUnit(purchaseDetails.getProduct().getPrice());
         purchaseDetails.setSubtotal(calculateSubtotal(purchaseDetails.getPriceUnit(), purchaseDetails.getCantity()));
 
         return purchaseDetailsRepository.save(purchaseDetails);
     }
-    
+
     @Transactional
-    public PurchaseDetails modifyDetail(String idDetail, String idProduct, String idPurchase, Integer cantity, String payMethod) throws ErrorServicio {
-        
-        validateNullDetail(idDetail);       
+    public PurchaseDetails modifyDetail(String idDetail, String idProduct, String idUser, Integer cantity, String payMethod) throws ErrorServicio {
+
+        validateNullDetail(idDetail);
 
         Optional<PurchaseDetails> optionalDetail = purchaseDetailsRepository.findById(idDetail);
         if (optionalDetail.isPresent()) {
-            PurchaseDetails purchaseDetails = optionalDetail.get();            
+            PurchaseDetails purchaseDetails = optionalDetail.get();
             purchaseDetails.setProduct(validateProduct(idProduct));
-            purchaseDetails.setPurchase(validatePurchase(idPurchase));
+            purchaseDetails.setUser(validateUser(idUser));
             purchaseDetails.setCantity(cantity);
             purchaseDetails.setPriceUnit(purchaseDetails.getProduct().getPrice());
             purchaseDetails.setSubtotal(calculateSubtotal(purchaseDetails.getPriceUnit(), purchaseDetails.getCantity()));
@@ -58,15 +68,15 @@ public class PurchaseDetailsService {
             throw new Error("El detalle no existe");
         }
     }
-    
+
     @Transactional
-    public void deleteDetail(String idDetail) throws ErrorServicio{
-        
-        validateNullDetail(idDetail);       
+    public void deleteDetail(String idDetail) throws ErrorServicio {
+
+        validateNullDetail(idDetail);
 
         Optional<PurchaseDetails> optionalDetail = purchaseDetailsRepository.findById(idDetail);
         if (optionalDetail.isPresent()) {
-            PurchaseDetails purchaseDetails = optionalDetail.get();        
+            PurchaseDetails purchaseDetails = optionalDetail.get();
             purchaseDetailsRepository.delete(purchaseDetails);
         } else {
             throw new Error("El detalle no existe");
@@ -79,10 +89,27 @@ public class PurchaseDetailsService {
         return subtotal;
     }
 
-    public void validateNull(String idProduct, String idPurchase, String payMethod, Integer cantity) {
+    public Boolean validateStock(Integer quantity, Integer availableStock) {
+        Boolean stock = true;
+        if (quantity > availableStock) {
+            return stock = false;
+        } else {
+            return stock;
+        }
+    }
+
+    public List<PurchaseDetails> showDetail() {
+        return purchaseDetailsRepository.findAll();
+    }
+
+    public Optional<PurchaseDetails> findById(String idDetails) {
+        return purchaseDetailsRepository.findById(idDetails);
+    }
+
+    public void validateNull(String idProduct, String idUser, String payMethod, Integer cantity) {
         try {
-            if (idPurchase.isEmpty()) {
-                throw new Exception("La Compra no puede ser null");
+            if (idUser.isEmpty()) {
+                throw new Exception("El Usuario no puede ser null");
             }
             if (idProduct.isEmpty()) {
                 throw new Exception("El Producto no puede ser null");
@@ -97,14 +124,14 @@ public class PurchaseDetailsService {
             e.getMessage();
         }
     }
-    
-    public void validateNullDetail(String idDetail){
+
+    public void validateNullDetail(String idDetail) {
         if (idDetail.isEmpty()) {
             throw new Error("El detalle no puede ser null");
         }
     }
 
-    public Product validateProduct(String idProduct){
+    public Product validateProduct(String idProduct) {
 
         Optional<Product> optionalProduct = productRepository.findById(idProduct);
 
@@ -115,20 +142,17 @@ public class PurchaseDetailsService {
             throw new Error("El producto no existe");
         }
     }
-    
-    public Purchase validatePurchase(String idPurchase){
 
-        Optional<Purchase> optionalPurchase = purchaseRepository.findById(idPurchase);
+    public Usuario validateUser(String idUser) {
 
-        if (optionalPurchase.isPresent()) {
-            Purchase purchase = optionalPurchase.get();
-            return purchase;
+        Optional<Usuario> optionalUser = userRepository.findById(idUser);
+
+        if (optionalUser.isPresent()) {
+            Usuario user = optionalUser.get();
+            return user;
         } else {
-            throw new Error("La Compra no existe");
+            throw new Error("El Usuario no existe");
         }
     }
-    
-    
-    
-    
+
 }
