@@ -20,7 +20,7 @@ public class Usuario {
     @GeneratedValue(generator = "uuid")
     @GenericGenerator(name = "uuid", strategy = "uuid2")
     private String idUser;
-    private String username;
+        private String username;
     private String password;
     private String email;
     private String dni;

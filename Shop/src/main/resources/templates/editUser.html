@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link
+            rel="stylesheet"
+            type="text/css"
+            media="all"
+            href="/src/main/resources/static/styles/style.css"
+            th:href="@{/styles/style.css}"
+            />
+            <link
+            rel="stylesheet"
+            type="text/css"
+            media="all"
+            href="/src/main/resources/static/styles/register.css"
+            th:href="@{/styles/register.css}"
+            />
+        <title>Editar usuario</title>
+    </head>
+    <body>
+        <header>
+            <section class="main-title">
+                <a href="/"><h1 id="home">E-Game<span>Egg</span></h1></a>
+            </section>
+        </header>
+        <main class="main">
+            <div class="container">
+                <h2 class="register-title">Editar <span>Usuario</span></h2>
+            <form th:action="@{/editUser}" method="post" class="col-6 mx-auto">
+                <label> Nombre y Apellido </label><br />
+
+                <input type="text" name="username" th:value="${user.username}" class="input-modify" placeholder="Nombre y apellido" required/><br />
+
+                <label> Email </label><br />
+
+                <input type="text" name="email" placeholder="Email" th:value="${user.email}" class="input-modify" required/><br />
+
+                <label> DNI </label><br />
+
+                <input type="number" name="dni" placeholder="DNI" th:value="${user.dni}" class="input-modify" required/><br />
+
+                <label> Contraseña </label><br />
+
+                <input type="password" name="password"  class="input-modify"  required/><br />
+
+                <label> Repita su contraseña </label><br />
+
+                <input type="password" name="password2"  class="input-modify" required/><br />
+
+
+                <input type="submit"  value="Submit" class="button" >
+            </form>
+             </div>
+        </main>
+        <footer>
+            <h3>Todos los derechos reservados E-GameEgg</h3>
+        </footer>
+    </body>
+</html>
