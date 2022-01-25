@@ -124,12 +124,44 @@ nav button:hover{
   width: 100%;
 }
 .top-products{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
     text-align: center;
     margin-top: 20px;
+    margin-left: 50px ;
+    margin-right: 50px;
 }
 .top-products h2{
-   color: rgba(255, 255, 255, 0.678);;
+   color: rgba(255, 255, 255, 0.678);
     font-size: 2rem;
+}
+.top-products label{
+    color: rgba(255, 255, 255, 0.678);
+    font-size: 1.5rem ;
+    margin-right: 10px;
+}
+
+.filter{
+    width: 300px;
+    height: 40px;
+    border-radius: 15px;
+    background-color: #000000;
+    color: #ffff;
+}
+select:hover{
+    border: 1px solid #E78A00;
+   
+}
+.top-products button{
+    height: 40px;
+    width: 100px;
+    border-radius: 15px;
+    color: #ffff ;
+    background-color: #2B2B2B;
+    border-style: none;
+    margin-left: 5px;
+
 }
 .cards-conteiner{
     display: flex;
