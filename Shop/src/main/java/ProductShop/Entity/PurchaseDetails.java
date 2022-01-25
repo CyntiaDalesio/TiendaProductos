@@ -21,16 +21,20 @@ public class PurchaseDetails implements Serializable {
     private Product product;
     @OneToOne
     private Purchase purchase;
+    @OneToOne
+    private Usuario user;
+    
 
     public PurchaseDetails() {
     }
 
-    public PurchaseDetails(Double priceUnit, Double subtotal, Integer cantity, Product product, Purchase purchase) {
+    public PurchaseDetails(Double priceUnit, Double subtotal, Integer cantity, Product product, Purchase purchase, Usuario user) {
         this.priceUnit = priceUnit;
         this.subtotal = subtotal;
         this.cantity = cantity;
         this.product = product;
         this.purchase = purchase;
+        this.user = user;
     }
 
     
@@ -82,8 +86,12 @@ public class PurchaseDetails implements Serializable {
     public void setPurchase(Purchase purchase) {
         this.purchase = purchase;
     }
-    
-    
-    
 
+    public Usuario getUser() {
+        return user;
+    }
+
+    public void setUser(Usuario user) {
+        this.user = user;
+    }
 }
