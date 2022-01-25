@@ -56,16 +56,7 @@ public class ProductController {
         productservice.ModifyProduct(archivo, idProduct, Name, Price, TradeMark, category, Stock,codeProduct);
         return "redirect:/";
     }
+    
 }
 
-//      @PostMapping("/findbyname")
-//      public String SearchByName(String Name) {
-//            productrepository.findByName(Name);
-//          return "index";
-//      }
-//      @PostMapping("/findbycategory")
-//      public String FindByCategory(Category category) {
-//      productrepository.findByCategory(category);
-//      return "index";
-//        
 

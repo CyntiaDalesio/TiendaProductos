@@ -26,15 +26,24 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
         <a  sec:authorize="isAuthenticated()" href="/logout"  type="logOut" id="LogOut" class="a-button">Salir</a> <br>
         <br>
         <a sec:authorize="hasRole('ROLE_USER') or hasRole('ROLE_SELLER')" th:href="@{/contact/}" class="a-button">Contactanos</a>
-
+        
 
         <!--shopping cart??-->
     </nav>
 </header>
 <main>
     <div class="search">
-        <input type="search" placeholder="search">
-    </div>
+        
+        <form action="/searchcat" method="post"  </form>
+       <input type="search" placeholder="search">
+    </div> 
+    
+     <select name="category">
+                  <option th:each="Category : ${T(ProductShop.Enums.Category).values()}" th:value="${Category}"
+                    th:text="${Category}"
+                  </option></select>
+    <button type="submit" class="searchButton">Buscar</button>
+    
     <!-- <section class="banner">
          <div class="banner-image">
              <img src="../images/ps5-banner-new_44e07ae9-bbc2-469d-aeba-09c6af05b4a4.jpeg" alt="banner">
