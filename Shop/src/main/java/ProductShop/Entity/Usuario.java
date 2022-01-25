@@ -20,7 +20,7 @@ public class Usuario {
     @GeneratedValue(generator = "uuid")
     @GenericGenerator(name = "uuid", strategy = "uuid2")
     private String idUser;
-    private String username;
+        private String username;
     private String password;
     private String email;
     private String dni;
@@ -30,6 +30,8 @@ public class Usuario {
     private Date startDate;
     @OneToMany(mappedBy="user")
     private List<Contact> contacts;
+    @OneToMany(mappedBy="usuario")
+    private List<Purchase> purchase;
 
     public List<Contact>getContacts() {
         return contacts;
@@ -37,6 +39,14 @@ public class Usuario {
 
     public void setContacts(List<Contact> contact) {
         this.contacts = contact;
+    }
+
+    public List<Purchase> getPurchase() {
+        return purchase;
+    }
+
+    public void setPurchase(List<Purchase> purchase) {
+        this.purchase = purchase;
     }
 
 

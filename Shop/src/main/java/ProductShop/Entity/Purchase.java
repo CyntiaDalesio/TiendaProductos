@@ -8,6 +8,7 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -15,33 +16,42 @@ import org.hibernate.annotations.GenericGenerator;
 
 @Entity
 public class Purchase {
-    
+
     @Id
-    @GeneratedValue(generator ="uuid")
-    @GenericGenerator(name ="uuid",strategy = "uuid2")
+    @GeneratedValue(generator = "uuid")
+    @GenericGenerator(name = "uuid", strategy = "uuid2")
     private String Id;
-    
-    private Integer total;
-    
+
+    private Double total;
+
     @Enumerated(EnumType.STRING)
     private PaymentMethod paymentMethod;
-    
+
     @Temporal(TemporalType.DATE)
     private Date date;
     
-//    mi entidad tiene un total, un ENUM de método de pago, un DOUBLE total, un date , una cantidad, 
-//    un OnetoOne de producto,un OnetoOne de usuario(que lo podría sacar) y un OnetoOne de detalle de la compra
-
     
-    //@OneToOne
-    //private Detail detail;
 
-    public Purchase(String Id, Integer total, Date date/*,Detail detail*/,PaymentMethod paymentMethod) {
+    private Integer quantity;
+
+//    @OneToOne
+//    private Product product;
+    
+    @ManyToOne
+    private Usuario usuario;
+
+    @OneToOne
+    private PurchaseDetails purchaseDetail;
+    
+    
+    public Purchase(String Id, Double total, Date date,PurchaseDetails purchaseDetail, PaymentMethod paymentMethod,Usuario usuario) {
         this.Id = Id;
         this.total = total;
         this.date = date;
-        //this.detail=detail;
+        this.purchaseDetail=purchaseDetail;
         this.paymentMethod = paymentMethod;
+        this.usuario=usuario;
+       
     }
 
     public Purchase() {
@@ -55,11 +65,11 @@ public class Purchase {
         this.Id = Id;
     }
 
-    public Integer getTotal() {
+    public Double getTotal() {
         return total;
     }
 
-    public void setTotal(Integer total) {
+    public void setTotal(Double total) {
         this.total = total;
     }
 
@@ -71,17 +81,23 @@ public class Purchase {
         this.date = date;
     }
 
-    
-    
-    /*public void getDetail(){
-      return detail;
+    public Usuario getUsuario() {
+        return usuario;
     }
-    
-    public void setDetail(Detail detail){
-    this.detail=detail;
-    }
-    */
 
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
+
+    public PurchaseDetails getPurchaseDetail() {
+        return purchaseDetail;
+    }
+
+    public void setPurchaseDetail(PurchaseDetails purchaseDetail) {
+        this.purchaseDetail = purchaseDetail;
+    }
+
+    
     public PaymentMethod getPaymentMethod() {
         return paymentMethod;
     }
@@ -89,4 +105,17 @@ public class Purchase {
     public void setPaymentMethod(PaymentMethod paymentMethod) {
         this.paymentMethod = paymentMethod;
     }
+
+    
+    
+    public Integer getQuantity() {
+        return quantity;
+    }
+
+    
+    public void setQuantity(Integer quantity) {
+        this.quantity = quantity;
+    }
+
+    
 }

@@ -4,6 +4,7 @@ import ProductShop.Entity.Product;
 import ProductShop.Entity.Purchase;
 import ProductShop.Entity.PurchaseDetails;
 import ProductShop.Entity.Usuario;
+import ProductShop.Enums.PaymentMethod;
 import ProductShop.Repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -11,6 +12,7 @@ import ProductShop.Repository.PurchaseDetailsRepository;
 import ProductShop.Repository.PurchaseRepository;
 import ProductShop.Repository.UserRepository;
 import ProductShop.errores.ErrorServicio;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import javax.transaction.Transactional;
@@ -30,24 +32,32 @@ public class PurchaseDetailsService {
     private PurchaseService purchaseService;
 
     @Transactional
-    public PurchaseDetails createDetailsPurchase(String idProduct, String idUser, Integer quantity, String payMethod) throws ErrorServicio {
+    public void createDetailsPurchase(String idProduct, String idUser, Integer quantity, String payMethod) throws ErrorServicio {
 
         validateNull(idProduct, idUser, payMethod, quantity);
-
+        
         PurchaseDetails purchaseDetails = new PurchaseDetails();
+        Purchase purchase = new Purchase();
+        
 
         purchaseDetails.setProduct(validateProduct(idProduct));
-        purchaseDetails.setUser(validateUser(idUser));
-//        purchaseDetails.setPurchase(purchaseService);
+        purchase.setUsuario(validateUser(idUser));
         if (validateStock(quantity, purchaseDetails.getProduct().getStock())) {
-            throw new ErrorServicio("No hay stock disponible");
-        } else {
             purchaseDetails.setCantity(quantity);
+            purchase.setQuantity(quantity);
+        } else {
+            throw new ErrorServicio("No hay stock disponible");
         }
         purchaseDetails.setPriceUnit(purchaseDetails.getProduct().getPrice());
         purchaseDetails.setSubtotal(calculateSubtotal(purchaseDetails.getPriceUnit(), purchaseDetails.getCantity()));
-
-        return purchaseDetailsRepository.save(purchaseDetails);
+        purchase.setPaymentMethod(PaymentMethod.valueOf(payMethod));
+        purchase.setDate(new Date());
+        purchase.setTotal(purchaseDetails.getSubtotal());
+        
+        purchase.setPurchaseDetail(purchaseDetails);   
+        
+          purchaseDetailsRepository.save(purchaseDetails);
+          purchaseRepository.save(purchase);
     }
 
     @Transactional
@@ -59,7 +69,6 @@ public class PurchaseDetailsService {
         if (optionalDetail.isPresent()) {
             PurchaseDetails purchaseDetails = optionalDetail.get();
             purchaseDetails.setProduct(validateProduct(idProduct));
-            purchaseDetails.setUser(validateUser(idUser));
             purchaseDetails.setCantity(cantity);
             purchaseDetails.setPriceUnit(purchaseDetails.getProduct().getPrice());
             purchaseDetails.setSubtotal(calculateSubtotal(purchaseDetails.getPriceUnit(), purchaseDetails.getCantity()));
@@ -154,5 +163,10 @@ public class PurchaseDetailsService {
             throw new Error("El Usuario no existe");
         }
     }
+    
+    public void decreaseStock (String idPurchaseDetails){
+        
+    }
+
 
 }

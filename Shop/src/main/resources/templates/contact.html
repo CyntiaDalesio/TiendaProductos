@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link
+      rel="stylesheet"
+      type="text/css"
+      media="all"
+      href="/src/main/resources/static/styles/style.css"
+      th:href="@{/styles/style.css}"
+      />
+      <link
+      rel="stylesheet"
+      type="text/css"
+      media="all"
+      href="/src/main/resources/static/styles/register.css"
+      th:href="@{/styles/register.css}"
+      />
+      <link
+      rel="stylesheet"
+      type="text/css"
+      media="all"
+      href="/src/main/resources/static/styles/contact.css"
+      th:href="@{/styles/contact.css}"
+      />
+  <title>Products</title>
+</head>
+<body>
+    
+  <header>
+    <section class="main-title">
+        <a href="/"><h1 id="home">E-Game<span>Egg</span></h1></a>
+    </section>
+</header>
+<main class="main">
+    <div class="container">
+        <h2 class="register-title">Conta<span>ctate</span></h2>
+    <form th:action="@{/contact/}" method="post" class="col-6 mx-auto">
+        <label> Nombre y Apellido </label><br />
+
+        <input type="text" name="name" placeholder="Nombre y apellido" >
+
+        <label> Mensaje </label>
+
+        <textarea type="text" name="message" placeholder=" Escriba aqui su mensaje"></textarea>
+
+        <input type="submit" value="Submit" class="button" >
+    </form>
+     </div>
+</main>
+<footer>
+    <h3>Todos los derechos reservados E-GameEgg</h3>
+</footer>
+
+</body>
+</html>

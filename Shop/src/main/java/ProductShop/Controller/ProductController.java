@@ -22,27 +22,26 @@ public class ProductController {
 
     @Autowired
     private ProductService productservice;
-    @Autowired
-    private ProductRepository productrepository;
 
-    @PreAuthorize("hasAnyRole('ROLE_ADMIN')")
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_SELLER')")
     @GetMapping("/modifyproduct/{idProduct}")
     public String Index(@PathVariable String idProduct, ModelMap model) {
-        
-        Product product= productservice.findProductById(idProduct);
-        
+
+        Product product = productservice.findProductById(idProduct);
+
         model.put("product", product);
-        
+
         return "modify";
     }
 
-    @PreAuthorize("hasAnyRole('ROLE_ADMIN')")
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_SELLER')")
     @GetMapping("addproduct")
     public String addProduct() {
         return "addProduct.html";
 
     }
 
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_SELLER')")
     @PostMapping("/addproduct")
     public String SaveProduct(MultipartFile archivo, Integer CodeProduct, String Name, Double Price, String TradeMark, String category, Integer Stock, Photo photo) throws ErrorServicio {
         productservice.CreateProduct(archivo, CodeProduct, Name, Price, TradeMark, category, Stock);
@@ -50,12 +49,15 @@ public class ProductController {
         return "redirect:/";
     }
 
-    @PreAuthorize("hasAnyRole('ROLE_ADMIN')")
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_SELLER')")
     @PostMapping("/modifyproduct/{idProduct}")
     public String ModifyProduct(MultipartFile archivo, @PathVariable String idProduct, String Name, Double Price, String TradeMark, String category, Integer Stock, Photo photo, Integer codeProduct) throws ErrorServicio {
-        productservice.ModifyProduct(archivo, idProduct, Name, Price, TradeMark, category, Stock,codeProduct);
+        productservice.ModifyProduct(archivo, idProduct, Name, Price, TradeMark, category, Stock, codeProduct);
         return "redirect:/";
     }
+//
+    
+
 }
 
 //      @PostMapping("/findbyname")

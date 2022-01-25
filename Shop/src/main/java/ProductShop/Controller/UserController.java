@@ -25,39 +25,38 @@ public class UserController {
     public String index(ModelMap model) {
 
         List<Usuario> users = userService.ListUsers();
-        model.put("users", users);
+        model.put("usuarios", users);
 
-        return "users/index";
+        return "users.html";
     }
 
     @GetMapping("/register")
     public String newUser() {
         return "register.html";
     }
-    
-     @GetMapping("/users/contact")
-    public String newContact() {
-        return "user/newContact.html";
+
+    @GetMapping("/contact")
+    public String newContact(ModelMap model) {
+
+        return "contact.html";
     }
-    
-    
-     @PostMapping("/users/contact{id}")
-    public String createContact(@PathVariable String id, @RequestParam String name, @RequestParam String email) {
+
+    @PostMapping("/contact/")
+    public String createContact(@RequestParam String name, @RequestParam String message) {
         try {
-            userService.createContact(id, name, email);
+
+            Usuario user = userService.obtenerUsuarioSesion();
+            userService.createContact(user, name, message);
         } catch (Error ex) {
             Logger.getLogger(UserController.class.getName()).log(Level.SEVERE, null, ex);
         }
         return "redirect:/";
     }
-    
-    
-    
-    
 
     @PostMapping("/register")
     public String create(@RequestParam String username, @RequestParam String password, @RequestParam String password2, @RequestParam String email, @RequestParam String dni) {
         try {
+
             userService.save(username, password, password2, email, dni);
         } catch (Error ex) {
             Logger.getLogger(UserController.class.getName()).log(Level.SEVERE, null, ex);
@@ -65,32 +64,31 @@ public class UserController {
         return "redirect:/login";
     }
 
-    @GetMapping("/users/edit/{id}")
-    public String edit(@PathVariable String id, ModelMap model) throws Error {
-
-        Usuario user = userService.searchUserId(id);
+    @GetMapping("/editUser")
+    public String edit(ModelMap model) throws Error {
+        Usuario user = userService.obtenerUsuarioSesion();
 
         model.put("user", user);
 
-        return "users/edit.html";
+        return "editUser.html";
     }
 
-    @PostMapping("clientes/update/{id}")
-    public String update(@PathVariable String id, @RequestParam String username, @RequestParam String password, @RequestParam String password2, @RequestParam String email, @RequestParam String dni) throws Error {
+    @PostMapping("/editUser")
+    public String update(@RequestParam String username, @RequestParam String password, @RequestParam String password2, @RequestParam String email, @RequestParam String dni) throws Error {
 
-        userService.changeUser(id, username, dni, email, password, password2);
-        return "redirect:/users";
+              Usuario user = userService.obtenerUsuarioSesion();
+
+        userService.changeUser(user.getIdUser(), username, dni, email, password, password2);
+        return "redirect:/";
     }
 
     @PreAuthorize("hasAnyRole('ROLE_ADMIN')")
     @GetMapping("/users/editRole/{id}")
     public String editRole(@PathVariable String id, ModelMap model) throws Error {
 
-        Usuario user = userService.searchUserId(id);
+        userService.changeRolUser(id);
 
-        model.put("user", user);
-
-        return "users/edit.html";
+        return "redirect:/users";
     }
 
     @PreAuthorize("hasAnyRole('ROLE_ADMIN')")

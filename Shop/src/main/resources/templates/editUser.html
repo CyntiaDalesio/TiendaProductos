@@ -18,7 +18,7 @@
             href="/src/main/resources/static/styles/register.css"
             th:href="@{/styles/register.css}"
             />
-        <title>Registrar usuario</title>
+        <title>Editar usuario</title>
     </head>
     <body>
         <header>
@@ -28,31 +28,30 @@
         </header>
         <main class="main">
             <div class="container">
-                <h2 class="register-title">Regis<span>trate</span></h2>
-            <form th:action="@{/register}" method="post" class="col-6 mx-auto">
+                <h2 class="register-title">Editar <span>Usuario</span></h2>
+            <form th:action="@{/editUser}" method="post" class="col-6 mx-auto">
                 <label> Nombre y Apellido </label><br />
 
-                <input type="text" name="username" placeholder="Nombre y apellido" required/><br />
+                <input type="text" name="username" th:value="${user.username}" class="input-modify" placeholder="Nombre y apellido" required/><br />
 
                 <label> Email </label><br />
 
-                <input type="text" name="email" placeholder="Email" required/><br />
+                <input type="text" name="email" placeholder="Email" th:value="${user.email}" class="input-modify" required/><br />
 
                 <label> DNI </label><br />
 
-                <input type="number" name="dni" placeholder="DNI" required/><br />
+                <input type="number" name="dni" placeholder="DNI" th:value="${user.dni}" class="input-modify" required/><br />
 
                 <label> Contraseña </label><br />
 
-                <input type="password" name="password" placeholder="Contraseña" required/><br />
+                <input type="password" name="password"  class="input-modify"  required/><br />
 
                 <label> Repita su contraseña </label><br />
 
-                <input type="password" name="password2" placeholder="Repita su contraseña" required/><br />
+                <input type="password" name="password2"  class="input-modify" required/><br />
 
-                <br />
 
-                <input type="submit" name="login" value="Submit" class="button" >
+                <input type="submit"  value="Submit" class="button" >
             </form>
              </div>
         </main>

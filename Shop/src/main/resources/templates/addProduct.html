@@ -9,108 +9,48 @@
     integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
   <link rel="stylesheet" type="text/css" media="all" href="/src/main/resources/static/styles/style.css"
     th:href="@{/styles/style.css}" />
+    <link rel="stylesheet" type="text/css" media="all" href="/src/main/resources/static/styles/addProduct.css"
+    th:href="@{/styles/addProduct.css}" />
   <title>Products</title>
 
 </head>
 
 <body>
-  <div class="container">
 
-    <form class="well form-horizontal"  id="contact_form" action="/addproduct" method="post" enctype="multipart/form-data">
-      <fieldset>
-
-        <!-- Form Name -->
-        <legend>
-          <center>
-            <h2><b>Products</b></h2>
-          </center>
-        </legend><br>
-
-        <!-- Text input-->
-
-        <div class="form-group">
-          <label class="col-md-4 control-label">CODE PRODUCT</label>
-          <div class="col-md-4 inputGroupContainer">
-            <div class="input-group">
-              <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-              <input name="CodeProduct" placeholder="Code Product" class="form-control" type="text">
-            </div>
-          </div>
-        </div>
-
-        <!-- Text input-->
-
-        <div class="form-group">
-          <label class="col-md-4 control-label">NAME</label>
-          <div class="col-md-4 inputGroupContainer">
-            <div class="input-group">
-              <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-              <input name="Name" placeholder="Name" class="form-control" type="text">
-            </div>
-          </div>
-        </div>
-
-
-        <!-- Text input-->
-
-        <div class="form-group">
-          <label class="col-md-4 control-label">PRICE</label>
-          <div class="col-md-4 inputGroupContainer">
-            <div class="input-group">
-              <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-              <input name="Price" placeholder="Price" class="form-control" type="text">
-            </div>
-          </div>
-        </div>
-
-        <!-- Text input-->
-
-        <div class="form-group">
-          <label class="col-md-4 control-label">TRADEMARK</label>
-          <div class="col-md-4 inputGroupContainer">
-            <div class="input-group">
-              <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-              <input name="TradeMark" placeholder="TradeMark" class="form-control" type="text">
-            </div>
-          </div>
-        </div>
-
-        <!-- Text input-->
-
-        <div class="form-group">
-          <label class="col-md-4 control-label">CATEGORY</label>
-          <div class="col-md-4 inputGroupContainer">
-            <div class="input-group">
-              <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-              <div>
-                <select name="category">
+<header>
+  <section class="main-title">
+      <a href="/"><h1 id="home">E-Game<span>Egg</span></h1></a>
+  </section>
+</header>
+  <main class="main-product">
+    <section class="container-image">
+      <h2>Agregar Producto</h2>
+    </section>
+    <section class="container-form">
+    <form  id="contact_form" action="/addproduct" method="post" enctype="multipart/form-data" class="product-form">
+          <label>CODIGO</label>
+              <input name="CodeProduct" placeholder="Code Product"  type="text"/>
+          <label>NOMBRE</label>
+              <input name="Name" placeholder="Name" type="text"/>
+          <label >PRECIO</label>
+          <input name="Price" placeholder="Price" type="number">    
+          <label class="col-md-4 control-label">MARCA</label>
+          <input name="TradeMark" placeholder="TradeMark"  type="text">
+          <label >CATEGORIA</label>
+                  <select name="category">
                   <option th:each="Category : ${T(ProductShop.Enums.Category).values()}" th:value="${Category}"
-                    th:text="${Category}"></option>
-                  <br>
-              </div>
-            </div>
-          </div>
-          <div class="form-group">
-            <label class="col-md-4 control-label">STOCK</label>
-            <div class="col-md-4 inputGroupContainer">
-              <div class="input-group">
-                <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                <input name="Stock" placeholder="Stock" class="form-control" type="text">
-              </div>
-            </div>
-          </div>
-
-         
-           
-                        <p>Seleccionar archivo:<input type="file" name="archivo" /></p>
-            <p><input type="submit" value="Enviar" /></p>
-     
-      
-
-      </fieldset>
+                    th:text="${Category}">
+                  </option>
+          <label >STOCK</label>
+          <input name="Stock" placeholder="Stock" type="number">
+          <p>Seleccionar archivo:<input type="file" name="archivo" /></p>
+          <input type="submit" value="Enviar" />
     </form>
-  </div>
-  </div>
+  </section>
+</main>
+<footer>
+  <h3>Todos los derechos reservados E-GameEgg</h3>
+</footer>
 </body>
 
 </html>

@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+</html>
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -14,23 +16,24 @@
 
 <header>
     <section class="main-title">
-        <h1 id="home">E-Game<span>Egg</span></h1>
+        <a href="/"><h1 id="home">E-Game<span>Egg</span></h1></a>
     </section>
     <nav>
-        <ul>
-            <li>Home</li>
-            <li>Categorias</li>
-            <li>Shop</li>
-        </ul>
-        <button type="submit" id="signIn">Sign In</button>
+        
+        <h3 class="user-Loged">NombreUsuario</h3>
+        <button type="submit" id="signIn">Iniciar Sesión </button>
+        <a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/users/}" class="a-button">Listar Usuarios</a>
+        <a sec:authorize="isAuthenticated()" th:href="@{/users/edit}" class="a-button">Modificar perfil</a>
+        <a  sec:authorize="isAuthenticated()" href="/logout"  type="logOut" id="LogOut" class="a-button">Salir</a> <br>
+        <br>
+        <a sec:authorize="hasRole('ROLE_USER') or hasRole('ROLE_SELLER')" th:href="@{/contact/}" class="a-button">Contactanos</a>
+        
 
         <!--shopping cart??-->
     </nav>
+    
 </header>
 <main>
-    <div class="search">
-        <input type="search" placeholder="search">
-    </div>
     <!-- <section class="banner">
          <div class="banner-image">
              <img src="../images/ps5-banner-new_44e07ae9-bbc2-469d-aeba-09c6af05b4a4.jpeg" alt="banner">
@@ -59,9 +62,22 @@
     </div>
     <!---fin del baner-->
     <section class="top-products">
-        <h2>Products</h2>
+        <h2>Productos</h2>
+        <div class="search">
+            <form action="/searchcat" method="post"> 
+               <!-- <input type="search" placeholder="search">-->
+            </div> 
+                <label for="categoria">Filtrar</label>
+             <select name="category" class=" filter">
+                          <option th:each="Category : ${T(ProductShop.Enums.Category).values()}" th:value="${Category}"
+                            th:text="${Category}">
+                          </option> 
+             </select>
+            <button type="submit" class="searchButton">Buscar</button>
+            </form>
     </section>
 
+    
     <section class="cards-conteiner">
 
 
@@ -70,26 +86,26 @@
                 <img class="imgProduct" th:if="${product.photo ne null}" th:src="@{/photo/}+${product.photo.id}"/>   
 
                 <h3 th:text="${product.Name}"></h3>
-                <p > [[${product.Price}]] $</p>
-                <a sec:authorize="hasRole('ROLE_ADMIN')" type="button" class="modify" th:href="@{/modifyproduct/}+${product.idProduct}">
+                <p > $[[${product.Price}]] </p>
+                <a sec:authorize="hasRole('ROLE_ADMIN') or hasRole('ROLE_SELLER')" type="button" class="modify" th:href="@{/modifyproduct/}+${product.idProduct}">
                     Modificar
                 </a>
-                 <button sec:authorize="hasRole('ROLE_USER')" type="button" class="modify">
+                
+                 <a sec:authorize="hasRole('ROLE_USER') or isAnonymous()" type="button" class="modify">
                     comprar
-                </button>
+                 </a>
             </div>
         </th:block>
 
         </div>
-        <div sec:authorize="hasRole('ROLE_ADMIN')" class="cards-product" >
-            <a class="add-product" th:href="addproduct" >
+        <div  class="cards-product add-product" sec:authorize="hasRole('ROLE_ADMIN') or hasRole('ROLE_SELLER')"  >
+            <a sec:authorize="hasRole('ROLE_ADMIN') or hasRole('ROLE_SELLER')" class="add-product" th:href="addproduct" >
               
                 <i class="fas fa-plus fa-2x"></i>
                 <h3 >Agregar Producto</h3>
             </a>
         </div>  
     </section>
-    <!-- <a href="#" sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/autores/editar/}+${autor.id}" class="btn btn-primary">Editar </a> -->
 </main>
 <footer>
     <h3>Todos los derechos reservados E-GameEgg</h3>

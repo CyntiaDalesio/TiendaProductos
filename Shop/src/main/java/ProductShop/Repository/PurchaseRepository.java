@@ -7,6 +7,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 @Repository
 public interface PurchaseRepository extends JpaRepository<Purchase,String> {
     
-    
-    
+
 }
