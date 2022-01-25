@@ -30,10 +30,6 @@ public class Purchase {
     @Temporal(TemporalType.DATE)
     private Date date;
     
-    
-
-    private Integer quantity;
-
 //    @OneToOne
 //    private Product product;
     
@@ -108,14 +104,7 @@ public class Purchase {
 
     
     
-    public Integer getQuantity() {
-        return quantity;
-    }
-
     
-    public void setQuantity(Integer quantity) {
-        this.quantity = quantity;
-    }
 
     
 }
