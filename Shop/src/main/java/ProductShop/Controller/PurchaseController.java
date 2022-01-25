@@ -62,10 +62,8 @@ public class PurchaseController {
         Optional<Purchase> PO = purchaseService.findById(idPurchase);
         if (PO.isPresent()) {
             model.put("cancel", "la compra ha sido cancelada");
-            PurchaseDetails PD = PO.get().getPurchaseDetail();
             Purchase purchase = PO.get();
-
-            purchaseDetService.deleteDetail(PD.getIdDetails());
+            purchaseDetService.deleteDetail(PO.get().getPurchaseDetail().getIdDetails());
             purchaseService.deletePurchase(purchase.getId());
         }
         return "index.html";
