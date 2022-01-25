@@ -29,7 +29,9 @@ public class Purchase {
     @Temporal(TemporalType.DATE)
     private Date date;
     
-    
+//    mi entidad tiene un total, un ENUM de método de pago, un DOUBLE total, un date , una cantidad, 
+//    un OnetoOne de producto,un OnetoOne de usuario(que lo podría sacar) y un OnetoOne de detalle de la compra
+
     
     //@OneToOne
     //private Detail detail;
