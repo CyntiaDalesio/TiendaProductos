@@ -19,10 +19,11 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
         <a href="/"><h1 id="home">E-Game<span>Egg</span></h1></a>
     </section>
     <nav>
-        <a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/users/}" class="a-button">Listar Usuarios</a>
-        <a sec:authorize="isAuthenticated()" th:href="@{/editUser}" class="a-button">Modificar perfil</a>
-        <button type="submit" id="signIn">Iniciar Sesión </button>
+        
         <h3 class="user-Loged">NombreUsuario</h3>
+        <button type="submit" id="signIn">Iniciar Sesión </button>
+        <a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/users/}" class="a-button">Listar Usuarios</a>
+        <a sec:authorize="isAuthenticated()" th:href="@{/users/edit}" class="a-button">Modificar perfil</a>
         <a  sec:authorize="isAuthenticated()" href="/logout"  type="logOut" id="LogOut" class="a-button">Salir</a> <br>
         <br>
         <a sec:authorize="hasRole('ROLE_USER') or hasRole('ROLE_SELLER')" th:href="@{/contact/}" class="a-button">Contactanos</a>
@@ -30,20 +31,9 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 
         <!--shopping cart??-->
     </nav>
+    
 </header>
 <main>
-    <div class="search">
-        
-        <form action="/searchcat" method="post"  </form>
-       <input type="search" placeholder="search">
-    </div> 
-    
-     <select name="category">
-                  <option th:each="Category : ${T(ProductShop.Enums.Category).values()}" th:value="${Category}"
-                    th:text="${Category}"
-                  </option></select>
-    <button type="submit" class="searchButton">Buscar</button>
-    
     <!-- <section class="banner">
          <div class="banner-image">
              <img src="../images/ps5-banner-new_44e07ae9-bbc2-469d-aeba-09c6af05b4a4.jpeg" alt="banner">
@@ -73,8 +63,21 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
     <!---fin del baner-->
     <section class="top-products">
         <h2>Productos</h2>
+        <div class="search">
+            <form action="/searchcat" method="post"> 
+               <!-- <input type="search" placeholder="search">-->
+            </div> 
+                <label for="categoria">Filtrar</label>
+             <select name="category" class=" filter">
+                          <option th:each="Category : ${T(ProductShop.Enums.Category).values()}" th:value="${Category}"
+                            th:text="${Category}">
+                          </option> 
+             </select>
+            <button type="submit" class="searchButton">Buscar</button>
+            </form>
     </section>
 
+    
     <section class="cards-conteiner">
 
 
@@ -95,7 +98,7 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
         </th:block>
 
         </div>
-        <div  class="cards-product" >
+        <div  class="cards-product add-product" sec:authorize="hasRole('ROLE_ADMIN') or hasRole('ROLE_SELLER')"  >
             <a sec:authorize="hasRole('ROLE_ADMIN') or hasRole('ROLE_SELLER')" class="add-product" th:href="addproduct" >
               
                 <i class="fas fa-plus fa-2x"></i>
