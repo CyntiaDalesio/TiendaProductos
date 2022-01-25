@@ -144,9 +144,9 @@ public class UserService implements UserDetailsService {
         Optional<Usuario> answer = userRepository.findById(id);
         if (answer.isPresent()) {
             Usuario user = answer.get();
-
+ BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+        user.setPassword(encoder.encode(password)); // encripta la contraseña
             user.setUsername(username);
-            user.setPassword(password);
             user.setDni(dni);
             user.setEmail(email);
             userRepository.save(user);
