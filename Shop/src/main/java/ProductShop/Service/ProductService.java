@@ -5,6 +5,7 @@ import ProductShop.Entity.Product;
 import ProductShop.Enums.Category;
 import ProductShop.Repository.ProductRepository;
 import ProductShop.errores.ErrorServicio;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.Scanner;
@@ -90,18 +91,6 @@ public class ProductService {
     }
 }
 
-@Transactional
-        public void DeleteProduct(String idProduct) {
-
-        Optional<Product> answer = productrepository.findById(idProduct);
-        if (answer.isPresent()) {
-            Product product = answer.get();
-            productrepository.delete(product);
-
-        } else {
-            System.out.println("No se encontro el producto");
-        }
-    }
 
     public List<Product> listarProduct() {
 
@@ -118,16 +107,12 @@ public class ProductService {
             return null;
         }
     }
-
-}
-//Revisar Metodos por fallas
-
-//    public Product SearchByName(String Name){
-//        Product products =  (Product) productrepository.findByName(Name);
-//        return products;
+    public List<Product> searchbycat(Category category){
+        
+        return productrepository.findByCategory(category);
+    }
+//    public List<Product> searchbyname(String name){
+//        
+//        return productrepository.findByName(name);
 //    }
-//    public List<Product> SearchByCategory(Category category){
-//       Product products =  (Product) productrepository.findByCategory(category);
-//  
-//        return (List<Product>) products;    }
-//    
+}
