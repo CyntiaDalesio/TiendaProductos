@@ -23,19 +23,31 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
         <h3 class="user-Loged">NombreUsuario</h3>
         <button type="submit" id="signIn">Iniciar Sesión </button>
         <a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/users/}" class="a-button">Listar Usuarios</a>
-        <a sec:authorize="isAuthenticated()" th:href="@{/users/edit}" class="a-button">Modificar perfil</a>
+        <a sec:authorize="isAuthenticated()" th:href="@{/editUser}" class="a-button">Modificar perfil</a>
+        <button type="submit" id="signIn">Iniciar Sesión </button>
+        <h3 class="user-Loged">NombreUsuario</h3>
         <a  sec:authorize="isAuthenticated()" href="/logout"  type="logOut" id="LogOut" class="a-button">Salir</a> <br>
         <br>
         <a sec:authorize="hasRole('ROLE_USER') or hasRole('ROLE_SELLER')" th:href="@{/contact/}" class="a-button">Contactanos</a>
         
-        
+
+        <!--shopping cart??-->
     </nav>
     
 </header>
 <main>
     <div class="search">
-        <input type="search" placeholder="search">
-    </div>
+        
+        <form action="/searchcat" method="post"  </form>
+       <input type="search" placeholder="search">
+    </div> 
+    
+     <select name="category">
+                  <option th:each="Category : ${T(ProductShop.Enums.Category).values()}" th:value="${Category}"
+                    th:text="${Category}"
+                  </option></select>
+    <button type="submit" class="searchButton">Buscar</button>
+    
     <!-- <section class="banner">
          <div class="banner-image">
              <img src="../images/ps5-banner-new_44e07ae9-bbc2-469d-aeba-09c6af05b4a4.jpeg" alt="banner">
@@ -76,9 +88,10 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 
                 <h3 th:text="${product.Name}"></h3>
                 <p > $[[${product.Price}]] </p>
-                <a sec:authorize="hasRole('ROLE_ADMIN') or hasRole('ROLE_SELLER') " type="button" class="modify" th:href="@{/modifyproduct/}+${product.idProduct}">
+                <a sec:authorize="hasRole('ROLE_ADMIN') or hasRole('ROLE_SELLER')" type="button" class="modify" th:href="@{/modifyproduct/}+${product.idProduct}">
                     Modificar
                 </a>
+                
                  <a sec:authorize="hasRole('ROLE_USER') or isAnonymous()" type="button" class="modify">
                     comprar
                  </a>
