@@ -136,6 +136,7 @@ nav button:hover{
     flex-wrap: wrap;
     justify-content: space-evenly;
     align-items: center;
+
 }
 .cards-product{
    /* background-color: rgba(251, 250, 246, 1);*/
@@ -146,6 +147,8 @@ nav button:hover{
     border-radius: 2px;
     margin: 20px;
     text-align: center;
+    width: 280px;
+    height: 420px;
     transition: transform 1s;
     cursor:pointer;
 }
@@ -161,6 +164,14 @@ nav button:hover{
 .cards-product i{
     color: #000000;
     
+}
+.cards-product img{
+    margin:  15px;
+}
+.add-product{
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 .modify{
     color: #ffffff; 

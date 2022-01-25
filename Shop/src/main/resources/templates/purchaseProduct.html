@@ -18,177 +18,80 @@
                 <h1 id="home">E-Game<span>Egg</span></h1>
             </section>
         </header>
-        <br>
-        <br>
-
         <main class="main-product">
-            <div class="container-image">
-                <h2>Confirmar la compra del producto</h2>
-            </div>
-
-        </head>
-
-        <body class="d-flex justify-content-center">
-        
-            <div class="conteiner row">
-        
-                <div class="card" style="width: 18rem;">
-                    <img class="imgProduct" th:if="${product.photo ne null}" th:src="@{/photo/}+${product.photo.id}" class="card-img-top" width="300" height="350"/>
-                    <div class="card-body">
-                        <h5 class="card-title">th:text="${product.Name}</h5>
-                        <h3><strong>$[[${product.Price}]]</strong></h3>
-                        <br></br>
+          <div class="container d-lg-flex">
+            <div class="box-1 bg-light user background">
+                <div class="d-flex align-items-center mb-3"> <img src="https://images.pexels.com/photos/4925916/pexels-photo-4925916.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500" class="pic rounded-circle" alt="">
+                </div>
+                <div class="box-inner-1 pb-3 mb-3 ">
+                    <div class="d-flex justify-content-between mb-3 userdetails">
+                        <p class="fw-bold" th:text="${product.Name}"></p>
+                        <p class="fw-lighter"><span class="fas fa-dollar-sign"></span>precio</p>
+                    </div>
+                    <div id="my" class="carousel slide carousel-fade img-details" data-bs-ride="carousel" data-bs-interval="2000">
+                        <div class="carousel-inner">
+                            <div class="carousel-item active"> <img  class="imgProduct d-block w-100" src="/src/main/resources/static/images/monitorZowie.jpg"> 
+                            </div>
+                            
+                        </div> 
+                        <h4 class="detail-product"> Nombre Producto</h4>
                     </div>
                 </div>
             </div>
-        </body>
-        
-        </html>
-            <div>
-                <form enctype="multipart/form-data" class="---------------" th:action="@{/modifyproduct/}+${product.idProduct}" method="post">
-                  
-                      <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
-                        <label class="form-check-label" for="flexCheckChecked">
-                         <strong>Efectivo</strong>
-                        </label>
-                        <br>
-                        <button type="button" class="btn btn-warning"><strong>Comprar</strong> </button>
-                      </div>
-                      <br>
-                      <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                        <label class="form-check-label" for="flexCheckDefault">
-                        <strong>Tarjeta de Débito</strong>  
-                        </label>
-                        <br>
-                        <form class="row g-3 needs-validation" novalidate>
-                            <div class="col-md-4">
-                              <label for="validationCustom01" class="form-label">Primer Nombre</label>
-                              <input type="text" class="form-control" id="validationCustom01" value="" required>
-                              <div class="valid-feedback">
-  
-                              </div>
+            <div class="box-2">
+                <div class="box-inner-2">
+                    <div>
+                        <p class="fw-bold">Detalles de pago</p>
+                        <p class="dis mb-3">Finaliza tu compra completando los detalles de pago</p>
+                    </div>
+                    <form action="">
+                        <div class="mb-3">
+                            <p class="dis fw-bold mb-2">Direccion de Email</p> <input class="form-control" type="email" placeholder="luke@skywalker.com">
+                        </div>
+                        <div>
+                            <p class="dis fw-bold mb-2">Detalles de Tarjeta</p>
+                            <div class="d-flex align-items-center justify-content-between card-atm border rounded">
+                                <div class="fab fa-cc-visa ps-3"></div> <input type="text" class="form-control" placeholder="Card Details">
+                                <div class="d-flex w-50"> <input type="text" class="form-control px-0" placeholder="MM/YY"> <input type="password" maxlength=3 class="form-control px-0" placeholder="CVV"> </div>
                             </div>
-                            <div class="col-md-4">
-                              <label for="validationCustom02" class="form-label">Apellido</label>
-                              <input type="text" class="form-control" id="validationCustom02" value="" required>
-                              <div class="valid-feedback">
-  
-                              </div>
+                            <div class="my-3 cardname">
+                                <p class="dis fw-bold mb-2">Nombre del titular de la tarjeta</p> <input class="form-control" type="text">
                             </div>
-                            <div class="col-md-4">
-                              <label for="validationCustomUsername" class="form-label">Username</label>
-                              <div class="input-group has-validation">
-                                  <input type="text" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend" required>
-                                  </div>
-                            </div>
-
-                            <div class="col-md-3">
-                                <label for="validationCustom05" class="form-label">DNI</label>
-                                <input type="text" class="form-control" id="validationCustom05" required>
-                                
-                              </div>
-                            <div class="col-md-6">
-                              <label for="validationCustom03" class="form-label">Numero de la tarjeta</label>
-                              <input type="text" class="form-control" id="validationCustom03" required>
-                              <div class="invalid-feedback">
-                                Please provide a valid number.
-                              </div>
-                            </div>
-                            <div class="col-md-3">
-                              <label for="validationCustom04" class="form-label">Código de seguridad</label>
-                              <input type="text" class="form-control" id="validationCustom03" required>
-                              </div>
-                            </div>
-                            
-                            <div class="col-12">
-                              <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="" id="invalidCheck" required>
-                                <label class="form-check-label" for="invalidCheck">
-                                  De acuerdo a los terminos y condiciones.-
-                                </label>
-                                <div class="invalid-feedback">
-                                  You must agree before submitting.
+                            <div class="address">
+                                <p class="dis fw-bold mb-3">Doimicilio de pago</p> <select class="form-select" aria-label="Default select example">
+                                    <option selected hidden>Argentina</option>
+                                    <option value="1">Argentina</option>
+                                    <option value="2">Chile</option>
+                                    <option value="3">Uruguay</option>
+                                </select>
+                                <div class="d-flex"> <input class="form-control zip" type="text" placeholder="ZIP"> <input class="form-control state" type="text" placeholder="State"> </div>
+                                <div class=" my-3">
+                                    <p class="dis fw-bold mb-2">Numero de seguridad</p>
+                                    <div class="inputWithcheck"> <input class="form-control" type="text" value="GB012345B9"> <span class="fas fa-check"></span> </div>
                                 </div>
-                              </div>
-                            </div>
-                            <br>
-                            <div class="col-12">
-                                <button type="button" class="btn btn-warning"><strong>Comprar</strong> </button>
-                            </div>
-                          </form>
-                      </div>
-                        <br>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                            <label class="form-check-label" for="flexCheckDefault">
-                               <strong>Tarjeta de Crédito</strong>
-                            </label>
-                        <br>
-                        <form class="row g-3 needs-validation" novalidate>
-                            <div class="col-md-4">
-                              <label for="validationCustom01" class="form-label">Primer Nombre</label>
-                              <input type="text" class="form-control" id="validationCustom01" value="" required>
-                              <div class="valid-feedback">
-  
-                              </div>
-                            </div>
-                            <div class="col-md-4">
-                              <label for="validationCustom02" class="form-label">Apellido</label>
-                              <input type="text" class="form-control" id="validationCustom02" value="" required>
-                              <div class="valid-feedback">
-  
-                              </div>
-                            </div>
-                            <div class="col-md-4">
-                              <label for="validationCustomUsername" class="form-label">Username</label>
-                              <div class="input-group has-validation">
-                                  <input type="text" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend" required>
-                                  </div>
-                            </div>
-
-                            <div class="col-md-3">
-                                <label for="validationCustom05" class="form-label">DNI</label>
-                                <input type="text" class="form-control" id="validationCustom05" required>
-                                
-                              </div>
-                            <div class="col-md-6">
-                              <label for="validationCustom03" class="form-label">Numero de la tarjeta</label>
-                              <input type="text" class="form-control" id="validationCustom03" required>
-                              <div class="invalid-feedback">
-                                Please provide a valid number.
-                              </div>
-                            </div>
-                            <div class="col-md-3">
-                              <label for="validationCustom04" class="form-label">Código de seguridad</label>
-                              <input type="text" class="form-control" id="validationCustom03" required>
-                              </div>
-                            </div>
-                            
-                            <div class="col-12">
-                              <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="" id="invalidCheck" required>
-                                <label class="form-check-label" for="invalidCheck">
-                                  De acuerdo a los terminos y condiciones.-
-                                </label>
-                                <div class="invalid-feedback">
-                                  You must agree before submitting.
+                                <div class="d-flex flex-column dis">
+                                    <div class="d-flex align-items-center justify-content-between mb-2">
+                                        <p>Subtotal</p>
+                                        <p><span class="fas fa-dollar-sign"></span>precio</p>
+                                    </div>
+                                    <div class="d-flex align-items-center justify-content-between mb-2">
+                                        <p>VAT<span>(20%)</span></p>
+                                        <p><span class="fas fa-dollar-sign"></span>recargo</p>
+                                    </div>
+                                    <div class="d-flex align-items-center justify-content-between mb-2">
+                                        <p class="fw-bold">Total</p>
+                                        <p class="fw-bold"><span class="fas fa-dollar-sign"></span>total</p>
+                                    </div>
+                                    <div class="btn btn-primary mt-2"><span class="fas fa-dollar-sign px-1"></span>Pagar </div>
                                 </div>
-                              </div>
                             </div>
-                            <div class="col-12">
-                                <button type="button" class="btn btn-warning"><strong>Comprar</strong> </button>
-                            </div>
-                          </form>
-                      </div>
-
+                        </div>
+                    </form>
                 </div>
-       
-                </main>
+            </div>
+        </div>
         <footer>
-            <h3>Todos los derechos reservados E-GameEgg</h3>
-        </footer>
-        <script src="../assets/index.js"></script>
-    </body>
+          <h3>Todos los derechos reservados E-GameEgg</h3>
+      </footer>
+        </body>
 </html>
