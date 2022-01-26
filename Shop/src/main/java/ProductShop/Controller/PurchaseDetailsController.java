@@ -21,26 +21,6 @@ public class PurchaseDetailsController {
     private PurchaseService purchaseService;
     
     
-    @GetMapping("/purchase")
-    public String details(){
-        return "purchase.html";
-    }
     
-    @PostMapping("/detail")
-    public String createDetail(ModelMap model, @RequestParam String idUser, @RequestParam String idProduct, @RequestParam Integer quantity) throws ErrorServicio{
-        try {
-            purchaseDetService.createDetailsPurchase(idProduct, idUser, quantity, idUser);
-        } catch (ErrorServicio e) {
-            throw new ErrorServicio("El detalle no fue creado");
-        }
-        return "purchase.html";
-    }  
-    
-    @GetMapping("/detailpurchase")
-    public String showDetail(ModelMap model) {
-        List <PurchaseDetails> purchaseDetails= purchaseDetService.showDetail();
-        model.put("purchaseDetails", purchaseDetails);
-        return "purchase.html";
-    }
     
 }
