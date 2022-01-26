@@ -31,12 +31,6 @@ public class Purchase {
     private Date date;
     
     
-
-    private Integer quantity;
-
-//    @OneToOne
-//    private Product product;
-    
     @ManyToOne
     private Usuario usuario;
 
@@ -108,14 +102,7 @@ public class Purchase {
 
     
     
-    public Integer getQuantity() {
-        return quantity;
-    }
-
     
-    public void setQuantity(Integer quantity) {
-        this.quantity = quantity;
-    }
 
     
 }
