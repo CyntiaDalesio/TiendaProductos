@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class PurchaseController {
+
     @Autowired
     private UserService userService;
     @Autowired
@@ -31,56 +32,50 @@ public class PurchaseController {
     private ProductService productService;
 
     @GetMapping("/purchase/{idProduct}")
-    public String details(ModelMap model,@PathVariable String idProduct) throws ErrorServicio {
-        try{
-        Product product = productService.findProductById(idProduct);
-        model.addAttribute("producto", product);
-        }catch(Exception e){
+    public String details(ModelMap model, @PathVariable String idProduct) throws ErrorServicio {
+        try {
+            Product product = productService.findProductById(idProduct);
+            model.put("producto", product);
+        } catch (Exception e) {
             throw new ErrorServicio("producto no econtrado");
         }
         return "purchaseProduct.html";
     }
 
-    @PostMapping("/purchase")
-    public String createDetail(ModelMap model, @RequestParam String idProduct, @RequestParam String paymentMethod, @RequestParam Integer cantity) throws ErrorServicio {
+//    @PostMapping("/purchase")
+//    public String createDetail(ModelMap model, @RequestParam String idProduct, @RequestParam String paymentMethod, @RequestParam Integer cantity) throws ErrorServicio {
+//        try {
+//            Usuario user = userService.obtenerUsuarioSesion();
+//            purchaseDetService.createDetailsPurchase(idProduct, user.getIdUser(), cantity, paymentMethod);
+//        } catch (ErrorServicio e) {
+//            throw new ErrorServicio("El detalle no fue creado");
+//        }
+//        return "purchaseProduct.html";
+//    }
+
+//    @GetMapping("/detailpurchase")
+//    public String showDetail(ModelMap model) {
+//        List<Purchase> purchase = purchaseService.showPurchase();
+//        model.put("purchase", purchase);
+//        return "purchaseProduct.html";
+//    }
+
+    @PostMapping("purchase/finished")
+    public String purchaseFinish(ModelMap model, @RequestParam String idProduct, @RequestParam Integer cantity, @RequestParam String paymentMethod) throws ErrorServicio {
         try {
             Usuario user = userService.obtenerUsuarioSesion();
             purchaseDetService.createDetailsPurchase(idProduct, user.getIdUser(), cantity, paymentMethod);
-        } catch (ErrorServicio e) {
-            throw new ErrorServicio("El detalle no fue creado");
+            purchaseDetService.decreaseStock(idProduct, cantity);
+            model.put("exito", "Compra realizada con éxito");
+        } catch (Exception e) {
+            throw new ErrorServicio("Error de Sistema");
         }
-        return "purchaseProduct.html";
+        return "redirect:/index.html";
     }
 
-    @GetMapping("/detailpurchase")
-    public String showDetail(ModelMap model) {
-        List<Purchase> purchase = purchaseService.showPurchase();
-        model.put("purchase", purchase);
-        return "purchaseProduct.html";
-    }
-
-    @PostMapping("detail/finished")
-    public String purchaseFinish(ModelMap model, String idPurchase, String idPurchaseDetails) throws ErrorServicio {
-        Optional<Purchase> PO = purchaseService.findById(idPurchase);
-        if (PO.isPresent()) {
-            model.put("exito", "compra realizada con exito");
-            purchaseDetService.decreaseStock(idPurchaseDetails);
-        } else {
-            throw new ErrorServicio("La compra no fue creado");
-        }
-
-        return "index.html";
-    }
-
-    @PostMapping("detail/canceled")
-    public String purchaseCanceled(ModelMap model, String idPurchase) throws ErrorServicio {
-        Optional<Purchase> PO = purchaseService.findById(idPurchase);
-        if (PO.isPresent()) {
-            model.put("cancel", "la compra ha sido cancelada");
-            Purchase purchase = PO.get();
-            purchaseDetService.deleteDetail(PO.get().getPurchaseDetail().getIdDetails());
-            purchaseService.deletePurchase(purchase.getId());
-        }
+    @GetMapping("purchase/canceled")
+    public String purchaseCanceled(ModelMap model) {
+        model.put("cancel", "La Compra ha sido cancelada");
         return "index.html";
     }
 

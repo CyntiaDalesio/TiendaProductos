@@ -26,10 +26,10 @@ public class PurchaseService {
 
     @Transactional
     public Purchase createPurchase(String paymentMehtod, Double priceUnit) {
-        Purchase purchase = new Purchase();
+        Purchase purchase = new Purchase();        
         purchase.setDate(new Date());
         purchase.setPaymentMethod(PaymentMethod.valueOf(paymentMehtod));
-
+        
         return purchaseRepository.save(purchase);
 
     }

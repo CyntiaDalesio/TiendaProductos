@@ -49,7 +49,7 @@ public class PurchaseDetailsService {
             throw new ErrorServicio("No hay stock disponible");
         }
         purchaseDetails.setPriceUnit(purchaseDetails.getProduct().getPrice());
-        purchaseDetails.setSubtotal(calculateSubtotal(purchaseDetails.getPriceUnit(), purchaseDetails.getCantity()));
+        purchaseDetails.setSubtotal(calculateSubtotal(purchaseDetails.getPriceUnit(), quantity));
         purchase.setPaymentMethod(PaymentMethod.valueOf(payMethod));
         purchase.setDate(new Date());
         purchase.setTotal(purchaseDetails.getSubtotal());
@@ -165,20 +165,16 @@ public class PurchaseDetailsService {
     }
 
     @Transactional
-    public void decreaseStock(String idPurchaseDetails) {
-        Optional<PurchaseDetails> optionalDetail = purchaseDetailsRepository.findById(idPurchaseDetails);
-        if (optionalDetail.isPresent()) {
-            PurchaseDetails purchaseDetails = optionalDetail.get();
-            Optional<Product> productOptional = productRepository.findById(purchaseDetails.getProduct().getIdProduct());
+    public void decreaseStock(String idProduct, Integer cantity) {
+            Optional<Product> productOptional = productRepository.findById(idProduct);
             if (productOptional.isPresent()) {
                 Product product = productOptional.get();
-                product.setStock(product.getStock() - purchaseDetails.getCantity());
+                product.setStock(product.getStock() - cantity);
+                productRepository.save(product);
             } else {
                 throw new Error("El producto no existe");
             }
-        } else {
-            throw new Error("El detalle no existe");
-        }
+        
     }
 
     public Product showStock(String idPurchaseDetails) {
