@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+
     <head>
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -21,9 +22,7 @@
         <main class="main-product">
           <div class="container d-lg-flex">
             <div class="box-1 bg-light user background">
-                <div class="d-flex align-items-center mb-3"> <img src="https://images.pexels.com/photos/4925916/pexels-photo-4925916.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500" class="pic rounded-circle" alt="">
-                </div>
-                <div class="box-inner-1 pb-3 mb-3 ">
+                <!--<div class="box-inner-1 pb-3 mb-3 ">
                     <div class="d-flex justify-content-between mb-3 userdetails">
                         <p class="fw-bold" th:text="${product.Name}"></p>
                         <p class="fw-lighter"><span class="fas fa-dollar-sign"></span>precio</p>
@@ -36,9 +35,52 @@
                         </div> 
                         <h4 class="detail-product"> Nombre Producto</h4>
                     </div>
-                </div>
+                </div> -->
             </div>
-            <div class="box-2">
+              <div class="card-body">
+                        <table class="table tab-pane">
+                            <thead class="thead-light">
+                                <tr class="text-center">
+                                    <th>Articulo</th>
+                                    <th>Cantidad</th>
+                                    <th>Precio Unitario</th>
+                                    <th>Subtotal</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                    <tr th:each="product : ${producto}">
+  
+                                     <td th:text="${product.Name}"></td>
+                                     <td><input name="cantity" type="number"></td>
+                                     <td th:text="${product.Price}"></td>
+                                     <td th:text="${product.Price}"></td>
+                                     
+                                     <td>
+                                        <a href="#" th:href="@{/users/editRole/}+${usuario.idUser}"  class="btn btn-primary">Editar Rol a vendedor</a>
+      
+                                    </td>
+
+                                    </tr>
+                            </tbody>
+                        </table>
+                    </div>
+              
+  
+      
+  
+      
+  
+        <!--
+        <td>
+            <a href="#" th:href="@{/users/editRole/}+${usuario.idUser}"  class="btn btn-primary">Editar Rol a vendedor</a>
+      
+        </td> -->
+  
+      
+  
+    
+
+           <!--<div class="box-2">
                 <div class="box-inner-2">
                     <div>
                         <p class="fw-bold">Detalles de pago</p>
@@ -88,7 +130,7 @@
                         </div>
                     </form>
                 </div>
-            </div>
+            </div> -->
         </div>
         <footer>
           <h3>Todos los derechos reservados E-GameEgg</h3>
