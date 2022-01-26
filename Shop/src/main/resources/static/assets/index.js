@@ -25,3 +25,6 @@ let addProduct= document.getElementById("add-product");
 addProduct.addEventListener("click", () =>{
     location.href = "/addproduct"
 })
+
+
+
