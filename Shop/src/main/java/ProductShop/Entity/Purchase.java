@@ -21,6 +21,8 @@ public class Purchase {
     @GeneratedValue(generator = "uuid")
     @GenericGenerator(name = "uuid", strategy = "uuid2")
     private String Id;
+    
+//    private Integer purchaseCode;
 
     private Double total;
 
@@ -31,28 +33,23 @@ public class Purchase {
     private Date date;
     
     
-
-    private Integer quantity;
-
-//    @OneToOne
-//    private Product product;
-    
     @ManyToOne
     private Usuario usuario;
 
     @OneToOne
     private PurchaseDetails purchaseDetail;
-    
-    
-    public Purchase(String Id, Double total, Date date,PurchaseDetails purchaseDetail, PaymentMethod paymentMethod,Usuario usuario) {
-        this.Id = Id;
+
+    public Purchase(Integer purchaseCode, Double total, PaymentMethod paymentMethod, Date date, Usuario usuario, PurchaseDetails purchaseDetail) {
+//        this.purchaseCode = purchaseCode;
         this.total = total;
-        this.date = date;
-        this.purchaseDetail=purchaseDetail;
         this.paymentMethod = paymentMethod;
-        this.usuario=usuario;
-       
+        this.date = date;
+        this.usuario = usuario;
+        this.purchaseDetail = purchaseDetail;
     }
+    
+    
+    
 
     public Purchase() {
     }
@@ -106,16 +103,12 @@ public class Purchase {
         this.paymentMethod = paymentMethod;
     }
 
-    
-    
-    public Integer getQuantity() {
-        return quantity;
-    }
+//    public Integer getPurchaseCode() {
+//        return purchaseCode;
+//    }
+//
+//    public void setPurchaseCode(Integer purchaseCode) {
+//        this.purchaseCode = purchaseCode;
+//    }
 
-    
-    public void setQuantity(Integer quantity) {
-        this.quantity = quantity;
-    }
-
-    
 }

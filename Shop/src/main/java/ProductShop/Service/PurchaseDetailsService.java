@@ -30,34 +30,34 @@ public class PurchaseDetailsService {
     private UserRepository userRepository;
     @Autowired
     private PurchaseService purchaseService;
+    @Autowired
+    private ProductService productService;
 
     @Transactional
     public void createDetailsPurchase(String idProduct, String idUser, Integer quantity, String payMethod) throws ErrorServicio {
 
         validateNull(idProduct, idUser, payMethod, quantity);
-        
+
         PurchaseDetails purchaseDetails = new PurchaseDetails();
         Purchase purchase = new Purchase();
-        
 
         purchaseDetails.setProduct(validateProduct(idProduct));
         purchase.setUsuario(validateUser(idUser));
         if (validateStock(quantity, purchaseDetails.getProduct().getStock())) {
             purchaseDetails.setCantity(quantity);
-            purchase.setQuantity(quantity);
         } else {
             throw new ErrorServicio("No hay stock disponible");
         }
         purchaseDetails.setPriceUnit(purchaseDetails.getProduct().getPrice());
-        purchaseDetails.setSubtotal(calculateSubtotal(purchaseDetails.getPriceUnit(), purchaseDetails.getCantity()));
+        purchaseDetails.setSubtotal(calculateSubtotal(purchaseDetails.getPriceUnit(), quantity));
         purchase.setPaymentMethod(PaymentMethod.valueOf(payMethod));
         purchase.setDate(new Date());
         purchase.setTotal(purchaseDetails.getSubtotal());
-        
-        purchase.setPurchaseDetail(purchaseDetails);   
-        
-          purchaseDetailsRepository.save(purchaseDetails);
-          purchaseRepository.save(purchase);
+
+        purchase.setPurchaseDetail(purchaseDetails);
+
+        purchaseDetailsRepository.save(purchaseDetails);
+        purchaseRepository.save(purchase);
     }
 
     @Transactional
@@ -163,10 +163,37 @@ public class PurchaseDetailsService {
             throw new Error("El Usuario no existe");
         }
     }
-    
-    public void decreaseStock (String idPurchaseDetails){
+
+    @Transactional
+    public void decreaseStock(String idProduct, Integer cantity) {
+            Optional<Product> productOptional = productRepository.findById(idProduct);
+            if (productOptional.isPresent()) {
+                Product product = productOptional.get();
+                product.setStock(product.getStock() - cantity);
+                productRepository.save(product);
+            } else {
+                throw new Error("El producto no existe");
+            }
         
     }
 
+    public Product showStock(String idPurchaseDetails) {
+        Product product = new Product();
+        try {
+            Optional<PurchaseDetails> optionalDetail = purchaseDetailsRepository.findById(idPurchaseDetails);
+            if (optionalDetail.isPresent()) {
+                PurchaseDetails purchaseDetails = optionalDetail.get();
+                Optional<Product> productOptional = productRepository.findById(purchaseDetails.getProduct().getIdProduct());
+                if (productOptional.isPresent()) {
+                    product = productOptional.get();
+                    return product;
+                }
+            }
+        } catch (Exception e) {
+            return product;
+        }
+        return product;
+
+    }
 
 }
