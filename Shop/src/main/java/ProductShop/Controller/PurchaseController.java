@@ -36,6 +36,7 @@ public class PurchaseController {
         try {
             Product product = productService.findProductById(idProduct);
             model.put("producto", product);
+            System.out.println(idProduct+"Metodo Get controlador");
         } catch (Exception e) {
             throw new ErrorServicio("producto no econtrado");
         }
@@ -60,22 +61,23 @@ public class PurchaseController {
 //        return "purchaseProduct.html";
 //    }
 
-    @PostMapping("purchase/finished")
-    public String purchaseFinish(ModelMap model, @RequestParam String idProduct, @RequestParam Integer cantity, @RequestParam String paymentMethod) throws ErrorServicio {
+    @PostMapping("/purchase/finished/{idProduct}")
+    public String purchaseFinish(ModelMap model, @PathVariable String idProduct, @RequestParam Integer cantity, @RequestParam String paymentMethod) throws ErrorServicio {
         try {
             Usuario user = userService.obtenerUsuarioSesion();
             purchaseDetService.createDetailsPurchase(idProduct, user.getIdUser(), cantity, paymentMethod);
             purchaseDetService.decreaseStock(idProduct, cantity);
-            model.put("exito", "Compra realizada con éxito");
+            System.out.println(idProduct+"Metodo POST en el controlador");
+//            model.put("exito", "Compra realizada con éxito");
         } catch (Exception e) {
             throw new ErrorServicio("Error de Sistema");
         }
-        return "redirect:/index.html";
+        return "index.html";
     }
 
     @GetMapping("purchase/canceled")
     public String purchaseCanceled(ModelMap model) {
-        model.put("cancel", "La Compra ha sido cancelada");
+//        model.put("cancel", "La Compra ha sido cancelada");
         return "index.html";
     }
 
