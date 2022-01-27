@@ -39,12 +39,13 @@
                     </div>
                 </div> -->
             </div>
-            <form th:action="@{/purchase/finished/}+${product.idProduct}" method="post">
+            <form th:action="@{/purchase/finished}" method="Post">
                 <div class="card-body">
                     <table class="table tab-pane">
                         <thead class="thead-light">
                             <tr class="text-center">
                                 <th>Articulo</th>
+                                <th>id producto</th>
                                 <th>Cantidad</th>
                                 <th>Precio Unitario</th>
                                 <th>Subtotal</th>
@@ -53,6 +54,7 @@
                         <tbody>
                             <tr th:each="product : ${producto}">
                                 <td th:text="${product.Name}"></td>
+                                <td th:text="${product.idProduct}"></td>
                                 <td><input name="cantity" type="number"></td>
                                 <td th:text="${product.Price}"></td>
                                 <td th:text="${product.Price}"></td>

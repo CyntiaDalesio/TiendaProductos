@@ -61,8 +61,8 @@ public class PurchaseController {
 //        return "purchaseProduct.html";
 //    }
 
-    @PostMapping("/purchase/finished/{idProduct}")
-    public String purchaseFinish(ModelMap model, @PathVariable String idProduct, @RequestParam Integer cantity, @RequestParam String paymentMethod) throws ErrorServicio {
+    @PostMapping("/purchase/finished/")
+    public String purchaseFinish( @RequestParam Integer cantity, @RequestParam String paymentMethod, @RequestParam String idProduct) throws ErrorServicio {
         try {
             Usuario user = userService.obtenerUsuarioSesion();
             purchaseDetService.createDetailsPurchase(idProduct, user.getIdUser(), cantity, paymentMethod);
