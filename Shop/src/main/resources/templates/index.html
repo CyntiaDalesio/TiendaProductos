@@ -110,7 +110,7 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
                     Eliminar
                 </a>
                 
-                 <a sec:authorize="hasRole('ROLE_USER') or isAnonymous()" type="button" class="modify">
+                 <a sec:authorize="hasRole('ROLE_USER') or isAnonymous()" type="button"  class="modify" th:href="@{/purchase/}+${product.idProduct}">
                     comprar
                  </a>
             </div>
