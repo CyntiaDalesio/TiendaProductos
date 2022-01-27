@@ -20,8 +20,9 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
     </section>
      <nav class="completeNav">
         
-        <h3 class="user-Loged" sec:authorize="isAuthenticated()">NombreUsuario</h3>
-        <a type="submit" id="signIn" th:href="@{/login/}" class="a-button" sec:authorize="isAnonymous()">Iniciar Sesión </a>
+        <h3 class="user-Loged" sec:authorize="isAuthenticated()">[[${usuario?.username}]]</h3>
+        <a type="submit" id="signIn" th:href="@{/login/}" class="a-button" sec:authorize="isAnonymous()"
+        >Iniciar Sesión </a>
         <a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/users/}" class="a-button">Listar Usuarios</a>
         <a sec:authorize="isAuthenticated()" th:href="@{/editUser}" class="a-button">Modificar perfil</a>
         <a  sec:authorize="isAuthenticated()" href="/logout"  type="logOut" id="LogOut" class="a-button">Salir</a> <br>
@@ -38,8 +39,9 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 		<div class="container_flex">
 			<section>
 				<ul class="container_menu flex_column">
-					<li><h3 class="user-Loged m" sec:authorize="isAuthenticated()">NombreUsuario</h3></li>
-					<li><a type="submit" id="signIn" class="m" th:href="@{/login/}" sec:authorize="isAnonymous()">Iniciar Sesión </a></li>
+					<li><h3 class="user-Loged m" sec:authorize="isAuthenticated()">[[${usuario?.username}]]</h3></li>
+					<li><a type="submit" id="signIn" class="m" th:href="@{/login/}" sec:authorize="isAnonymous()"
+                        >Iniciar Sesión </a></li>
 					<li><a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/users/}" class=" m">Listar Usuarios</a></li>
 					<li><a sec:authorize="isAuthenticated()" th:href="@{/users/edit}" class=" m">Modificar perfil</a></li>
                     <li><a  sec:authorize="isAuthenticated()" href="/logout"  type="logOut" id="LogOut" class=" m">Salir</a></li>
