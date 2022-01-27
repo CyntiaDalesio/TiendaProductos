@@ -39,7 +39,7 @@
                     </div>
                 </div> -->
             </div>
-            <form th:action="@{/purchase/finished/}+${product.idProduct}" method="post">
+            <form th:action="@{/purchase/finished}" method="POST">
                 <div class="card-body">
                     <table class="table tab-pane">
                         <thead class="thead-light">
@@ -48,7 +48,9 @@
                                 <th>Cantidad</th>
                                 <th>Precio Unitario</th>
                                 <th>Subtotal</th>
+                                <th>Id Producto</th>
                             </tr>
+                            
                         </thead>
                         <tbody>
                             <tr th:each="product : ${producto}">
@@ -56,30 +58,30 @@
                                 <td><input name="cantity" type="number"></td>
                                 <td th:text="${product.Price}"></td>
                                 <td th:text="${product.Price}"></td>
+                                <td th:text="${product.idProduct}" name="idProduct"></td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
-    
-                <label >Forma de Pago</label>
+                
+                <label>Forma de Pago</label>
                       <select name="paymentMethod">
-                      <option th:each="PaymentMethod : ${T(ProductShop.Enums.PaymentMethod).values()}" th:value="${paymentMethod}"
-                        th:text="${PaymentMethod}">
-                      </option>
-                      </select>
-    
-    
-                <div>
-                    <a href="/" class="btn btn-primary">Cancelar Compra</a>
-                    <!-- <a th:href="@{purchase/finished/}+${product.idProduct}" class="btn btn-primary">Finalizar Compra</a> -->
-                    
-                </div>
-                <label >Finalizar Compra</label>
-                <input type="submit">
+                                    <option th:each="PaymentMethod : ${T(ProductShop.Enums.PaymentMethod).values()}"
+                                        th:value="${paymentMethod}" th:text="${PaymentMethod}">
+                                    </option>
+                                    </select>
+
+
+                                    <div>
+                                        <!-- <a href="/" class="btn btn-primary">Cancelar Compra</a> -->
+                                        <!-- <a th:href="@{purchase/finished/}+${product.idProduct}" class="btn btn-primary">Finalizar Compra</a> -->
+                                    </div>
+                                    <label>Finalizar Compra</label>
+                                    <input type="submit">
             </form>
-            
-            
-            
+            <a href="/" class="btn btn-primary">Cancelar Compra</a>
+
+
 
 
 
