@@ -12,12 +12,13 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface ProductRepository extends JpaRepository <Product, String>{
     
-//    @Query("Select p from Product p WHERE p.Name = '%:Name%'")
-//    public List<Product> findByName(@Param("Name") String name);
+    @Query("Select p from Product p WHERE p.Name LIKE :Name")
+    public List<Product> findByName(@Param("Name") String Name);
     
     public List<Product> findByCategory(Category category); 
     
-    @Query("Select p from Product p WHERE p.CodeProduct = :CodeProduct")
-    public List<Product> findByCodeProduct(@Param("CodeProduct") Integer CodeProduct);
-    
+//    @Query("Select p from Product p WHERE p.CodeProduct = :CodeProduct")
+//    public List<Product> findByCodeProduct(@Param("CodeProduct") Integer CodeProduct);
+//    
+
 }
