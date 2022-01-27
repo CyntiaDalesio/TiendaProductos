@@ -80,7 +80,7 @@ public class PurchaseController {
             e.printStackTrace();
             throw new ErrorServicio("Error de Sistema");
         }
-        return "index.html";
+        return "redirect:/";
     }
 
     @GetMapping("purchase/canceled")
