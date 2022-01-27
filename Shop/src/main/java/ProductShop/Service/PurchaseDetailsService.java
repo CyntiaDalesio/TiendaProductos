@@ -37,7 +37,7 @@ public class PurchaseDetailsService {
     public void createDetailsPurchase(String idProduct, String idUser, Integer quantity, String payMethod) throws ErrorServicio {
 
         validateNull(idProduct, idUser, payMethod, quantity);
-
+    System.out.println("Pasando Validate null");
         PurchaseDetails purchaseDetails = new PurchaseDetails();
         Purchase purchase = new Purchase();
 
@@ -51,9 +51,10 @@ public class PurchaseDetailsService {
         purchaseDetails.setPriceUnit(purchaseDetails.getProduct().getPrice());
         purchaseDetails.setSubtotal(calculateSubtotal(purchaseDetails.getPriceUnit(), quantity));
         purchase.setPaymentMethod(PaymentMethod.valueOf(payMethod));
+        System.out.println("Pasando PM");
         purchase.setDate(new Date());
         purchase.setTotal(purchaseDetails.getSubtotal());
-
+  System.out.println("Pasando Set sub total");
         purchase.setPurchaseDetail(purchaseDetails);
 
         purchaseDetailsRepository.save(purchaseDetails);
