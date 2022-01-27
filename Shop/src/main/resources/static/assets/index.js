@@ -19,7 +19,6 @@ buttonsModify.forEach((button) => {
         location.href = "/product";
     })
 })
-
 let addProduct= document.getElementById("add-product");
 
 addProduct.addEventListener("click", () =>{
