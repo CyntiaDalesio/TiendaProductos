@@ -24,129 +24,53 @@
     <main class="main-product">
         <div class="container d-lg-flex">
             <div class="box-1 bg-light user background">
-                <!--<div class="box-inner-1 pb-3 mb-3 ">
-                    <div class="d-flex justify-content-between mb-3 userdetails">
-                        <p class="fw-bold" th:text="${product.Name}"></p>
-                        <p class="fw-lighter"><span class="fas fa-dollar-sign"></span>precio</p>
-                    </div>
-                    <div id="my" class="carousel slide carousel-fade img-details" data-bs-ride="carousel" data-bs-interval="2000">
-                        <div class="carousel-inner">
-                            <div class="carousel-item active"> <img  class="imgProduct d-block w-100" src="/src/main/resources/static/images/monitorZowie.jpg"> 
-                            </div>
-                            
-                        </div> 
-                        <h4 class="detail-product"> Nombre Producto</h4>
-                    </div>
-                </div> -->
             </div>
-            <form th:action="@{/purchase/finished/}+${product.idProduct}" method="post">
+            <form th:action="@{/purchase/finished}" method="POST">
+                <input type="hidden" th:value="${producto.idProduct}" name="idProduct" />
+
+
+
                 <div class="card-body">
                     <table class="table tab-pane">
                         <thead class="thead-light">
                             <tr class="text-center">
                                 <th>Articulo</th>
+                                <th>id producto</th>
                                 <th>Cantidad</th>
                                 <th>Precio Unitario</th>
                                 <th>Subtotal</th>
+                                <th>Id Producto</th>
                             </tr>
+                            
                         </thead>
                         <tbody>
                             <tr th:each="product : ${producto}">
                                 <td th:text="${product.Name}"></td>
+                                <td th:text="${product.idProduct}"></td>
                                 <td><input name="cantity" type="number"></td>
                                 <td th:text="${product.Price}"></td>
                                 <td th:text="${product.Price}"></td>
+                                <td th:text="${product.idProduct}" name="idProduct"></td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
-    
-                <label >Forma de Pago</label>
-                      <select name="paymentMethod">
-                      <option th:each="PaymentMethod : ${T(ProductShop.Enums.PaymentMethod).values()}" th:value="${paymentMethod}"
-                        th:text="${PaymentMethod}">
-                      </option>
-                      </select>
-    
-    
-                <div>
-                    <a href="/" class="btn btn-primary">Cancelar Compra</a>
-                    <!-- <a th:href="@{purchase/finished/}+${product.idProduct}" class="btn btn-primary">Finalizar Compra</a> -->
-                    
-                </div>
-                <label >Finalizar Compra</label>
-                <input type="submit">
+                
+                <label>Forma de Pago</label>
+                      <select  name="paymentMethod">
+                                    <option 
+                                        th:each="pm : ${T(ProductShop.Enums.PaymentMethod).values()}" 
+                                        th:value="${pm}" 
+                                        th:text="${pm}">
+                                    </option>
+                                    </select>
+
+                                    <label>Finalizar Compra</label>
+                                    <input type="submit">
             </form>
-            
-            
-            
+            <a href="/" class="btn btn-primary">Cancelar Compra</a>
 
 
-
-
-
-
-            <!--
-        <td>
-            <a href="#" th:href="@{/users/editRole/}+${usuario.idUser}"  class="btn btn-primary">Editar Rol a vendedor</a>
-      
-        </td> -->
-
-
-
-
-
-            <!--<div class="box-2">
-                <div class="box-inner-2">
-                    <div>
-                        <p class="fw-bold">Detalles de pago</p>
-                        <p class="dis mb-3">Finaliza tu compra completando los detalles de pago</p>
-                    </div>
-                    <form action="">
-                        <div class="mb-3">
-                            <p class="dis fw-bold mb-2">Direccion de Email</p> <input class="form-control" type="email" placeholder="luke@skywalker.com">
-                        </div>
-                        <div>
-                            <p class="dis fw-bold mb-2">Detalles de Tarjeta</p>
-                            <div class="d-flex align-items-center justify-content-between card-atm border rounded">
-                                <div class="fab fa-cc-visa ps-3"></div> <input type="text" class="form-control" placeholder="Card Details">
-                                <div class="d-flex w-50"> <input type="text" class="form-control px-0" placeholder="MM/YY"> <input type="password" maxlength=3 class="form-control px-0" placeholder="CVV"> </div>
-                            </div>
-                            <div class="my-3 cardname">
-                                <p class="dis fw-bold mb-2">Nombre del titular de la tarjeta</p> <input class="form-control" type="text">
-                            </div>
-                            <div class="address">
-                                <p class="dis fw-bold mb-3">Doimicilio de pago</p> <select class="form-select" aria-label="Default select example">
-                                    <option selected hidden>Argentina</option>
-                                    <option value="1">Argentina</option>
-                                    <option value="2">Chile</option>
-                                    <option value="3">Uruguay</option>
-                                </select>
-                                <div class="d-flex"> <input class="form-control zip" type="text" placeholder="ZIP"> <input class="form-control state" type="text" placeholder="State"> </div>
-                                <div class=" my-3">
-                                    <p class="dis fw-bold mb-2">Numero de seguridad</p>
-                                    <div class="inputWithcheck"> <input class="form-control" type="text" value="GB012345B9"> <span class="fas fa-check"></span> </div>
-                                </div>
-                                <div class="d-flex flex-column dis">
-                                    <div class="d-flex align-items-center justify-content-between mb-2">
-                                        <p>Subtotal</p>
-                                        <p><span class="fas fa-dollar-sign"></span>precio</p>
-                                    </div>
-                                    <div class="d-flex align-items-center justify-content-between mb-2">
-                                        <p>VAT<span>(20%)</span></p>
-                                        <p><span class="fas fa-dollar-sign"></span>recargo</p>
-                                    </div>
-                                    <div class="d-flex align-items-center justify-content-between mb-2">
-                                        <p class="fw-bold">Total</p>
-                                        <p class="fw-bold"><span class="fas fa-dollar-sign"></span>total</p>
-                                    </div>
-                                    <div class="btn btn-primary mt-2"><span class="fas fa-dollar-sign px-1"></span>Pagar </div>
-                                </div>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div> -->
         </div>
         <footer>
             <h3>Todos los derechos reservados E-GameEgg</h3>

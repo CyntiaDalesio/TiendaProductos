@@ -36,10 +36,12 @@ public class PurchaseController {
         try {
             Product product = productService.findProductById(idProduct);
             model.put("producto", product);
-            System.out.println(idProduct+"Metodo Get controlador");
+            System.out.println(idProduct+" Metodo Get controlador");
         } catch (Exception e) {
-            throw new ErrorServicio("producto no econtrado");
+            System.out.println("Adentro del catch");
+            throw new ErrorServicio("Producto no econtrado");            
         }
+        System.out.println("luego del catch");
         return "purchaseProduct.html";
     }
 
@@ -61,18 +63,24 @@ public class PurchaseController {
 //        return "purchaseProduct.html";
 //    }
 
-    @PostMapping("/purchase/finished/{idProduct}")
-    public String purchaseFinish(ModelMap model, @PathVariable String idProduct, @RequestParam Integer cantity, @RequestParam String paymentMethod) throws ErrorServicio {
+    @PostMapping("/purchase/finished")
+    public String purchaseFinished(@RequestParam String idProduct, @RequestParam Integer cantity, @RequestParam String paymentMethod) throws ErrorServicio {
         try {
+            System.out.println(idProduct+" Metodo POST en el controlador antes de crear la compra");
+            
             Usuario user = userService.obtenerUsuarioSesion();
+            System.out.println("Payment Method= "+paymentMethod);  
+            System.out.println("Cantidad= "+cantity);  
+   System.out.println("Cantidad= "+cantity);  
             purchaseDetService.createDetailsPurchase(idProduct, user.getIdUser(), cantity, paymentMethod);
             purchaseDetService.decreaseStock(idProduct, cantity);
-            System.out.println(idProduct+"Metodo POST en el controlador");
+            System.out.println(idProduct+" Metodo POST en el controlador luego de crear la compra");
 //            model.put("exito", "Compra realizada con éxito");
         } catch (Exception e) {
+            e.printStackTrace();
             throw new ErrorServicio("Error de Sistema");
         }
-        return "index.html";
+        return "redirect:/";
     }
 
     @GetMapping("purchase/canceled")

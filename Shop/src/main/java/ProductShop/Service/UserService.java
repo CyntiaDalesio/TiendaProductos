@@ -26,9 +26,9 @@ public class UserService implements UserDetailsService {
 
     @Autowired
     private UserRepository userRepository;
-    
-      @Autowired
-      private ContactRepository repoContact;
+
+    @Autowired
+    private ContactRepository repoContact;
 
     @Transactional
     public Usuario save(String username, String password, String password2, String email, String dni) throws Error {
@@ -57,9 +57,9 @@ public class UserService implements UserDetailsService {
         }
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
         user.setPassword(encoder.encode(password)); // encripta la contraseña
-        
-        Usuario userExist=userRepository.findByUsername(username);
-        if (userExist!= null) {
+
+        Usuario userExist = userRepository.findByUsername(username);
+        if (userExist != null) {
 
             throw new Error("El username ya existe");
         } else {
@@ -88,7 +88,7 @@ public class UserService implements UserDetailsService {
     }
 
     @Transactional
-    public void createContact(Usuario user,String name, String message) {
+    public void createContact(Usuario user, String name, String message) {
 
         if (name == null || name.isEmpty()) {
 
@@ -109,7 +109,7 @@ public class UserService implements UserDetailsService {
         contact.setName(name);
         contact.setUser(user);
         // user.contacts.add(contact);
-         repoContact.save(contact);
+        repoContact.save(contact);
         userRepository.save(user);
 //            
 //       
@@ -144,8 +144,8 @@ public class UserService implements UserDetailsService {
         Optional<Usuario> answer = userRepository.findById(id);
         if (answer.isPresent()) {
             Usuario user = answer.get();
- BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-        user.setPassword(encoder.encode(password)); // encripta la contraseña
+            BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+            user.setPassword(encoder.encode(password)); // encripta la contraseña
             user.setUsername(username);
             user.setDni(dni);
             user.setEmail(email);
@@ -194,25 +194,23 @@ public class UserService implements UserDetailsService {
     }
 
     public Usuario obtenerUsuarioSesion() {
-try{
-      String username;
-        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        if (principal instanceof UserDetails) {
-             username = ((UserDetails) principal).getUsername();
-        } else {
-             username = principal.toString();
+        try {
+            String username;
+            Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+            if (principal instanceof UserDetails) {
+                username = ((UserDetails) principal).getUsername();
+            } else {
+                username = principal.toString();
 
+            }
+            Usuario user = userRepository.findByUsername(username);
+            return user;
+
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+
+            return null;
         }
-        Usuario user=userRepository.findByUsername(username);
-         return user;
-        
-        
-}catch(Exception e){
-    System.out.println(e.getMessage());
 
-  return null;
-}
-      
-       
     }
 }
