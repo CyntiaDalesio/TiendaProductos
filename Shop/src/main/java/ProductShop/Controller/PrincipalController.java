@@ -1,9 +1,10 @@
 package ProductShop.Controller;
 
 import ProductShop.Entity.Product;
+import ProductShop.Entity.Usuario;
 import ProductShop.Enums.Category;
 import ProductShop.Service.ProductService;
-import java.util.ArrayList;
+import ProductShop.Service.UserService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,9 +18,20 @@ public class PrincipalController {
     @Autowired
     private ProductService productservice;
 
+@Autowired
+private UserService userService;
+
     @GetMapping("/")
     public String principal(ModelMap model) {
         List<Product> products = productservice.listarProduct();
+
+Usuario user = userService.obtenerUsuarioSesion();
+        if (user!=null) {
+            
+model.put("usuario", user);
+        }
+
+
         model.put("products", products);
         return "index.html";
     }
@@ -31,12 +43,12 @@ public class PrincipalController {
         return "index.html";
     }
     
- @PostMapping("/searchname/{Name}")
-    public String SearchName(ModelMap model, String Name){
-         List<Product> products = productservice.searchbyname(Name);
-        model.put("products", products);
-        return "index.html";
-    }
+//@PostMapping("/searchname")
+//    public String SearchName(ModelMap model, String name){
+//         List<Product> products = productservice.searchbyname(name);
+//        model.put("products", products);
+//        return "index.html";
+//    }
 }
 
 
