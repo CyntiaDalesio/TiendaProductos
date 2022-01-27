@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
 xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
-</html>
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -11,6 +11,7 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" media="all"
           href="/src/main/resources/static/styles/style.css" th:href="@{/styles/style.css}" />
+    
 </head>
 <body>
 
@@ -64,17 +65,40 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
     <section class="top-products">
         <h2>Productos</h2>
         <div class="search">
-            <form action="/searchcat" method="post"> 
+            <form action="/searchcat" method="post" </form> 
                <!-- <input type="search" placeholder="search">-->
-            </div> 
+          
                 <label for="categoria">Filtrar</label>
              <select name="category" class=" filter">
                           <option th:each="Category : ${T(ProductShop.Enums.Category).values()}" th:value="${Category}"
                             th:text="${Category}">
                           </option> 
              </select>
-            <button type="submit" class="searchButton">Buscar</button>
-            </form>
+                  <button type="submit" class="searchButton">Filtro1</button></form>
+                
+      <form class="filter" th:action="@{/searchname/}+${product?.Name}" method="post"   >
+          
+          <input  name="Name" placeholder="Name" type="text" th:value="${product?.Name}" >
+                 <button type="submit" class="searchButton">Filtro2</button></form>
+                
+    
+    
+           <!-- <button type="submit" class="searchButton">Buscar</button>
+            
+            <form class="search" th:action="@{/searchname/}+${products.Name}" method="post" th:object="${products}">
+            
+            <input th:text="#{products.Name}" name="Name" placeholder="Name" type="search" th:field="*{Name}" />-->
+           
+    
+            
+            
+        
+             
+            </div> 
+            
+           
+            
+            
     </section>
 
     

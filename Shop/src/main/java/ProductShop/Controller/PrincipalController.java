@@ -3,6 +3,7 @@ package ProductShop.Controller;
 import ProductShop.Entity.Product;
 import ProductShop.Enums.Category;
 import ProductShop.Service.ProductService;
+import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -30,12 +31,12 @@ public class PrincipalController {
         return "index.html";
     }
     
-//@PostMapping("/searchname")
-//    public String SearchName(ModelMap model, String name){
-//         List<Product> products = productservice.searchbyname(name);
-//        model.put("products", products);
-//        return "index.html";
-//    }
+ @PostMapping("/searchname/{Name}")
+    public String SearchName(ModelMap model, String Name){
+         List<Product> products = productservice.searchbyname(Name);
+        model.put("products", products);
+        return "index.html";
+    }
 }
 
 

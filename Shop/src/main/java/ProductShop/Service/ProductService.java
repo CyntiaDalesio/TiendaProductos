@@ -5,10 +5,8 @@ import ProductShop.Entity.Product;
 import ProductShop.Enums.Category;
 import ProductShop.Repository.ProductRepository;
 import ProductShop.errores.ErrorServicio;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.Scanner;
 
 import javax.transaction.Transactional;
 
@@ -24,6 +22,7 @@ public class ProductService {
     @Autowired
     private PhotoService photoService;
 
+    
     @Transactional
     public Product CreateProduct(MultipartFile archivo, Integer CodeProduct, String Name, Double Price, String TradeMark, String category, Integer Stock) throws ErrorServicio {
 
@@ -111,8 +110,12 @@ public class ProductService {
         
         return productrepository.findByCategory(category);
     }
-//    public List<Product> searchbyname(String name){
-//        
-//        return productrepository.findByName(name);
-//    }
+    @Transactional
+    public List<Product> searchbyname(String Name){
+        System.out.println(Name);
+      
+      
+       
+        return  productrepository.findByName(Name);
+    }
 }

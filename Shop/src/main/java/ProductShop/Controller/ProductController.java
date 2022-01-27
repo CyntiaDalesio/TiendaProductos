@@ -6,6 +6,7 @@ import ProductShop.Enums.Category;
 import ProductShop.Repository.ProductRepository;
 import ProductShop.Service.ProductService;
 import ProductShop.errores.ErrorServicio;
+import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -56,18 +57,7 @@ public class ProductController {
         return "redirect:/";
     }
 //
-    
+   
 
 }
-
-//      @PostMapping("/findbyname")
-//      public String SearchByName(String Name) {
-//            productrepository.findByName(Name);
-//          return "index";
-//      }
-//      @PostMapping("/findbycategory")
-//      public String FindByCategory(Category category) {
-//      productrepository.findByCategory(category);
-//      return "index";
-//        
 
