@@ -83,7 +83,7 @@ nav button:hover{
     background-color: transparent;
 }
 .a-button:hover{
-    background-color: #ffffff;
+    background: rgba(255, 255, 255, 0.568);
     color: #2B2B2B;
 }
 .search{
@@ -217,7 +217,7 @@ select:hover{
 }
 .modify:hover{
     color: #000000;
-    background-color: rgba(255, 255, 255, 0.678);
+    background: rgba(255, 255, 255, 0.568);
 }
 .add-product{
     background: #e65c00;  /* fallback for old browsers */
@@ -260,6 +260,9 @@ ul{
 	font-size: 1.5em;
 	color: #fff;
 	text-transform: capitalize;
+}
+.m:hover{
+    color: #E78A00;
 }
 
 .flex_column {
@@ -364,5 +367,8 @@ ul{
     }
     .completeNav{
         display: none;
+    }
+    .top-products{
+        display: block;
     }
 }

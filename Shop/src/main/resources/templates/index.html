@@ -21,7 +21,8 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
      <nav class="completeNav">
         
         <h3 class="user-Loged" sec:authorize="isAuthenticated()">[[${usuario?.username}]]</h3>
-        <a type="submit" id="signIn" th:href="@{/login/}" class="a-button" >Iniciar Sesión </a>
+        <a type="submit" id="signIn" th:href="@{/login/}" class="a-button" sec:authorize="isAnonymous()"
+        >Iniciar Sesión </a>
         <a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/users/}" class="a-button">Listar Usuarios</a>
         <a sec:authorize="isAuthenticated()" th:href="@{/editUser}" class="a-button">Modificar perfil</a>
         <a  sec:authorize="isAuthenticated()" href="/logout"  type="logOut" id="LogOut" class="a-button">Salir</a> <br>
@@ -39,7 +40,8 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 			<section>
 				<ul class="container_menu flex_column">
 					<li><h3 class="user-Loged m" sec:authorize="isAuthenticated()">[[${usuario?.username}]]</h3></li>
-					<li><a type="submit" id="signIn" class="m" th:href="@{/login/}" >Iniciar Sesión </a></li>
+					<li><a type="submit" id="signIn" class="m" th:href="@{/login/}" sec:authorize="isAnonymous()"
+                        >Iniciar Sesión </a></li>
 					<li><a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/users/}" class=" m">Listar Usuarios</a></li>
 					<li><a sec:authorize="isAuthenticated()" th:href="@{/users/edit}" class=" m">Modificar perfil</a></li>
                     <li><a  sec:authorize="isAuthenticated()" href="/logout"  type="logOut" id="LogOut" class=" m">Salir</a></li>
@@ -105,6 +107,9 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
                 <p > $[[${product.Price}]] </p>
                 <a sec:authorize="hasRole('ROLE_ADMIN') or hasRole('ROLE_SELLER')" type="button" class="modify" th:href="@{/modifyproduct/}+${product.idProduct}">
                     Modificar
+                </a>
+                <a sec:authorize="hasRole('ROLE_ADMIN') or hasRole('ROLE_SELLER')" type="button" class="modify" th:href="@{/modifyproduct/}+${product.idProduct}">
+                    Eliminar
                 </a>
                 
                  <a sec:authorize="hasRole('ROLE_USER') or isAnonymous()" type="button"  class="modify" th:href="@{/purchase/}+${product.idProduct}">
