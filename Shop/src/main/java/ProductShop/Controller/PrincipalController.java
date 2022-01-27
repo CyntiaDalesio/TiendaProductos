@@ -43,12 +43,12 @@ model.put("usuario", user);
         return "index.html";
     }
     
-//@PostMapping("/searchname")
-//    public String SearchName(ModelMap model, String name){
-//         List<Product> products = productservice.searchbyname(name);
-//        model.put("products", products);
-//        return "index.html";
-//    }
+ @GetMapping("/searchname/{Name}")
+    public String SearchName(ModelMap model, String Name){
+         List<Product> products = productservice.searchbyname(Name);
+        model.put("products", products);
+        return "index.html";
+    }
 }
 
 

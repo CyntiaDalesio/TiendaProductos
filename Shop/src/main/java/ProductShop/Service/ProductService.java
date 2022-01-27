@@ -82,9 +82,9 @@ public class ProductService {
         
 
         if (Stock > 0) {
-            product.setAvailableStock(true);
+            product.setavailableStock(true);
         } else {
-            product.setAvailableStock(false);
+            product.setavailableStock(false);
         }
         productrepository.save(product);
     }
@@ -110,7 +110,7 @@ public class ProductService {
         
         return productrepository.findByCategory(category);
     }
-    @Transactional
+    
     public List<Product> searchbyname(String Name){
         System.out.println(Name);
       
