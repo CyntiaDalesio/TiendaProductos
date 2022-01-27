@@ -64,8 +64,8 @@ public class PurchaseController {
 //    }
 
 
-    @PostMapping("/purchase/finished/{idProduct}")
-    public String purchaseFinish(@RequestParam String idProduct, @RequestParam Integer cantity, @RequestParam String paymentMethod) throws ErrorServicio {
+   // @PostMapping("/purchase/finished/{idProduct}")
+   // public String purchaseFinish(@RequestParam String idProduct, @RequestParam Integer cantity, @RequestParam String paymentMethod) throws ErrorServicio {
 
     @PostMapping("/purchase/finished")
     public String purchaseFinished(@RequestParam String idProduct, @RequestParam Integer cantity, @RequestParam String paymentMethod) throws ErrorServicio {
