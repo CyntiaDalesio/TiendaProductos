@@ -20,7 +20,7 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
     </section>
      <nav class="completeNav">
         
-        <h3 class="user-Loged" sec:authorize="isAuthenticated()">[[${usuario?.username}]]</h3>
+        <h3 class="user-Loged" sec:authorize="isAuthenticated()">Hola [[${usuario?.username}]]</h3>
         <a type="submit" id="signIn" th:href="@{/login/}" class="a-button" sec:authorize="isAnonymous()"
         >Iniciar Sesión </a>
         <a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/users/}" class="a-button">Listar Usuarios</a>
@@ -120,7 +120,7 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
                 </a>
                 
                  <a sec:authorize="hasRole('ROLE_USER') or isAnonymous()" type="button"  class="modify" th:href="@{/purchase/}+${product.idProduct}">
-                    comprar
+                    Comprar
                  </a>
             </div>
         </th:block>
