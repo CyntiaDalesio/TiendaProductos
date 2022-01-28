@@ -84,7 +84,7 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
         <div class="search">
             <form action="/searchcat" method="post"> 
                <!-- <input type="search" placeholder="search">-->
-            </div> 
+            
                 <label for="categoria">Filtrar</label>
              <select name="category" class=" filter">
                           <option th:each="Category : ${T(ProductShop.Enums.Category).values()}" th:value="${Category}"
@@ -93,6 +93,13 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
              </select>
             <button type="submit" class="searchButton">Buscar</button>
             </form>
+               
+                
+      <form class="filter" th:action="@{/searchname/}+${product?.name}" method="get"   >
+          
+          <input  name="Name" placeholder="Name" type="text" th:value="${product?.name}" >
+                 <button type="submit" class="searchButton">Filtro2</button></form>
+                 </div> 
     </section>
 
     
