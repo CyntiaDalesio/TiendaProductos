@@ -39,9 +39,9 @@ public class ProductService {
         Photo photo = photoService.save(archivo);
         product.setPhoto(photo);
         if (Stock > 0) {
-            product.setAvailableStock(true);
+            product.setavailableStock(true);
         } else {
-            product.setAvailableStock(false);
+            product.setavailableStock(false);
         }
         return productrepository.save(product);
 
