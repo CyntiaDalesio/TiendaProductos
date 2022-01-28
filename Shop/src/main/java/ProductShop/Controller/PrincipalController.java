@@ -3,6 +3,7 @@ package ProductShop.Controller;
 import ProductShop.Entity.Product;
 import ProductShop.Entity.Usuario;
 import ProductShop.Enums.Category;
+import ProductShop.Enums.Role;
 import ProductShop.Service.ProductService;
 import ProductShop.Service.UserService;
 import java.util.List;
@@ -18,37 +19,38 @@ public class PrincipalController {
     @Autowired
     private ProductService productservice;
 
-@Autowired
-private UserService userService;
+    @Autowired
+    private UserService userService;
 
     @GetMapping("/")
     public String principal(ModelMap model) {
-        List<Product> products = productservice.listarProduct();
 
-Usuario user = userService.obtenerUsuarioSesion();
-        if (user!=null) {
-            
-model.put("usuario", user);
+        List<Product> products;
+        Usuario user = userService.obtenerUsuarioSesion();
+        if (user != null && user.getRol()== Role.ADMIN) {
+
+            products = productservice.listarProductAll();
+
+        } else {
+
+            products = productservice.listarProduct();
         }
-
-
+        model.put("usuario", user);
         model.put("products", products);
         return "index.html";
     }
-    
+
     @PostMapping("/searchcat")
-    public String SearchCat(ModelMap model, Category category){
-         List<Product> products = productservice.searchbycat(category);
+    public String SearchCat(ModelMap model, Category category) {
+        List<Product> products = productservice.searchbycat(category);
         model.put("products", products);
         return "index.html";
     }
     
-//@PostMapping("/searchname")
-//    public String SearchName(ModelMap model, String name){
-//         List<Product> products = productservice.searchbyname(name);
-//        model.put("products", products);
-//        return "index.html";
-//    }
+ @GetMapping("/searchname/{Name}")
+    public String SearchName(ModelMap model, String Name){
+         List<Product> products = productservice.searchbyname(Name);
+        model.put("products", products);
+        return "index.html";
+    }
 }
-
-
