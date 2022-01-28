@@ -86,9 +86,9 @@ public class ProductService {
         
 
         if (Stock > 0) {
-            product.setavailableStock(true);
+            product.setAvailableStock(true);
         } else {
-            product.setavailableStock(false);
+            product.setAvailableStock(false);
         }
         productrepository.save(product);
     }
