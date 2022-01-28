@@ -122,14 +122,7 @@ public class Product implements Serializable {
         this.Stock = Stock;
     }
 
-    public Boolean getavailableStock() {
-        return availableStock;
-    }
-
-    public void setavailableStock(Boolean AvailableStock) {
-        this.availableStock = AvailableStock;
-    }
-
+  
   
 
     public Photo getPhoto() {
@@ -138,6 +131,14 @@ public class Product implements Serializable {
 
     public void setPhoto(Photo photo) {
         this.photo = photo;
+    }
+
+    public Boolean getAvailableStock() {
+        return availableStock;
+    }
+
+    public void setAvailableStock(Boolean availableStock) {
+        this.availableStock = availableStock;
     }
     
    
