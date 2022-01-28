@@ -18,66 +18,54 @@
 <body>
     <header>
         <section class="main-title">
-            <h1 id="home">E-Game<span>Egg</span></h1>
+            <a href="/"><h1 id="home">E-Game<span>Egg</span></h1></a>
         </section>
     </header>
-    <main class="main-product">
-        <div class="container d-lg-flex">
-            <div class="box-1 bg-light user background">
-            </div>
+    <main>
+        <section class="title">
             <form th:action="@{/purchase/finished}" method="POST">
                 <input type="hidden" th:value="${producto.idProduct}" name="idProduct" />
-
-
-
-                <div class="card-body">
-                    <table class="table tab-pane">
-                        <thead class="thead-light">
-                            <tr class="text-center">
-                                <th>Articulo</th>
-                                <th>id producto</th>
-                                <th>Cantidad</th>
-                                <th>Precio Unitario</th>
-                                <th>Subtotal</th>
-                                <th>Id Producto</th>
-                            </tr>
-                            
-                        </thead>
-                        <tbody>
-                            <tr th:each="product : ${producto}">
-                                <td th:text="${product.Name}"></td>
-                                <td th:text="${product.idProduct}"></td>
-                                <td><input name="cantity" type="number"></td>
-                                <td th:text="${product.Price}"></td>
-                                <td th:text="${product.Price}"></td>
-                                <td th:text="${product.idProduct}" name="idProduct"></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-                
-                <label>Forma de Pago</label>
-                      <select  name="paymentMethod">
+                <h2>Vista Previa <span>de producto</span></h2>
+        </section>
+        <section  th:each="product : ${producto}" class="container-purchase">
+            <div class="rectangle border1">
+                <h3 th:text="${product.Name}"></h3>
+                 <img class="imgProduct" th:if="${product.photo ne null}" th:src="@{/photo/}+${product.photo.id}"/>
+            </div>
+            <div class="rectangle border2">
+                    <h3>Cantidad</h3>
+                    <input name="cantity" type="number" min="1" th:max="${product.stock}" class="input-cantity" placeholder="cantidad"  >
+                    <h3>Subtotal</h3>
+                    <p th:text="${product.Price}"></p>
+                    <h3>Total</h3>
+                    <p th:text="${product.Price}"></p>
+                    <h3>Codigo de producto</h3>
+                    <p th:text="${product.codeProduct}" name="idProduct"></p>
+            </div>
+        </section>
+                <section class="payment">
+                <h3>Forma de Pago</h3>
+                    <select  name="paymentMethod" class="paymentMethod">
                                     <option 
                                         th:each="pm : ${T(ProductShop.Enums.PaymentMethod).values()}" 
                                         th:value="${pm}" 
                                         th:text="${pm}">
                                     </option>
-                                    </select>
-
-                                    <label>Finalizar Compra</label>
-                                    <input type="submit">
-            </form>
-            <a href="/" class="btn btn-primary">Cancelar Compra</a>
-
-
-        </div>
+                    </select>
+                    <h3>Finalizar Compra</h3>
+                    <section class="buttons">
+                                    <input type="submit" value="Comprar" class="btn">
+                                    <a href="/" class="btn">Cancelar Compra</a>
+                    </section>
+        </section>
+        </form>
+    </main>
         <footer>
             <h3>Todos los derechos reservados E-GameEgg</h3>
         </footer>
 
 
-
+        <script src="../assets/index.js"></script>
 </body>
 
 </html>
