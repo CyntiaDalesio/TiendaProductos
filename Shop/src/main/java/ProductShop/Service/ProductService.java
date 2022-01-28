@@ -61,6 +61,10 @@ public class ProductService {
             product.setName(Name);
             product.setPrice(Price);
             product.setStock(Stock);
+
+            if (product.getStock()>0) {
+                product.setAvailableStock(Boolean.TRUE);
+            }
             product.setTradeMark(TradeMark);
             product.setCategory(Category.valueOf(category));
 
@@ -94,8 +98,15 @@ public class ProductService {
 
     public List<Product> listarProduct() {
 
+        return productrepository.findByAvailableStockTrue();
+    }
+
+   public List<Product> listarProductAll() {
+
         return productrepository.findAll();
     }
+
+
 
     public Product findProductById(String idProduct) {
 

@@ -20,4 +20,7 @@ public interface ProductRepository extends JpaRepository <Product, String>{
     @Query("Select p from Product p WHERE p.CodeProduct = :CodeProduct")
     public List<Product> findByCodeProduct(@Param("CodeProduct") Integer CodeProduct);
     
+ public List<Product> findByAvailableStockTrue(); 
+
+
 }
