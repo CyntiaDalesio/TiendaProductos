@@ -171,6 +171,9 @@ public class PurchaseDetailsService {
             if (productOptional.isPresent()) {
                 Product product = productOptional.get();
                 product.setStock(product.getStock() - cantity);
+                if ((product.getStock())==0) {
+                    product.setAvailableStock(Boolean.FALSE);
+                }
                 productRepository.save(product);
             } else {
                 throw new Error("El producto no existe");
