@@ -115,7 +115,7 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
                 <a sec:authorize="hasRole('ROLE_ADMIN') or hasRole('ROLE_SELLER')" type="button" class="modify" th:href="@{/modifyproduct/}+${product.idProduct}">
                     Modificar
                 </a>
-                <a sec:authorize="hasRole('ROLE_ADMIN') or hasRole('ROLE_SELLER')" type="button" class="modify" th:href="@{/modifyproduct/}+${product.idProduct}">
+                <a sec:authorize="hasRole('ROLE_ADMIN')" type="button" class="modify" th:href="@{/modifyproduct/}+${product.idProduct}">
                     Eliminar
                 </a>
                 
@@ -126,8 +126,8 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
         </th:block>
 
         </div>
-        <div  class="cards-product add-product" sec:authorize="hasRole('ROLE_ADMIN') or hasRole('ROLE_SELLER')"  >
-            <a sec:authorize="hasRole('ROLE_ADMIN') or hasRole('ROLE_SELLER')" class="add-product" th:href="addproduct" >
+        <div  class="cards-product add-product" sec:authorize="hasRole('ROLE_ADMIN')"  >
+            <a sec:authorize="hasRole('ROLE_ADMIN')" class="add-product" th:href="addproduct" >
               
                 <i class="fas fa-plus fa-2x"></i>
                 <h3 >Agregar Producto</h3>
