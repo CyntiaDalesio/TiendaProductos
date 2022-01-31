@@ -53,4 +53,17 @@ public class PrincipalController {
         model.put("products", products);
         return "index.html";
     }
+    
+    @PostMapping("/searchprice/{Price}")
+    public String SearchPrice(ModelMap model, Double Price){
+            List<Product> products = productservice.searchbyprice(Price);
+        model.put("products", products);
+        return "index.html";
+}
+     @PostMapping("/searchcode/{CodeProduct}")
+    public String SearchPrice(ModelMap model, Integer CodeProduct){
+            List<Product> products = productservice.searchbycode(CodeProduct);
+        model.put("products", products);
+        return "index.html";
+}
 }

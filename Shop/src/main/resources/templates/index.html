@@ -99,9 +99,18 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
           
           <input  name="Name" placeholder="Name" type="text" th:value="${product?.name}" >
                  <button type="submit" class="searchButton">Filtro2</button></form>
+                 
+<form class="filter" th:action="@{/searchprice/}+${product?.Price}" method="post"   >
+          
+          <input  Placeholder="Precio Maximo" name="Price" type="number" min="0" max="500000" step="any" th:value="${product?.Price}" >
+                 <button type="submit" class="searchButton">Filtro3</button></form>
+                
+        <form class="filter" th:action="@{/searchcode/}+${product?.CodeProduct}" method="post"   >
+        <input  Placeholder="Codigo" name="CodeProduct" type="number"  th:value="${product?.CodeProduct}" >
+                 <button type="submit" class="searchButton">Filtro4</button></form>
                  </div> 
+  
     </section>
-
     
     <section class="cards-conteiner">
 

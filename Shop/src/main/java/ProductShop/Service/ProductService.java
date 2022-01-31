@@ -129,4 +129,14 @@ public class ProductService {
        
         return  productrepository.findByName(Name);
     }
+    
+    public List<Product> searchbyprice(Double Price){
+        
+    return productrepository.findByPrice(Price);
+    }
+    public List<Product> searchbycode (Integer CodeProduct){
+        
+        return productrepository.findByCodeProduct(CodeProduct);
+        
+    }
 }
