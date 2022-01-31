@@ -76,7 +76,7 @@ public class PurchaseController {
             Usuario user = userService.obtenerUsuarioSesion();
             System.out.println("Payment Method= "+paymentMethod);  
             System.out.println("Cantidad= "+cantity);  
-   System.out.println("Cantidad= "+cantity);  
+            System.out.println("Cantidad= "+cantity);  
             purchaseDetService.createDetailsPurchase(idProduct, user.getIdUser(), cantity, paymentMethod);
             purchaseDetService.decreaseStock(idProduct, cantity);
             System.out.println(idProduct+" Metodo POST en el controlador luego de crear la compra");
