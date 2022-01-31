@@ -5,10 +5,8 @@ import ProductShop.Entity.Product;
 import ProductShop.Enums.Category;
 import ProductShop.Repository.ProductRepository;
 import ProductShop.errores.ErrorServicio;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.Scanner;
 
 import javax.transaction.Transactional;
 
@@ -24,6 +22,7 @@ public class ProductService {
     @Autowired
     private PhotoService photoService;
 
+    
     @Transactional
     public Product CreateProduct(MultipartFile archivo, Integer CodeProduct, String Name, Double Price, String TradeMark, String category, Integer Stock) throws ErrorServicio {
 
@@ -61,6 +60,10 @@ public class ProductService {
             product.setName(Name);
             product.setPrice(Price);
             product.setStock(Stock);
+
+            if (product.getStock()>0) {
+                product.setAvailableStock(Boolean.TRUE);
+            }
             product.setTradeMark(TradeMark);
             product.setCategory(Category.valueOf(category));
 
@@ -94,8 +97,15 @@ public class ProductService {
 
     public List<Product> listarProduct() {
 
+        return productrepository.findByAvailableStockTrue();
+    }
+
+   public List<Product> listarProductAll() {
+
         return productrepository.findAll();
     }
+
+
 
     public Product findProductById(String idProduct) {
 
@@ -111,8 +121,22 @@ public class ProductService {
         
         return productrepository.findByCategory(category);
     }
-//    public List<Product> searchbyname(String name){
-//        
-//        return productrepository.findByName(name);
-//    }
+    
+    public List<Product> searchbyname(String Name){
+        System.out.println(Name);
+      
+      
+       
+        return  productrepository.findByName(Name);
+    }
+    
+    public List<Product> searchbyprice(Double Price){
+        
+    return productrepository.findByPrice(Price);
+    }
+    public List<Product> searchbycode (Integer CodeProduct){
+        
+        return productrepository.findByCodeProduct(CodeProduct);
+        
+    }
 }
