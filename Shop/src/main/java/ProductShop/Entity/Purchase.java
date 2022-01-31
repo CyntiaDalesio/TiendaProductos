@@ -22,7 +22,7 @@ public class Purchase {
     @GenericGenerator(name = "uuid", strategy = "uuid2")
     private String Id;
     
-//    private Integer purchaseCode;
+    private Integer purchaseCode;
 
     private Double total;
 
@@ -40,7 +40,7 @@ public class Purchase {
     private PurchaseDetails purchaseDetail;
 
     public Purchase(Integer purchaseCode, Double total, PaymentMethod paymentMethod, Date date, Usuario usuario, PurchaseDetails purchaseDetail) {
-//        this.purchaseCode = purchaseCode;
+        this.purchaseCode = purchaseCode + 1;
         this.total = total;
         this.paymentMethod = paymentMethod;
         this.date = date;
@@ -103,12 +103,12 @@ public class Purchase {
         this.paymentMethod = paymentMethod;
     }
 
-//    public Integer getPurchaseCode() {
-//        return purchaseCode;
-//    }
-//
-//    public void setPurchaseCode(Integer purchaseCode) {
-//        this.purchaseCode = purchaseCode;
-//    }
+    public Integer getPurchaseCode() {
+        return purchaseCode;
+    }
+
+    public void setPurchaseCode(Integer purchaseCode) {
+        this.purchaseCode = purchaseCode;
+    }
 
 }
