@@ -46,12 +46,13 @@ nav h3{
     height:50px;
     width: 100px;
     cursor: pointer;
-    font-size: 12px;
+    font-size: 18px;
+    font-weight: bold;
     border: 1px solid #FFFFFF;
     background-color: #000000;
 }
 nav h3:hover{
-    background-color: #ffffff;
+    background: rgba(255, 255, 255, 0.568);
     color: #2B2B2B;
 }
 nav button{
