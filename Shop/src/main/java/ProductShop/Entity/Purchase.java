@@ -25,7 +25,7 @@ public class Purchase {
 
     private Integer purchaseCode=0;
 
-    private Integer purchaseCode = 0;
+//    private Integer purchaseCode = 0;
 
     private Double total;
 

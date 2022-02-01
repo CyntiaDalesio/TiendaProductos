@@ -53,13 +53,15 @@ public class PrincipalController {
         model.put("products", products);
         return "index.html";
     }
-    
+        @PreAuthorize("hasAnyRole('ROLE_USER','isAnonymous()')")
     @PostMapping("/searchprice/{Price}")
     public String SearchPrice(ModelMap model, Double Price){
             List<Product> products = productservice.searchbyprice(Price);
         model.put("products", products);
         return "index.html";
-}
+
+
+}    @PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_SELLER')")
      @PostMapping("/searchcode/{CodeProduct}")
     public String SearchPrice(ModelMap model, Integer CodeProduct){
             List<Product> products = productservice.searchbycode(CodeProduct);
