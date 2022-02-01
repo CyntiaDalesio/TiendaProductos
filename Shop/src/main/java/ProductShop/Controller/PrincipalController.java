@@ -8,6 +8,7 @@ import ProductShop.Service.ProductService;
 import ProductShop.Service.UserService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -53,13 +54,15 @@ public class PrincipalController {
         model.put("products", products);
         return "index.html";
     }
-    
+        @PreAuthorize("hasAnyRole('ROLE_USER','isAnonymous()')")
     @PostMapping("/searchprice/{Price}")
     public String SearchPrice(ModelMap model, Double Price){
             List<Product> products = productservice.searchbyprice(Price);
         model.put("products", products);
         return "index.html";
-}
+
+
+}    @PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_SELLER')")
      @PostMapping("/searchcode/{CodeProduct}")
     public String SearchPrice(ModelMap model, Integer CodeProduct){
             List<Product> products = productservice.searchbycode(CodeProduct);
