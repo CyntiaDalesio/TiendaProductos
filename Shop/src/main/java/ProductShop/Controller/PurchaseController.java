@@ -32,6 +32,7 @@ public class PurchaseController {
     @Autowired
     private ProductService productService;
 
+    @PreAuthorize("hasAnyRole('ROLE_USER')")
     @GetMapping("/purchase/{idProduct}")
     public String details(ModelMap model, @PathVariable String idProduct) throws ErrorServicio {
         try {
