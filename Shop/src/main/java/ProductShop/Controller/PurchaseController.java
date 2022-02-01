@@ -12,6 +12,7 @@ import ProductShop.errores.ErrorServicio;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -86,5 +87,14 @@ public class PurchaseController {
 //        model.put("cancel", "La Compra ha sido cancelada");
         return "index.html";
     }
+    
+    @PreAuthorize("hasAnyRole('ROLE_USER')")
+    @GetMapping("/purchase/myShopping")
+    public String showPurchase(ModelMap model) {
+        Usuario user = userService.obtenerUsuarioSesion();
+        List<Purchase> shopping = purchaseService.showPurchaseByIdUser(user.getIdUser());
+        model.put("compras", shopping);
 
+        return "myShopping.html";
+    }
 }
