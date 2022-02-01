@@ -40,9 +40,7 @@ public class Product implements Serializable {
 
     @Override
     public String toString() {
-
         return "Product{" + "idProduct=" + idProduct + ", CodeProduct=" + CodeProduct + ", Name=" + Name + ", Price=" + Price + ", TradeMark=" + TradeMark +  ", Stock=" + Stock + ", availableStock=" + availableStock + '}';
-
     }
 
     public Product(Integer CodeProduct, String Name, Double Price, String TradeMark, Category category, Integer Stock, Photo photo) {
@@ -64,6 +62,7 @@ public class Product implements Serializable {
         this.Stock = Stock;
       
     }
+
 
     public String getIdProduct() {
         return idProduct;
@@ -113,6 +112,8 @@ public class Product implements Serializable {
         this.category = category;
     }
 
+  
+
     public Integer getStock() {
         return Stock;
     }
@@ -121,13 +122,8 @@ public class Product implements Serializable {
         this.Stock = Stock;
     }
 
-    public Boolean getAvailableStock() {
-        return availableStock;
-    }
-
-    public void setAvailableStock(Boolean availableStock) {
-        this.availableStock = availableStock;
-    }
+  
+  
 
     public Photo getPhoto() {
         return photo;
@@ -137,7 +133,13 @@ public class Product implements Serializable {
         this.photo = photo;
     }
 
+    public Boolean getAvailableStock() {
+        return availableStock;
+    }
 
+    public void setAvailableStock(Boolean availableStock) {
+        this.availableStock = availableStock;
+    }
     
    
 }

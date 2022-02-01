@@ -35,7 +35,7 @@ public class ProductController {
         return "modify";
     }
 
-    @PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_SELLER')")
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN')")
     @GetMapping("addproduct")
     public String addProduct() {
         return "addProduct.html";
