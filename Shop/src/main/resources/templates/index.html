@@ -24,6 +24,7 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
         <a type="submit" id="signIn" th:href="@{/login/}" class="a-button" sec:authorize="isAnonymous()"
         >Iniciar Sesión </a>
         <a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/users/}" class="a-button">Listar Usuarios</a>
+        <a sec:authorize="hasRole('ROLE_ADMIN') or hasRole('ROLE_SELLER')" th:href="@{/purchase/sales}" class="a-button">Ventas Realizadas</a>
         <a sec:authorize="hasRole('ROLE_USER')" th:href="@{/purchase/myShopping/}" class="a-button">Mis Compras</a>
         <a sec:authorize="isAuthenticated()" th:href="@{/editUser}" class="a-button">Modificar perfil</a>
         <a  sec:authorize="isAuthenticated()" href="/logout"  type="logOut" id="LogOut" class="a-button">Salir</a> <br>
@@ -44,6 +45,7 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 					<li><a type="submit" id="signIn" class="m" th:href="@{/login/}" sec:authorize="isAnonymous()"
                         >Iniciar Sesión </a></li>
 					<li><a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/users/}" class=" m">Listar Usuarios</a></li>
+                    <li><a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/purchase/sales}" class="a-button">Ventas Realizadas</a></li>
                     <li><a sec:authorize="hasRole('ROLE_USER')" th:href="@{/purchase/myShopping}" class="a-button">Mis Compras</a></li>
 					<li><a sec:authorize="isAuthenticated()" th:href="@{/users/edit}" class=" m">Modificar perfil</a></li>
                     <li><a  sec:authorize="isAuthenticated()" href="/logout"  type="logOut" id="LogOut" class=" m">Salir</a></li>
