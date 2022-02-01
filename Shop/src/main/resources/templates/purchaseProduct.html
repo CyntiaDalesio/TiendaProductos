@@ -18,12 +18,12 @@
 <body>
     <header>
         <section class="main-title">
-            <a href="/"><h1 id="home">E-Game<span>Egg</span></h1></a>
+            <a href="/"><h1 id="home">E-Gam<span>Egg</span></h1></a>
         </section>
     </header>
     <main>
         <section class="title">
-            <form th:action="@{/purchase/finished}" method="POST">
+            <form th:action="@{/purchase/finished}" method="POST" id="form">
                 <input type="hidden" th:value="${producto.idProduct}" name="idProduct" />
                 <h2>Vista Previa <span>de producto</span></h2>
         </section>
@@ -34,11 +34,11 @@
             </div>
             <div class="rectangle border2">
                     <h3>Cantidad</h3>
-                    <input name="cantity" type="number" min="1" th:max="${product.stock}" class="input-cantity" placeholder="cantidad"  >
+                    <input name="cantity"  type="number" min="1" th:max="${product.stock}" class="input-cantity" placeholder="cantidad"  >
                     <h3>Subtotal</h3>
-                    <p th:text="${product.Price}"></p>
+                    <p th:text="${product.Price}" id="valueProduct"></p>
                     <h3>Total</h3>
-                    <p th:text="${product.Price}"></p>
+                    <p id="totalPurchase"></p>
                     <h3>Codigo de producto</h3>
                     <p th:text="${product.codeProduct}" name="idProduct"></p>
             </div>
@@ -63,9 +63,10 @@
         <footer>
             <h3>Todos los derechos reservados E-GameEgg</h3>
         </footer>
+        <link href="//cdn.jsdelivr.net/npm/@sweetalert2/theme-dark@4/dark.css" rel="stylesheet">
+        <script src="//cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
 
-
-        <script src="../assets/index.js"></script>
+        <script src="../assets/purchase.js"></script>
 </body>
 
 </html>

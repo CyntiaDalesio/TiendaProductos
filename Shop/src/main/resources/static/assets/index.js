@@ -27,7 +27,7 @@ addProduct.addEventListener("click", () =>{
 
 //total
 
-let cantity = document.querySelector(".input-cantity").innerHTML;
+let cantity = document.querySelector(".input-cantity").innerHTML; 
 console.log(cantity)
 
 
