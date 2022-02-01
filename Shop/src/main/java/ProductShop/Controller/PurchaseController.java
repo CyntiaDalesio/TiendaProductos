@@ -12,6 +12,7 @@ import ProductShop.errores.ErrorServicio;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -36,10 +37,10 @@ public class PurchaseController {
         try {
             Product product = productService.findProductById(idProduct);
             model.put("producto", product);
-            System.out.println(idProduct+" Metodo Get controlador");
+            System.out.println(idProduct + " Metodo Get controlador");
         } catch (Exception e) {
             System.out.println("Adentro del catch");
-            throw new ErrorServicio("Producto no econtrado");            
+            throw new ErrorServicio("Producto no econtrado");
         }
         System.out.println("luego del catch");
         return "purchaseProduct.html";
@@ -55,26 +56,24 @@ public class PurchaseController {
 //        }
 //        return "purchaseProduct.html";
 //    }
-
 //    @GetMapping("/detailpurchase")
 //    public String showDetail(ModelMap model) {
 //        List<Purchase> purchase = purchaseService.showPurchase();
 //        model.put("purchase", purchase);
 //        return "purchaseProduct.html";
 //    }
-
     @PostMapping("/purchase/finished")
     public String purchaseFinished(@RequestParam String idProduct, @RequestParam Integer cantity, @RequestParam String paymentMethod) throws ErrorServicio {
         try {
-            System.out.println(idProduct+" Metodo POST en el controlador antes de crear la compra");
-            
+            System.out.println(idProduct + " Metodo POST en el controlador antes de crear la compra");
+
             Usuario user = userService.obtenerUsuarioSesion();
-            System.out.println("Payment Method= "+paymentMethod);  
-            System.out.println("Cantidad= "+cantity);  
-   System.out.println("Cantidad= "+cantity);  
+            System.out.println("Payment Method= " + paymentMethod);
+            System.out.println("Cantidad= " + cantity);
+            System.out.println("Cantidad= " + cantity);
             purchaseDetService.createDetailsPurchase(idProduct, user.getIdUser(), cantity, paymentMethod);
             purchaseDetService.decreaseStock(idProduct, cantity);
-            System.out.println(idProduct+" Metodo POST en el controlador luego de crear la compra");
+            System.out.println(idProduct + " Metodo POST en el controlador luego de crear la compra");
 //            model.put("exito", "Compra realizada con éxito");
         } catch (Exception e) {
             e.printStackTrace();
@@ -88,5 +87,14 @@ public class PurchaseController {
 //        model.put("cancel", "La Compra ha sido cancelada");
         return "index.html";
     }
+    
+    @PreAuthorize("hasAnyRole('ROLE_USER')")
+    @GetMapping("/purchase/myShopping")
+    public String showPurchase(ModelMap model) {
+        Usuario user = userService.obtenerUsuarioSesion();
+        List<Purchase> shopping = purchaseService.showPurchaseByIdUser(user.getIdUser());
+        model.put("compras", shopping);
 
+        return "myShopping.html";
+    }
 }
