@@ -67,4 +67,4 @@ public class PrincipalController {
         model.put("products", products);
         return "index.html";
     }
-}
+   }

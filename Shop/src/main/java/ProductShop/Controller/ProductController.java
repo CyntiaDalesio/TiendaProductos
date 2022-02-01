@@ -4,6 +4,7 @@ import ProductShop.Entity.Photo;
 import ProductShop.Entity.Product;
 import ProductShop.Service.ProductService;
 import ProductShop.errores.ErrorServicio;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
@@ -53,5 +54,11 @@ public class ProductController {
         return "redirect:/";
     }
 //
-
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN')")
+    @PostMapping("/delete/{idProduct}")
+    public String DeleteProduct(ModelMap model, String idProduct) {
+        Product product = productservice.findProductById(idProduct);
+        product.setStock(0);
+        return "index.html";
+    }
 }
