@@ -154,9 +154,17 @@
                  <a sec:authorize="hasRole('ROLE_USER') or isAnonymous()" type="button"  class="modify" th:href="@{/purchase/}+${product.idProduct}">
                     Comprar
                  </a>
-            </div>
-
+                </div>
+            </th:block>
+        <div  class="cards-product add-product" sec:authorize="hasRole('ROLE_ADMIN')"  >
+            <a sec:authorize="hasRole('ROLE_ADMIN')" class="add-product" th:href="addproduct" >
+              
+                <i class="fas fa-plus fa-2x"></i>
+                <h3 >Agregar Producto</h3>
+            </a>
+        </div>  
         </section>
+        
     </main>
     <footer>
         <h3>Todos los derechos reservados E-GameEgg</h3>
