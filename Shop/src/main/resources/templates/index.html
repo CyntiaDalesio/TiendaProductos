@@ -1,136 +1,117 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
-    xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
-
+xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 </html>
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shop</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
-        integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" media="all" href="/src/main/resources/static/styles/style.css"
-        th:href="@{/styles/style.css}" />
+    <title>E-GamEgg</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" media="all"
+        href="/src/main/resources/static/styles/style.css" th:href="@{/styles/style.css}" />
 </head>
-
 <body>
 
-    <header>
-        <section class="main-title">
-            <a href="/">
-                <h1 id="home">E-Game<span>Egg</span></h1>
-            </a>
-        </section>
-        <nav class="completeNav">
-
-            <h3 class="user-Loged" sec:authorize="isAuthenticated()">Hola [[${usuario?.username}]]</h3>
-            <a type="submit" id="signIn" th:href="@{/login/}" class="a-button" sec:authorize="isAnonymous()">Iniciar
-                Sesión </a>
-            <a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/users/}" class="a-button">Listar Usuarios</a>
-            <a sec:authorize="hasRole('ROLE_USER')" th:href="@{/purchase/myShopping/}" class="a-button">Mis Compras</a>
-            <a sec:authorize="isAuthenticated()" th:href="@{/editUser}" class="a-button">Modificar perfil</a>
-            <a sec:authorize="isAuthenticated()" href="/logout" type="logOut" id="LogOut" class="a-button">Salir</a>
-            <br>
-            <br>
-            <a sec:authorize="hasRole('ROLE_USER') or hasRole('ROLE_SELLER')" th:href="@{/contact/}"
-                class="a-button">Contactanos</a>
-        </nav>
-        <div class="movil menuResponsive">
-            <input type="checkbox" id="btn_menu">
-            <label for="btn_menu" class="btn_menu flex_column">
-                <span id="btn_span_1" class="btn_span"></span>
-                <span id="btn_span_2" class="btn_span"></span>
-                <span id="btn_span_3" class="btn_span"></span>
-            </label>
-            <div class="container_flex">
-                <section>
-                    <ul class="container_menu flex_column">
-                        <li>
-                            <h3 class="user-Loged m" sec:authorize="isAuthenticated()">[[${usuario?.username}]]</h3>
-                        </li>
-                        <li><a type="submit" id="signIn" class="m" th:href="@{/login/}"
-                                sec:authorize="isAnonymous()">Iniciar Sesión </a></li>
-                        <li><a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/users/}" class=" m">Listar Usuarios</a>
-                        </li>
-                        <li><a sec:authorize="hasRole('ROLE_USER')" th:href="@{/purchase/myShopping}"
-                                class="a-button">Mis Compras</a></li>
-                        <li><a sec:authorize="isAuthenticated()" th:href="@{/users/edit}" class=" m">Modificar
-                                perfil</a></li>
-                        <li><a sec:authorize="isAuthenticated()" href="/logout" type="logOut" id="LogOut"
-                                class=" m">Salir</a></li>
-                        <li><a sec:authorize="hasRole('ROLE_USER') or hasRole('ROLE_SELLER')" th:href="@{/contact/}"
-                                class=" m">Contactanos</a> </li>
-                    </ul>
-                </section>
-            </div>
-        </div>
-    </header>
-    <main>
-        <!-- <section class="banner">
+<header>
+    <section class="main-title">
+        <a href="/"><h1 id="home">E-Gam<span>Egg</span></h1></a>
+    </section>
+     <nav class="completeNav">
+        
+        <h3 class="user-Loged" sec:authorize="isAuthenticated()">Hola [[${usuario?.username}]]</h3>
+        <a type="submit" id="signIn" th:href="@{/login/}" class="a-button" sec:authorize="isAnonymous()"
+        >Iniciar Sesión </a>
+        <a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/users/}" class="a-button">Listar Usuarios</a>
+        <a sec:authorize="hasRole('ROLE_ADMIN') or hasRole('ROLE_SELLER')" th:href="@{/purchase/sales}" class="a-button">Ventas Realizadas</a>
+        <a sec:authorize="hasRole('ROLE_USER')" th:href="@{/purchase/myShopping/}" class="a-button">Mis Compras</a>
+        <a sec:authorize="isAuthenticated()" th:href="@{/editUser}" class="a-button">Modificar perfil</a>
+        <a  sec:authorize="isAuthenticated()" href="/logout"  type="logOut" id="LogOut" class="a-button">Salir</a> <br>
+        <br>
+        <a sec:authorize="hasRole('ROLE_USER') or hasRole('ROLE_SELLER')" th:href="@{/contact/}" class="a-button">Contactanos</a>   
+    </nav> 
+    <div class="movil menuResponsive" >
+		<input type="checkbox" id="btn_menu">
+		<label for="btn_menu" class="btn_menu flex_column">
+			<span id="btn_span_1" class="btn_span"></span>
+			<span id="btn_span_2" class="btn_span"></span>
+			<span id="btn_span_3" class="btn_span"></span>
+		</label>
+		<div class="container_flex">
+			<section>
+				<ul class="container_menu flex_column">
+					<li><h3 class="user-Loged m" sec:authorize="isAuthenticated()">[[${usuario?.username}]]</h3></li>
+					<li><a type="submit" id="signIn" class="m" th:href="@{/login/}" sec:authorize="isAnonymous()"
+                        >Iniciar Sesión </a></li>
+					<li><a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/users/}" class=" m">Listar Usuarios</a></li>
+                    <li><a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/purchase/sales}" class="a-button">Ventas Realizadas</a></li>
+                    <li><a sec:authorize="hasRole('ROLE_USER')" th:href="@{/purchase/myShopping}" class="a-button">Mis Compras</a></li>
+					<li><a sec:authorize="isAuthenticated()" th:href="@{/users/edit}" class=" m">Modificar perfil</a></li>
+                    <li><a  sec:authorize="isAuthenticated()" href="/logout"  type="logOut" id="LogOut" class=" m">Salir</a></li>
+                    <li><a sec:authorize="hasRole('ROLE_USER') or hasRole('ROLE_SELLER')" th:href="@{/contact/}" class=" m">Contactanos</a> </li>
+				</ul>
+			</section>
+		</div>
+	</div>
+</header>
+<main>
+    <!-- <section class="banner">
          <div class="banner-image">
              <img src="../images/ps5-banner-new_44e07ae9-bbc2-469d-aeba-09c6af05b4a4.jpeg" alt="banner">
              </div>
      </section>-->
-        <div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">
-            <div class="carousel-inner">
-                <div class="carousel-item active" data-bs-interval="10000">
-                    <img src="../images/omen.jpeg" class="d-block w-100" alt="banerHpOmen">
-                </div>
-                <div class="carousel-item" data-bs-interval="2500">
-                    <img src="../images/ps5-banner-new_44e07ae9-bbc2-469d-aeba-09c6af05b4a4.jpeg" class="d-block w-100"
-                        alt="banerPs5">
-                </div>
-                <div class="carousel-item">
-                    <img src="../images/nvidia.jpeg" class="d-block w-100" alt="bannerOmen">
-                </div>
+    <div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active" data-bs-interval="10000">
+                <img src="../images/omen.jpeg" class="d-block w-100" alt="banerHpOmen">
             </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval"
-                data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Previous</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleInterval"
-                data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Next</span>
-            </button>
+            <div class="carousel-item" data-bs-interval="2500">
+                <img src="../images/ps5-banner-new_44e07ae9-bbc2-469d-aeba-09c6af05b4a4.jpeg" class="d-block w-100" alt="banerPs5">
+            </div>
+            <div class="carousel-item">
+                <img src="../images/nvidia.jpeg" class="d-block w-100" alt="bannerOmen">
+            </div>
         </div>
-        <!---fin del baner-->
-        <section class="top-products">
-            <h2>Productos</h2>
-            <div class="search">
-                <form action="/searchcat" method="post">
-                    <!-- <input type="search" placeholder="search">-->
-
-                    <label for="categoria">Filtrar</label>
-                    <select name="category" class=" filter">
-                        <option th:each="Category : ${T(ProductShop.Enums.Category).values()}" th:value="${Category}"
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+    <!---fin del baner-->
+    <section class="top-products">
+        <h2>Productos</h2>
+        <div class="search">
+            <form action="/searchcat" method="post"> 
+               <!-- <input type="search" placeholder="search">-->
+            
+                <label for="categoria">Filtrar</label>
+             <select name="category" class=" filter">
+                          <option th:each="Category : ${T(ProductShop.Enums.Category).values()}" th:value="${Category}"
                             th:text="${Category}">
                           </option> 
              </select>
             <button type="submit" class="searchButton">Buscar</button>
             </form>
-
-        </div>
-        <div class="filtros2">
-      <form class="input-filter2" th:action="@{/searchname/}+${product?.name}" method="get"   >
+               
+                
+      <form class="filter" th:action="@{/searchname/}+${product?.name}" method="get"   >
           
-          <input  name="Name"  placeholder="Name" type="text" th:value="${product?.name}" >
-                 <button type="submit" class="searchButton">Buscar por nombre</button></form>
+          <input  name="Name" placeholder="Name" type="text" th:value="${product?.name}" >
+                 <button type="submit" class="searchButton">Filtro2</button></form>
                  
-        <form class="input-filter2" th:action="@{/searchprice/}+${product?.Price}" method="post"   >
+<form class="filter" th:action="@{/searchprice/}+${product?.Price}" method="post"   >
           
           <input  Placeholder="Precio Maximo" name="Price" type="number" min="0" max="500000" step="any" th:value="${product?.Price}" >
-                 <button type="submit" class="searchButton">Buscar por precio</button></form>
+                 <button type="submit" class="searchButton">Filtro3</button></form>
                 
-        <form class="input-filter2" th:action="@{/searchcode/}+${product?.CodeProduct}" method="post"   >
-        <input  Placeholder="Codigo"  name="CodeProduct" type="number"  th:value="${product?.CodeProduct}" >
-                 <button type="submit" class="searchButton">Buscar por codigo</button></form>
+        <form class="filter" th:action="@{/searchcode/}+${product?.CodeProduct}" method="post"   >
+        <input  Placeholder="Codigo" name="CodeProduct" type="number"  th:value="${product?.CodeProduct}" >
+                 <button type="submit" class="searchButton">Filtro4</button></form>
                  </div> 
   
     </section>
@@ -154,8 +135,10 @@
                  <a sec:authorize="hasRole('ROLE_USER') or isAnonymous()" type="button"  class="modify" th:href="@{/purchase/}+${product.idProduct}">
                     Comprar
                  </a>
-                </div>
-            </th:block>
+            </div>
+        </th:block>
+
+        </div>
         <div  class="cards-product add-product" sec:authorize="hasRole('ROLE_ADMIN')"  >
             <a sec:authorize="hasRole('ROLE_ADMIN')" class="add-product" th:href="addproduct" >
               
@@ -163,16 +146,13 @@
                 <h3 >Agregar Producto</h3>
             </a>
         </div>  
-        </section>
-        
-    </main>
-    <footer>
-        <h3>Todos los derechos reservados E-GameEgg</h3>
-    </footer>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
-        crossorigin="anonymous"></script>
-    <script src="../assets/index.js"></script>
+    </section>
+</main>
+<footer>
+    <h3>Todos los derechos reservados E-GameEgg</h3>
+</footer>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+<script src="../assets/index.js"></script>
 </body>
 
 </html>

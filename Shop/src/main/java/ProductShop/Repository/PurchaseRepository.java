@@ -12,5 +12,8 @@ public interface PurchaseRepository extends JpaRepository<Purchase,String> {
     
     @Query("Select p from Purchase p WHERE p.usuario.id = :idUser")
     public List<Purchase> findByIdUser(@Param("idUser") String idUser);
+    
+    @Query("SELECT p FROM Purchase p ORDER BY p.date")
+    public List<Purchase> findAllOrderByFecha();
 
 }

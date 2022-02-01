@@ -26,10 +26,10 @@ public class PurchaseService {
 
     @Transactional
     public Purchase createPurchase(String paymentMehtod, Double priceUnit) {
-        Purchase purchase = new Purchase();        
+        Purchase purchase = new Purchase();
         purchase.setDate(new Date());
         purchase.setPaymentMethod(PaymentMethod.valueOf(paymentMehtod));
-        
+
         return purchaseRepository.save(purchase);
 
     }
@@ -52,9 +52,12 @@ public class PurchaseService {
     public Optional<Purchase> findById(String idPurchase) {
         return purchaseRepository.findById(idPurchase);
     }
-    
+
     public List<Purchase> showPurchaseByIdUser(String idUsuario) {
         return purchaseRepository.findByIdUser(idUsuario);
-    } 
+    }
 
+    public List<Purchase> showPurchaseByFecha() {
+        return purchaseRepository.findAllOrderByFecha();
+    }
 }
