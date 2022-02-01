@@ -27,7 +27,7 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
   
       <tr>
   
-        <th>Id Compra</th>
+        <th>Codigo Compra</th>
         <th>Fecha Compra</th>
         <th>Articulo</th>
         <th>Cantidad</th>
@@ -38,7 +38,7 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
   
       <tr th:each="compra : ${compras}">
   
-        <td th:text="${compra.id}"></td>
+        <td th:text="${compra.purchaseCode}"></td>
         <td th:text="${compra.date}"></td>
         <td th:text="${compra.purchaseDetail.product.Name}"></td>
         <td th:text="${compra.purchaseDetail.cantity}"></td>
