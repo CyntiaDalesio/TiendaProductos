@@ -37,7 +37,7 @@ public class PurchaseDetailsService {
     public void createDetailsPurchase(String idProduct, String idUser, Integer quantity, String payMethod) throws ErrorServicio {
 
         validateNull(idProduct, idUser, payMethod, quantity);
-    System.out.println("Pasando Validate null");
+        System.out.println("Pasando Validate null");
         PurchaseDetails purchaseDetails = new PurchaseDetails();
         Purchase purchase = new Purchase();
 
@@ -54,7 +54,7 @@ public class PurchaseDetailsService {
         System.out.println("Pasando PM");
         purchase.setDate(new Date());
         purchase.setTotal(purchaseDetails.getSubtotal());
-  System.out.println("Pasando Set sub total");
+        System.out.println("Pasando Set sub total");
         purchase.setPurchaseDetail(purchaseDetails);
 
         purchaseDetailsRepository.save(purchaseDetails);
@@ -167,18 +167,18 @@ public class PurchaseDetailsService {
 
     @Transactional
     public void decreaseStock(String idProduct, Integer cantity) {
-            Optional<Product> productOptional = productRepository.findById(idProduct);
-            if (productOptional.isPresent()) {
-                Product product = productOptional.get();
-                product.setStock(product.getStock() - cantity);
-                if ((product.getStock())==0) {
-                    product.setAvailableStock(Boolean.FALSE);
-                }
-                productRepository.save(product);
-            } else {
-                throw new Error("El producto no existe");
+        Optional<Product> productOptional = productRepository.findById(idProduct);
+        if (productOptional.isPresent()) {
+            Product product = productOptional.get();
+            product.setStock(product.getStock() - cantity);
+            if ((product.getStock()) == 0) {
+                product.setAvailableStock(Boolean.FALSE);
             }
-        
+            productRepository.save(product);
+        } else {
+            throw new Error("El producto no existe");
+        }
+
     }
 
     public Product showStock(String idPurchaseDetails) {

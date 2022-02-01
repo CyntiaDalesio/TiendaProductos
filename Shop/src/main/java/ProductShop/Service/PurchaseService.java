@@ -52,5 +52,9 @@ public class PurchaseService {
     public Optional<Purchase> findById(String idPurchase) {
         return purchaseRepository.findById(idPurchase);
     }
+    
+    public List<Purchase> showPurchaseByIdUser(String idUsuario) {
+        return purchaseRepository.findByIdUser(idUsuario);
+    } 
 
 }
