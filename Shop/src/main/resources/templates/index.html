@@ -101,9 +101,18 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
           
           <input  name="Name" placeholder="Name" type="text" th:value="${product?.name}" >
                  <button type="submit" class="searchButton">Filtro2</button></form>
+                 
+<form class="filter" th:action="@{/searchprice/}+${product?.Price}" method="post"   >
+          
+          <input  Placeholder="Precio Maximo" name="Price" type="number" min="0" max="500000" step="any" th:value="${product?.Price}" >
+                 <button type="submit" class="searchButton">Filtro3</button></form>
+                
+        <form class="filter" th:action="@{/searchcode/}+${product?.CodeProduct}" method="post"   >
+        <input  Placeholder="Codigo" name="CodeProduct" type="number"  th:value="${product?.CodeProduct}" >
+                 <button type="submit" class="searchButton">Filtro4</button></form>
                  </div> 
+  
     </section>
-
     
     <section class="cards-conteiner">
 
@@ -117,7 +126,7 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
                 <a sec:authorize="hasRole('ROLE_ADMIN') or hasRole('ROLE_SELLER')" type="button" class="modify" th:href="@{/modifyproduct/}+${product.idProduct}">
                     Modificar
                 </a>
-                <a sec:authorize="hasRole('ROLE_ADMIN') or hasRole('ROLE_SELLER')" type="button" class="modify" th:href="@{/modifyproduct/}+${product.idProduct}">
+                <a sec:authorize="hasRole('ROLE_ADMIN')" type="button" class="modify" th:href="@{/modifyproduct/}+${product.idProduct}">
                     Eliminar
                 </a>
                 
@@ -128,8 +137,8 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
         </th:block>
 
         </div>
-        <div  class="cards-product add-product" sec:authorize="hasRole('ROLE_ADMIN') or hasRole('ROLE_SELLER')"  >
-            <a sec:authorize="hasRole('ROLE_ADMIN') or hasRole('ROLE_SELLER')" class="add-product" th:href="addproduct" >
+        <div  class="cards-product add-product" sec:authorize="hasRole('ROLE_ADMIN')"  >
+            <a sec:authorize="hasRole('ROLE_ADMIN')" class="add-product" th:href="addproduct" >
               
                 <i class="fas fa-plus fa-2x"></i>
                 <h3 >Agregar Producto</h3>

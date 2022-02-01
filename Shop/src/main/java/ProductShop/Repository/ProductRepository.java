@@ -17,16 +17,13 @@ public interface ProductRepository extends JpaRepository <Product, String>{
     
     public List<Product> findByCategory(Category category); 
     
-
     @Query("Select p from Product p WHERE p.CodeProduct = :CodeProduct")
     public List<Product> findByCodeProduct(@Param("CodeProduct") Integer CodeProduct);
     
  public List<Product> findByAvailableStockTrue(); 
-
-
-//    @Query("Select p from Product p WHERE p.CodeProduct = :CodeProduct")
-//    public List<Product> findByCodeProduct(@Param("CodeProduct") Integer CodeProduct);
-//    
+ 
+@Query("Select p from Product p WHERE p.Price <= :Price")
+public List<Product> findByPrice(@Param("Price")Double Price);
 
 
 }
