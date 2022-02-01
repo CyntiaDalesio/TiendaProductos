@@ -22,8 +22,10 @@ public interface ProductRepository extends JpaRepository <Product, String>{
     
  public List<Product> findByAvailableStockTrue(); 
  
-@Query("Select p from Product p WHERE p.Price <= :Price")
-public List<Product> findByPrice(@Param("Price")Double Price);
+
+
+    @Query("Select p from Product p WHERE p.Price <= :Price ORDER BY Price ASC")
+    public List<Product> findByPrice(@Param("Price") Double Price);
 
 
 }

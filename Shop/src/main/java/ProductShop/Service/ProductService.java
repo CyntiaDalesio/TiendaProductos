@@ -139,4 +139,9 @@ public class ProductService {
         return productrepository.findByCodeProduct(CodeProduct);
         
     }
+    public void DeleteProduct (Product product){
+       product.setStock(0);
+       product.setAvailableStock(false);
+       productrepository.save(product);
+    }
 }
