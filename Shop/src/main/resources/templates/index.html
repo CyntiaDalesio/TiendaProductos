@@ -157,41 +157,6 @@
             </div>
 
         </section>
-
-        <section class="cards-conteiner">
-
-
-            <th:block th:each="product : ${products}">
-                <div class="cards-product">
-                    <img class="imgProduct" th:if="${product.photo ne null}" th:src="@{/photo/}+${product.photo.id}" />
-
-                    <h3 th:text="${product.Name}"></h3>
-                    <p> $[[${product.Price}]] </p>
-                    <a sec:authorize="hasRole('ROLE_ADMIN') or hasRole('ROLE_SELLER')" type="button" class="modify"
-                        th:href="@{/modifyproduct/}+${product.idProduct}">
-                        Modificar
-                    </a>
-                    <a sec:authorize="hasRole('ROLE_ADMIN')" type="button" class="modify"
-                        th:href="@{/modifyproduct/}+${product.idProduct}">
-                        Eliminar
-                    </a>
-
-                    <a sec:authorize="hasRole('ROLE_USER') or isAnonymous()" type="button" class="modify"
-                        th:href="@{/purchase/}+${product.idProduct}">
-                        Comprar
-                    </a>
-                </div>
-            </th:block>
-
-            </div>
-            <div class="cards-product add-product" sec:authorize="hasRole('ROLE_ADMIN')">
-                <a sec:authorize="hasRole('ROLE_ADMIN')" class="add-product" th:href="addproduct">
-
-                    <i class="fas fa-plus fa-2x"></i>
-                    <h3>Agregar Producto</h3>
-                </a>
-            </div>
-        </section>
     </main>
     <footer>
         <h3>Todos los derechos reservados E-GameEgg</h3>
