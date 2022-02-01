@@ -27,7 +27,7 @@ public class PrincipalController {
 
         List<Product> products;
         Usuario user = userService.obtenerUsuarioSesion();
-        if (user != null && user.getRol()== Role.ADMIN) {
+        if (user != null && user.getRol() == Role.ADMIN) {
 
             products = productservice.listarProductAll();
 
@@ -46,24 +46,25 @@ public class PrincipalController {
         model.put("products", products);
         return "index.html";
     }
-    
- @GetMapping("/searchname/{Name}")
-    public String SearchName(ModelMap model, String Name){
-         List<Product> products = productservice.searchbyname(Name);
+
+    @PostMapping("/searchname/{Name}")
+    public String SearchName(ModelMap model, String Name) {
+        List<Product> products = productservice.searchbyname(Name);
         model.put("products", products);
         return "index.html";
     }
-    
+
     @PostMapping("/searchprice/{Price}")
-    public String SearchPrice(ModelMap model, Double Price){
-            List<Product> products = productservice.searchbyprice(Price);
+    public String SearchPrice(ModelMap model, Double Price) {
+        List<Product> products = productservice.searchbyprice(Price);
         model.put("products", products);
         return "index.html";
-}
-     @PostMapping("/searchcode/{CodeProduct}")
-    public String SearchPrice(ModelMap model, Integer CodeProduct){
-            List<Product> products = productservice.searchbycode(CodeProduct);
+    }
+
+    @PostMapping("/searchcode/{CodeProduct}")
+    public String SearchCode(ModelMap model, Integer CodeProduct) {
+        List<Product> products = productservice.searchbycode(CodeProduct);
         model.put("products", products);
         return "index.html";
-}
+    }
 }

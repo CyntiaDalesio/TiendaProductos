@@ -95,9 +95,9 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
             </form>
                
                 
-      <form class="filter" th:action="@{/searchname/}+${product?.name}" method="get"   >
+      <form class="filter" th:action="@{/searchname/}+${product?.name}" method="post"   >
           
-          <input  name="Name" placeholder="Name" type="text" th:value="${product?.name}" >
+          <input  name="Name" placeholder="Nombre" type="text" th:value="${product?.name}" >
                  <button type="submit" class="searchButton">Filtro2</button></form>
                  
 <form class="filter" th:action="@{/searchprice/}+${product?.Price}" method="post"   >
