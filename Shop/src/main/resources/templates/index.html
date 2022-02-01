@@ -93,21 +93,22 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
              </select>
             <button type="submit" class="searchButton">Buscar</button>
             </form>
-               
-                
-      <form class="filter" th:action="@{/searchname/}+${product?.name}" method="get"   >
+
+        </div>
+        <div class="filtros2">
+      <form class="input-filter2" th:action="@{/searchname/}+${product?.name}" method="get"   >
           
-          <input  name="Name" placeholder="Name" type="text" th:value="${product?.name}" >
-                 <button type="submit" class="searchButton">Filtro2</button></form>
+          <input  name="Name"  placeholder="Name" type="text" th:value="${product?.name}" >
+                 <button type="submit" class="searchButton">Buscar por nombre</button></form>
                  
-<form class="filter" th:action="@{/searchprice/}+${product?.Price}" method="post"   >
+        <form class="input-filter2" th:action="@{/searchprice/}+${product?.Price}" method="post"   >
           
           <input  Placeholder="Precio Maximo" name="Price" type="number" min="0" max="500000" step="any" th:value="${product?.Price}" >
-                 <button type="submit" class="searchButton">Filtro3</button></form>
+                 <button type="submit" class="searchButton">Buscar por precio</button></form>
                 
-        <form class="filter" th:action="@{/searchcode/}+${product?.CodeProduct}" method="post"   >
-        <input  Placeholder="Codigo" name="CodeProduct" type="number"  th:value="${product?.CodeProduct}" >
-                 <button type="submit" class="searchButton">Filtro4</button></form>
+        <form class="input-filter2" th:action="@{/searchcode/}+${product?.CodeProduct}" method="post"   >
+        <input  Placeholder="Codigo"  name="CodeProduct" type="number"  th:value="${product?.CodeProduct}" >
+                 <button type="submit" class="searchButton">Buscar por codigo</button></form>
                  </div> 
   
     </section>

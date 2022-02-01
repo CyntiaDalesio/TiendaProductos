@@ -48,6 +48,9 @@ nav h3{
     cursor: pointer;
     font-size: 18px;
     font-weight: bold;
+    text-align: center;
+
+    color:#E78A00;
     border: 1px solid #FFFFFF;
     background-color: #000000;
 }
@@ -151,12 +154,18 @@ nav button:hover{
     background-color: #000000;
     color: #ffff;
 }
+.filtros2{
+    display: flex;
+    align-items: center;
+    justify-content:center;
+    
+}
 select:hover{
     border: 1px solid #E78A00;
    
 }
 .top-products button{
-    height: 40px;
+    height: 50px;
     width: 100px;
     border-radius: 15px;
     color: #ffff ;
@@ -362,6 +371,15 @@ ul{
     display: none;
 }
 
+
+.input-filter2 input{
+    border-radius: 15px;
+    height:2.5rem;
+    margin: 5px;
+    border-style: none;
+    background: #000000;  /* fallback for old browsers */
+}
+
 @media screen and (max-width: 768px){
     .menuResponsive {
         display: block;
@@ -371,5 +389,15 @@ ul{
     }
     .top-products{
         display: block;
+    }
+    .filtros2{
+        flex-direction: column;
+        margin-top: 80px;
+    }
+    .search{
+        margin-top: 50px;
+    }
+    .filter{
+        margin: 10px;
     }
 }
