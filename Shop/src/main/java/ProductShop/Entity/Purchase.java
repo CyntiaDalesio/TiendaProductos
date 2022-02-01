@@ -22,7 +22,10 @@ public class Purchase {
     @GenericGenerator(name = "uuid", strategy = "uuid2")
     private String Id;
     
+
     private Integer purchaseCode=0;
+
+    private Integer purchaseCode = 0;
 
     private Double total;
 
@@ -52,7 +55,11 @@ public class Purchase {
     
 
     public Purchase() {
+
 this.purchaseCode= purchaseCode+1;
+
+       this.purchaseCode = purchaseCode + 1;
+
     }
 
     public String getId() {
