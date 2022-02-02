@@ -32,6 +32,7 @@ public class PurchaseController {
     @Autowired
     private ProductService productService;
 
+    @PreAuthorize("hasAnyRole('ROLE_USER')")
     @GetMapping("/purchase/{idProduct}")
     public String details(ModelMap model, @PathVariable String idProduct) throws ErrorServicio {
         try {
@@ -111,5 +112,15 @@ public class PurchaseController {
         model.put("compras", shopping);
 
         return "myShopping.html";
+    }
+    
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN')")    
+    @GetMapping("/purchase/sales")
+    public String showAllSales(ModelMap model) {
+        Usuario user = userService.obtenerUsuarioSesion();
+        List<Purchase> sales = purchaseService.showPurchaseByFecha();
+        model.put("ventas", sales);
+
+        return "sales.html";
     }
 }

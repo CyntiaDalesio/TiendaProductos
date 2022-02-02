@@ -2,12 +2,11 @@ package ProductShop.Controller;
 
 import ProductShop.Entity.Photo;
 import ProductShop.Entity.Product;
-import ProductShop.Enums.Category;
 import ProductShop.Repository.ProductRepository;
 import ProductShop.Service.ProductService;
 import ProductShop.errores.ErrorServicio;
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
@@ -20,7 +19,11 @@ import org.springframework.web.multipart.MultipartFile;
 @Controller
 
 public class ProductController {
+@Autowired
+private ProductRepository productRepository;
 
+    public ProductController() {
+    }
     @Autowired
     private ProductService productservice;
 
@@ -57,7 +60,13 @@ public class ProductController {
         return "redirect:/";
     }
 //
-   
-
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN')")
+    @GetMapping("/delete/{idProduct}")
+    public String DeleteProduct(@PathVariable String idProduct) {
+     
+       Product product = productservice.findProductById(idProduct);
+  
+        productservice.DeleteProduct(product);
+        return "redirect:/";
+    }
 }
-

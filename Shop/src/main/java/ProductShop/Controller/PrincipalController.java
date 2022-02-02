@@ -8,7 +8,6 @@ import ProductShop.Service.ProductService;
 import ProductShop.Service.UserService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -28,7 +27,7 @@ public class PrincipalController {
 
         List<Product> products;
         Usuario user = userService.obtenerUsuarioSesion();
-        if (user != null && user.getRol()== Role.ADMIN) {
+        if (user != null && user.getRol() == Role.ADMIN) {
 
             products = productservice.listarProductAll();
 
@@ -47,26 +46,25 @@ public class PrincipalController {
         model.put("products", products);
         return "index.html";
     }
-    
- @GetMapping("/searchname/{Name}")
-    public String SearchName(ModelMap model, String Name){
-         List<Product> products = productservice.searchbyname(Name);
+
+    @PostMapping("/searchname/{Name}")
+    public String SearchName(ModelMap model, String Name) {
+        List<Product> products = productservice.searchbyname(Name);
         model.put("products", products);
         return "index.html";
     }
-        @PreAuthorize("hasAnyRole('ROLE_USER','isAnonymous()')")
+
     @PostMapping("/searchprice/{Price}")
-    public String SearchPrice(ModelMap model, Double Price){
-            List<Product> products = productservice.searchbyprice(Price);
+    public String SearchPrice(ModelMap model, Double Price) {
+        List<Product> products = productservice.searchbyprice(Price);
         model.put("products", products);
         return "index.html";
+    }
 
-
-}    @PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_SELLER')")
-     @PostMapping("/searchcode/{CodeProduct}")
-    public String SearchPrice(ModelMap model, Integer CodeProduct){
-            List<Product> products = productservice.searchbycode(CodeProduct);
+    @PostMapping("/searchcode/{CodeProduct}")
+    public String SearchCode(ModelMap model, Integer CodeProduct) {
+        List<Product> products = productservice.searchbycode(CodeProduct);
         model.put("products", products);
         return "index.html";
-}
-}
+    }
+   }
