@@ -37,14 +37,10 @@ public class PurchaseDetailsService {
     public void createDetailsPurchase(String idProduct, String idUser, Integer quantity, String payMethod) throws ErrorServicio {
         
         validateNull(idProduct, idUser, payMethod, quantity);
-        System.out.println("Pasando Validate null");
         PurchaseDetails purchaseDetails = new PurchaseDetails();
         Purchase purchase = new Purchase();
         
         List<Integer> listCodPurchase = purchaseRepository.findOrderByCodPurchase();
-//        for (Integer codPurchase : listCodPurchase) {
-//            purchase.setPurchaseCode(codPurchase.(0)+1);
-//        }
         for (int i = 0; i < listCodPurchase.size(); i++) {
             System.out.println(listCodPurchase.get(i));
         }

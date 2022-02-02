@@ -66,16 +66,10 @@ public class PurchaseController {
     @PostMapping("/purchase/finished")
     public String purchaseFinished(@RequestParam String idProduct, @RequestParam Integer cantity, @RequestParam String paymentMethod) throws ErrorServicio {
         try {
-            System.out.println(idProduct + " Metodo POST en el controlador antes de crear la compra");
-
-            Usuario user = userService.obtenerUsuarioSesion();
-            System.out.println("Payment Method= " + paymentMethod);
-            System.out.println("Cantidad= " + cantity);
-            System.out.println("Cantidad= " + cantity);
+            Usuario user = userService.obtenerUsuarioSesion();            
             purchaseDetService.createDetailsPurchase(idProduct, user.getIdUser(), cantity, paymentMethod);
             purchaseDetService.decreaseStock(idProduct, cantity);
-            System.out.println(idProduct + " Metodo POST en el controlador luego de crear la compra");
-//            model.put("exito", "Compra realizada con éxito");
+            //model.put("exito", "Compra realizada con éxito");
         } catch (Exception e) {
             e.printStackTrace();
             throw new ErrorServicio("Error de Sistema");
