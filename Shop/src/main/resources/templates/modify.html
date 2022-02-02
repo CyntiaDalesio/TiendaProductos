@@ -44,6 +44,7 @@
             <input name="archivo" type="file" class="" placeholder="seleccione una Foto para subir" >
             <input type="submit" name="" value="Submit" class="button" >
         </form>
+             <form class="delete" th:action="@{/deleteproduct/}+${product?.idProduct}" method="post" th:value="${product?.idProduct}"</form>
         </div>
     </main>
     <footer>
