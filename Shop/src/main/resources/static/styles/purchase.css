@@ -52,9 +52,8 @@
     margin-bottom: 5px;
 }
 .rectangle img{
-    height: 80%;
-    width: 80%;
-
+    height: 400px;
+    width: 400px;
 }
 .border1{
     border-right: none;
@@ -91,6 +90,11 @@
     background-color: #E78A00;
     color: #ffffff;
     cursor: pointer;
+}
+footer{
+    position: fixed;
+    bottom: 0; 
+    width: 100%;
 }
 
 @media (max-width:768px) {
