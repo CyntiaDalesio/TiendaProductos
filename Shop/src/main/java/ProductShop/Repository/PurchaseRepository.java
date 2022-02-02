@@ -10,10 +10,13 @@ import org.springframework.data.repository.query.Param;
 @Repository
 public interface PurchaseRepository extends JpaRepository<Purchase,String> {
     
-    @Query("Select p from Purchase p WHERE p.usuario.id = :idUser")
+    @Query("Select p from Purchase p WHERE p.usuario.id = :idUser ORDER BY p.purchaseCode")
     public List<Purchase> findByIdUser(@Param("idUser") String idUser);
     
-    @Query("SELECT p FROM Purchase p ORDER BY p.date")
-    public List<Purchase> findAllOrderByFecha();
+    @Query("SELECT p FROM Purchase p ORDER BY p.purchaseCode")
+    public List<Purchase> findAllOrderByCodPurchase();
+    
+    @Query("SELECT purchaseCode FROM Purchase ORDER BY purchaseCode DESC")
+    public List<Integer> findOrderByCodPurchase();
 
 }

@@ -57,7 +57,7 @@ public class PurchaseService {
         return purchaseRepository.findByIdUser(idUsuario);
     }
 
-    public List<Purchase> showPurchaseByFecha() {
-        return purchaseRepository.findAllOrderByFecha();
+    public List<Purchase> showPurchaseByCodPurchase() {
+        return purchaseRepository.findAllOrderByCodPurchase();
     }
 }

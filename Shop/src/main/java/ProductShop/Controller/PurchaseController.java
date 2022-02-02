@@ -103,7 +103,7 @@ public class PurchaseController {
     @GetMapping("/purchase/sales")
     public String showAllSales(ModelMap model) {
         Usuario user = userService.obtenerUsuarioSesion();
-        List<Purchase> sales = purchaseService.showPurchaseByFecha();
+        List<Purchase> sales = purchaseService.showPurchaseByCodPurchase();
         model.put("ventas", sales);
 
         return "sales.html";
