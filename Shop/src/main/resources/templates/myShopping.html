@@ -33,6 +33,7 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
         <th>Cantidad</th>
         <th>Precio</th>
         <th>Total</th>
+        <th>Forma de Pago</th>
           
       </tr>
   
@@ -44,6 +45,7 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
         <td th:text="${compra.purchaseDetail.cantity}"></td>
         <td th:text="${compra.purchaseDetail.product.Price}"></td>
         <td th:text="${compra.purchaseDetail.subtotal}"></td>
+        <td th:text="${compra.paymentMethod}"></td>
   
       </tr>
   

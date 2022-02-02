@@ -102,4 +102,12 @@ public class PurchaseController {
 
         return "sales.html";
     }
+    
+    @PostMapping("/searchclient/{cliente}")
+    public String searchClient(ModelMap model, String cliente) {
+        List<Purchase> sales = purchaseService.showPurchaseByCliente(cliente);
+        model.put("ventas", sales);
+        return "sales.html";
+    }
+    
 }
