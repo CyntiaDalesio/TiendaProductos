@@ -60,4 +60,8 @@ public class PurchaseService {
     public List<Purchase> showPurchaseByCodPurchase() {
         return purchaseRepository.findAllOrderByCodPurchase();
     }
+    
+    public List<Purchase> showPurchaseByCliente(String name) {
+        return purchaseRepository.findByClient(name);
+    }
 }

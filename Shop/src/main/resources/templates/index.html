@@ -112,7 +112,7 @@
                     <!-- <input type="search" placeholder="search">-->
 
                     <label for="categoria">Filtrar</label>
-                    <select name="category" class=" filter">
+                    <select name="category" class="filter">
                         <option th:each="Category : ${T(ProductShop.Enums.Category).values()}" th:value="${Category}"
                             th:text="${Category}">
                         </option>
