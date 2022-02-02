@@ -70,6 +70,7 @@
     margin-bottom: 10px;
 }
 .payment select{
+    background: #000000;
     width: 50%;
     height: 25%;
     border-radius: 10px;
