@@ -44,3 +44,8 @@ input{
 input:hover{
     border-color: #E78A00;
 }
+footer{
+    position: fixed;
+    bottom: 0; 
+    width: 100%;
+}

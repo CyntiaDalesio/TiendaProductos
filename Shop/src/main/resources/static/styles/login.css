@@ -78,3 +78,8 @@ label{
 .button:hover{
     background-color: #E78A00;
 }
+footer{
+    position: fixed;
+    bottom: 0; 
+    width: 100%;
+}

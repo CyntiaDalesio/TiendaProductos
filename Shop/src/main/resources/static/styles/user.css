@@ -1,3 +1,5 @@
 footer{
-    margin-top: 400px;
+    position: fixed;
+    bottom: 0; 
+    width: 100%;
 }
