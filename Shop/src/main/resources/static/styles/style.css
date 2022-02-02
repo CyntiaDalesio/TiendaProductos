@@ -133,7 +133,7 @@ nav button:hover{
     align-items: center;
     justify-content: space-evenly;
     text-align: center;
-    margin-top: 20px;
+    margin-top: 50px;
     margin-left: 50px ;
     margin-right: 50px;
 }
@@ -146,13 +146,23 @@ nav button:hover{
     font-size: 1.5rem ;
     margin-right: 10px ;
 }
-
+form{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 .filter{
     width: 300px;
     height: 40px;
     border-radius: 15px;
-    background-color: #000000;
     color: #ffff;
+    background: #000000;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #434343, #000000);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #434343, #000000);
+}
+.filter input{
+    background: transparent;
+    border-style: none;
 }
 .filtros2{
     display: flex;
@@ -162,9 +172,19 @@ nav button:hover{
 }
 select:hover{
     border: 1px solid #E78A00;
-   
 }
-.top-products button{
+.cleanFilter{
+    background: transparent;
+    border-style: none;
+    border: 1px solid #000000;
+    border-radius: 15px;
+    width: 100%;
+    height: 100%;
+}
+.cleanFilter:hover{
+    border-color: #E78A00;
+}
+.searchButton{
     height: 50px;
     width: 100px;
     border-radius: 15px;
@@ -172,14 +192,16 @@ select:hover{
     background-color: #2B2B2B;
     border-style: none;
     margin-left: 5px;
-
+}
+.searchButton:hover{
+    border-color: #E78A00;
 }
 .cards-conteiner{
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
     align-items: center;
-
+    margin-top: 50px;
 }
 .cards-product{
    /* background-color: rgba(251, 250, 246, 1);*/
@@ -190,8 +212,9 @@ select:hover{
     border-radius: 2px;
     margin: 20px;
     text-align: center;
-    width: 280px;
-    height: 420px;
+    width: 400px;
+    height: 450px;
+    margin-top: 15px;
     transition: transform 1s;
     cursor:pointer;
 }
@@ -209,7 +232,7 @@ select:hover{
     
 }
 .cards-product img{
-    margin:  15px;
+    margin:  10px;
 }
 .add-product{
     display: flex;
@@ -255,8 +278,8 @@ footer h3{
 
 .imgProduct{
 
-width: 200px;
-height: 250px;
+width: 300px;
+height: 300px;
 object-fit: cover;
 }
 ul{
@@ -388,14 +411,7 @@ ul{
         display: none;
     }
     .top-products{
-        display: block;
-    }
-    .filtros2{
-        flex-direction: column;
-        margin-top: 80px;
-    }
-    .search{
-        margin-top: 50px;
+        display: none;
     }
     .filter{
         margin: 10px;
