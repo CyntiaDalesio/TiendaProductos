@@ -185,9 +185,9 @@ select:hover{
     border-color: #E78A00;
 }
 .searchButton{
-    height: 50px;
-    width: 100px;
-    border-radius: 15px;
+    height: 100px;
+    width: 600px;
+    border-radius: 30px;
     color: #ffff ;
     background-color: #2B2B2B;
     border-style: none;
