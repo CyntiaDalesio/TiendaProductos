@@ -114,7 +114,7 @@ public class PurchaseController {
         return "myShopping.html";
     }
     
-    @PreAuthorize("hasAnyRole('ROLE_ADMIN')")    
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_SELLER')")
     @GetMapping("/purchase/sales")
     public String showAllSales(ModelMap model) {
         Usuario user = userService.obtenerUsuarioSesion();
