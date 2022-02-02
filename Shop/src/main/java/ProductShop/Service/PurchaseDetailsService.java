@@ -41,12 +41,14 @@ public class PurchaseDetailsService {
         Purchase purchase = new Purchase();
         
         List<Integer> listCodPurchase = purchaseRepository.findOrderByCodPurchase();
-        for (int i = 0; i < listCodPurchase.size(); i++) {
-            System.out.println(listCodPurchase.get(i));
+        if (listCodPurchase.isEmpty()) {
+            purchase.setPurchaseCode(1);
+        } else {
+            for (int i = 0; i < listCodPurchase.size(); i++) {
+                purchase.setPurchaseCode(listCodPurchase.get(0) + 1);
+            }
         }
-        for (int i = 0; i < listCodPurchase.size(); i++) {
-            purchase.setPurchaseCode(listCodPurchase.get(0) + 1);
-        }
+        
         
         purchaseDetails.setProduct(validateProduct(idProduct));
         purchase.setUsuario(validateUser(idUser));
