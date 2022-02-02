@@ -24,3 +24,4 @@ let input = document.querySelector(".input-cantity");
 
 
 
+
