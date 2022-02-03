@@ -16,7 +16,9 @@
     integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
   <link rel="stylesheet" type="text/css" media="all" href="/src/main/resources/static/styles/style.css"
     th:href="@{/styles/style.css}" />
-    
+  <link rel="stylesheet" type="text/css" media="all" href="/src/main/resources/static/styles/sales.css"
+    th:href="@{/styles/sales.css}" />
+
 </head>
 
 <body>
@@ -28,19 +30,22 @@
     </section>
   </header>
 
-  <form class="filter" th:action="@{/searchclient/}+${user?.name}" method="post">
-    <input name="cliente" placeholder="Cliente" type="text" th:value="${user?.name}">
-    <button type="submit" class="searchButton">Buscar por Cliente</button>
-  </form>
-  <br>
-  <form class="filter" action="/purchase/sales" method="get">
-    <button type="submit" class="cleanFilter">Limpiar Filtros</button>
-  </form>
+
 
   <h2>Ventas Realizadas</h2>
 
-
-
+  <div class="search filtros2">
+    <form class="filter" th:action="@{/searchclient/}+${user?.name}" method="post">
+      <input name="cliente" placeholder="Cliente" type="text" th:value="${user?.name}">
+      <button type="submit" class="searchButton">Buscar</button>
+    </form>
+    <form class="filter" action="/purchase/sales" method="get">
+      <button type="submit" class="cleanFilter">Limpiar Filtros</button>
+    </form>     
+  </div>
+  <br>
+ 
+  <br>
   <table class="table table-dark table-hover">
 
     <tr>
