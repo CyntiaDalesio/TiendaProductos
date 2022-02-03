@@ -64,4 +64,8 @@ public class PurchaseService {
     public List<Purchase> showPurchaseByCliente(String name) {
         return purchaseRepository.findByClient(name);
     }
+    
+    public List<Purchase> showPurchaseByArticulo(String articulo) {
+        return purchaseRepository.findByArticulo(articulo);
+    }
 }
