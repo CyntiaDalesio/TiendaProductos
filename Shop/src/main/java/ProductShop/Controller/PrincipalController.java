@@ -6,6 +6,7 @@ import ProductShop.Enums.Category;
 import ProductShop.Enums.Role;
 import ProductShop.Service.ProductService;
 import ProductShop.Service.UserService;
+import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -41,9 +42,11 @@ public class PrincipalController {
     }
 
     @PostMapping("/searchcat")
-    public String SearchCat(ModelMap model, Category category) {
-        List<Product> products = productservice.searchbycat(category);
-        model.put("products", products);
+    public String SearchCat(ModelMap model,Category category) {
+       
+        List<Product> productos =  productservice.searchbycat(category);
+       
+        model.put("products", productos);
         return "index.html";
     }
 
