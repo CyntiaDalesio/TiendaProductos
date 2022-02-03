@@ -12,7 +12,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface ProductRepository extends JpaRepository <Product, String>{
     
-    @Query("Select p from Product p WHERE p.Name LIKE %:Name%")
+    @Query("Select p from Product p WHERE p.Name LIKE %:Name% AND p.availableStock = true")
     public List<Product> findByName(@Param("Name") String Name);
     
     public List<Product> findByCategory(Category category); 
@@ -24,7 +24,7 @@ public interface ProductRepository extends JpaRepository <Product, String>{
  
 
 
-    @Query("Select p from Product p WHERE p.Price <= :Price ORDER BY Price ASC")
+    @Query("Select p from Product p WHERE p.Price <= :Price AND p.availableStock = true ORDER BY Price ASC ")
     public List<Product> findByPrice(@Param("Price") Double Price);
 
 
