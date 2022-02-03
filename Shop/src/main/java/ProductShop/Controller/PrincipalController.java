@@ -70,4 +70,11 @@ public class PrincipalController {
         model.put("products", products);
         return "index.html";
     }
+    @PostMapping("/searchbaja/{availableStock}")
+     public String SearchBaja(ModelMap model, Boolean availableStock) {
+        List<Product> products = productservice.listarProductBaja(availableStock);
+        model.put("products", products);
+        return "index.html";
+            
+}
    }

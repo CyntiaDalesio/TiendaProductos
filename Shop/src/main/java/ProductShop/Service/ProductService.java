@@ -106,7 +106,10 @@ public class ProductService {
 
         return productrepository.findAll();
     }
+public List<Product> listarProductBaja(Boolean availableStock) {
 
+        return productrepository.findByAvailableStockFalse(availableStock);
+    }
 
 
     public Product findProductById(String idProduct) {
