@@ -6,7 +6,6 @@ import ProductShop.Enums.Category;
 import ProductShop.Enums.Role;
 import ProductShop.Service.ProductService;
 import ProductShop.Service.UserService;
-import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -30,7 +29,7 @@ public class PrincipalController {
         Usuario user = userService.obtenerUsuarioSesion();
         if (user != null && user.getRol() == Role.ADMIN) {
 
-            products = productservice.listarProductAll();
+            products = productservice.listarProduct();
 
         } else {
 
@@ -70,4 +69,11 @@ public class PrincipalController {
         model.put("products", products);
         return "index.html";
     }
+    @PostMapping("/searchbaja/{availableStock}")
+     public String SearchBaja(ModelMap model, Boolean availableStock) {
+        List<Product> products = productservice.listarProductBaja(availableStock);
+        model.put("products", products);
+        return "index.html";
+            
+}
    }
