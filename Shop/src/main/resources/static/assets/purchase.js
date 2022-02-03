@@ -3,7 +3,7 @@ let input = document.querySelector(".input-cantity");
 
     input.addEventListener("change", function(){
         if(input.value % 1 == 0 ){
-            
+            console.log(input.value)
             let valueProduct = document.getElementById("valueProduct").innerHTML;
 
             let total = valueProduct * parseInt(input.value);
@@ -20,6 +20,13 @@ let input = document.querySelector(".input-cantity");
  
     });
 
+let form = document.querySelector('form').addEventListener("submit", ()=>{
+    Swal.fire(
+        'Felicitaciones!',
+        'compra realizada!',
+        'success'
+      )
+});
 
 
 
