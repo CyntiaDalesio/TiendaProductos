@@ -5,6 +5,8 @@ import ProductShop.Entity.Product;
 import ProductShop.Enums.Category;
 import ProductShop.Repository.ProductRepository;
 import ProductShop.errores.ErrorServicio;
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
 
@@ -104,7 +106,10 @@ public class ProductService {
 
         return productrepository.findAll();
     }
+public List<Product> listarProductBaja(Boolean availableStock) {
 
+        return productrepository.findByAvailableStockFalse(availableStock);
+    }
 
 
     public Product findProductById(String idProduct) {
@@ -118,9 +123,18 @@ public class ProductService {
         }
     }
     public List<Product> searchbycat(Category category){
-        
-        return productrepository.findByCategory(category);
-    }
+       List<Product> productos = productrepository.findByCategory(category);
+        if(productos.iterator().hasNext()){
+            for (Product producto : productos) {
+                producto.getAvailableStock();
+                if(producto.getAvailableStock() == false){
+                    productos.remove(producto);
+                }
+            }
+        }
+     
+
+    return productos;}
     
     public List<Product> searchbyname(String Name){
         System.out.println(Name);

@@ -108,10 +108,9 @@
         <section class="top-products"><br>
             <div class="search filtros2">
                 <form action="/searchcat" method="post" sec:authorize="hasRole('ROLE_USER') or isAnonymous()">
-                    <!-- <input type="search" placeholder="search">-->
 
                     <label for="categoria">Filtrar</label>
-                    <select name="category" class=" filter">
+                    <select name="category" class="filter">
                         <option th:each="Category : ${T(ProductShop.Enums.Category).values()}" th:value="${Category}"
                             th:text="${Category}">
                         </option>
@@ -125,7 +124,7 @@
                     <input name="Name" placeholder="Nombre" type="text" th:value="${product?.name}">
                     <button type="submit" class="searchButton">Buscar por nombre</button>
                 </form>
-
+                
                 <form class="filter" th:action="@{/searchprice/}+${product?.Price}" method="post"
                     sec:authorize="hasRole('ROLE_USER') or isAnonymous()">
 
@@ -139,7 +138,9 @@
                     <input Placeholder="Codigo" name="CodeProduct" type="number" th:value="${product?.CodeProduct}">
                     <button type="submit" class="searchButton">Buscar por codigo</button>
                 </form>
-
+                <form class="filter" th:action="@{/searchbaja/}+${product?.availableStock}" method="post"
+                    sec:authorize="hasRole('ROLE_ADMIN') or hasRole('ROLE_SELLER')">
+                     <button type="submit" class="searchButton">Productos no disponibles</button></form>
             <form class="filter" action="/" method="get">
           
     
