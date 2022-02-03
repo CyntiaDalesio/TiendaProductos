@@ -64,7 +64,7 @@ public class PurchaseController {
 //        return "purchaseProduct.html";
 //    }
     @PostMapping("/purchase/finished")
-    public String purchaseFinished(@RequestParam String idProduct, @RequestParam Integer cantity, @RequestParam String paymentMethod) throws ErrorServicio {
+    public String purchaseFinished(@RequestParam String idProduct, @RequestParam Integer cantity, @RequestParam String paymentMethod) throws ErrorServicio, InterruptedException {
         try {
             Usuario user = userService.obtenerUsuarioSesion();            
             purchaseDetService.createDetailsPurchase(idProduct, user.getIdUser(), cantity, paymentMethod);
@@ -74,6 +74,8 @@ public class PurchaseController {
             e.printStackTrace();
             throw new ErrorServicio("Error de Sistema");
         }
+
+Thread.sleep(1000);
         return "redirect:/";
     }
 
