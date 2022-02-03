@@ -5,8 +5,6 @@ import ProductShop.Entity.Product;
 import ProductShop.Repository.ProductRepository;
 import ProductShop.Service.ProductService;
 import ProductShop.errores.ErrorServicio;
-import java.util.List;
-import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
