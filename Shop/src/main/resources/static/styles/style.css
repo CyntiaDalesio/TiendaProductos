@@ -163,6 +163,7 @@ form{
 .filter input{
     background: transparent;
     border-style: none;
+    color: #2B2B2B;
 }
 .filtros2{
     display: flex;

@@ -29,7 +29,7 @@ public class PrincipalController {
         Usuario user = userService.obtenerUsuarioSesion();
         if (user != null && user.getRol() == Role.ADMIN) {
 
-            products = productservice.listarProductAll();
+            products = productservice.listarProduct();
 
         } else {
 
@@ -41,9 +41,11 @@ public class PrincipalController {
     }
 
     @PostMapping("/searchcat")
-    public String SearchCat(ModelMap model, Category category) {
-        List<Product> products = productservice.searchbycat(category);
-        model.put("products", products);
+    public String SearchCat(ModelMap model,Category category) {
+       
+        List<Product> productos =  productservice.searchbycat(category);
+       
+        model.put("products", productos);
         return "index.html";
     }
 
@@ -67,4 +69,11 @@ public class PrincipalController {
         model.put("products", products);
         return "index.html";
     }
+    @PostMapping("/searchbaja/{availableStock}")
+     public String SearchBaja(ModelMap model, Boolean availableStock) {
+        List<Product> products = productservice.listarProductBaja(availableStock);
+        model.put("products", products);
+        return "index.html";
+            
+}
    }
