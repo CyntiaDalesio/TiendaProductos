@@ -211,10 +211,10 @@ select:hover{
     background: linear-gradient(to right, #F9D423, #e65c00); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
     border: 1px solid;
     border-radius: 2px;
-    margin: 20px;
+    margin: 15px;
     text-align: center;
     width: 400px;
-    height: 450px;
+    height: 500px;
     margin-top: 15px;
     transition: transform 1s;
     cursor:pointer;
