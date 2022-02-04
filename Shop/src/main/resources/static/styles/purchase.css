@@ -79,7 +79,7 @@
     margin: 5px;
 }
 .buttons{
-    display: flex;
+    display: flex;    
 }
 .btn{
     margin: 5px;
@@ -91,10 +91,14 @@
     background-color: #E78A00;
     color: #ffffff;
     cursor: pointer;
+    margin-top: 5px;
+}
+.btn a{
+    margin-top: 15px;
 }
 footer{
-    position: fixed;
-    bottom: 0; 
+    
+
     width: 100%;
 }
 
