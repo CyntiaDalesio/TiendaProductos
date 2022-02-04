@@ -1,8 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Domine:wght@700&family=Roboto:wght@400;700&family=Work+Sans:wght@400;500;600;700&display=swap');
 *{
     margin: 0px;
     padding: 0px;
     box-sizing: border-box;
-    font-family: 'Times New Roman', Times, serif;
+    font-family: 'Roboto', sans-serif;
    /*background-color:#2B2B2B;*/
    color: #ffffff;
 }
@@ -150,9 +151,11 @@ form{
     display: flex;
     justify-content: center;
     align-items: center;
+    margin: 15px;
 }
 .filter{
     width: 200px;
+    margin-rigth: 10px;
     height: 40px;
     border-radius: 15px;
     color: #ffff;
@@ -211,10 +214,10 @@ select:hover{
     background: linear-gradient(to right, #F9D423, #e65c00); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
     border: 1px solid;
     border-radius: 2px;
-    margin: 20px;
+    margin: 15px;
     text-align: center;
     width: 400px;
-    height: 450px;
+    height: 500px;
     margin-top: 15px;
     transition: transform 1s;
     cursor:pointer;
