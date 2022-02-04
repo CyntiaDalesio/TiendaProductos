@@ -26,7 +26,6 @@ let form = document.querySelector('form').addEventListener("submit", () => {
         icon: 'success',
         title: 'Compra realizada con exito',
         showConfirmButton: false,
-
     })
 });
 

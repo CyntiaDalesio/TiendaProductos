@@ -161,7 +161,7 @@
 
                     <h3 th:text="${product.Name}"></h3>
                     <p> $[[${product.Price}]] </p>
-                    <p> Stock:[[${product.Stock}]] </p>
+                    <p sec:authorize="hasRole('ROLE_ADMIN') or hasRole('ROLE_SELLER')"> Stock:[[${product.Stock}]] </p>
                     <a sec:authorize="hasRole('ROLE_ADMIN') or hasRole('ROLE_SELLER')" type="button" class="modify"
                         th:href="@{/modifyproduct/}+${product.idProduct}">
                         Modificar
