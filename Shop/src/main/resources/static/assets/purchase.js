@@ -21,11 +21,13 @@ let input = document.querySelector(".input-cantity");
     });
 
 let form = document.querySelector('form').addEventListener("submit", ()=>{
-    Swal.fire(
-        'Felicitaciones!',
-        'compra realizada!',
-        'success'
-      )
+    Swal.fire({
+        position: 'center',
+        icon: 'success',
+        title: 'Compra realizada con exito',
+        showConfirmButton: false,
+        timer: 1500
+    })
 });
 
 
