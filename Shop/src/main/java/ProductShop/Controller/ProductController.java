@@ -5,6 +5,7 @@ import ProductShop.Entity.Product;
 import ProductShop.Repository.ProductRepository;
 import ProductShop.Service.ProductService;
 import ProductShop.errores.ErrorServicio;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
@@ -66,5 +67,24 @@ private ProductRepository productRepository;
   
         productservice.DeleteProduct(product);
         return "redirect:/";
+    }
+  @GetMapping("/searchbaja/addproduct")
+     public String SearchBaja2(ModelMap model, Boolean availableStock) {
+        List<Product> products = productservice.listarProductBaja(availableStock);
+        model.put("products", products);
+        return "redirect:/addproduct";
+            
+}
+    @GetMapping("/searchcode/addproduct")
+    public String SearchCode2(ModelMap model, Integer CodeProduct) {
+        List<Product> products = productservice.searchbycode(CodeProduct);
+        model.put("products", products);
+        return "redirect:/addproduct";
+    }
+    @GetMapping("/searchname/addproduct")
+    public String SearchName2(ModelMap model, String Name) {
+        List<Product> products = productservice.searchbyname(Name);
+        model.put("products", products);
+        return "redirect:/addproduct";
     }
 }
