@@ -30,13 +30,13 @@
             <div class="container">
                 <h2 class="register-title">Editar <span>Usuario</span></h2>
             <form th:action="@{/editUser}" method="post" class="col-6 mx-auto">
-                <label> Nombre y Apellido </label><br />
+                <label> Usuario </label><br />
 
-                <input type="text" name="username" th:value="${user.username}" class="input-modify" placeholder="Nombre y apellido" required/><br />
+                <input type="text" name="username" th:value="${user.username}" class="input-modify" placeholder="Usuario" required/><br />
 
                 <label> Email </label><br />
 
-                <input type="text" name="email" placeholder="Email" th:value="${user.email}" class="input-modify" required/><br />
+                <input type="email" name="email" placeholder="Email" th:value="${user.email}" class="input-modify" required/><br />
 
                 <label> DNI </label><br />
 
