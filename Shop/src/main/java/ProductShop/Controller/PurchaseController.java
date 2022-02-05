@@ -37,13 +37,10 @@ public class PurchaseController {
     public String details(ModelMap model, @PathVariable String idProduct) throws ErrorServicio {
         try {
             Product product = productService.findProductById(idProduct);
-            model.put("producto", product);
-            System.out.println(idProduct + " Metodo Get controlador");
-        } catch (Exception e) {
-            System.out.println("Adentro del catch");
+            model.put("producto", product);            
+        } catch (Exception e) {           
             throw new ErrorServicio("Producto no econtrado");
-        }
-        System.out.println("luego del catch");
+        }        
         return "purchaseProduct.html";
     }
 

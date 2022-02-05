@@ -2,5 +2,5 @@ package ProductShop.Enums;
 
 
 public enum PaymentMethod {
-    DEBIT,CREDIT,TRANSFER;
+    DEBITO,CREDITO,TRANSFERENCIA;
 }
