@@ -91,6 +91,19 @@ public class UserController {
         return "redirect:/users";
     }
 
+ @PreAuthorize("hasAnyRole('ROLE_ADMIN')")
+    @GetMapping("/users/deleteUser/{id}")
+    public String deleteRole(@PathVariable String id, ModelMap model) throws Error {
+
+        userService.deleteUser(id);
+
+        return "redirect:/users";
+    }
+
+
+
+
+
     @PreAuthorize("hasAnyRole('ROLE_ADMIN')")
     @PostMapping("clientes/updateRole/{id}")
     public String updateRole(@PathVariable String id, @RequestParam String username, @RequestParam String password, @RequestParam String password2, @RequestParam String email, @RequestParam String dni) throws Error {
