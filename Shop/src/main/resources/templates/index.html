@@ -108,7 +108,7 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 
         <th:block th:each="product : ${products}">
             <div class="cards-product">
-                <img class="imgProduct" th:if="${product.photo ne null}" th:src="@{/photo/}+${product.photo.id}"/>   
+                <img class="imgProduct" th:if="${product.photo != null}" th:src="${'/photo/product/' + product.photo.id}" alt=""/>   
 
                 <h3 th:text="${product.Name}"></h3>
                 <p > $[[${product.Price}]] </p>

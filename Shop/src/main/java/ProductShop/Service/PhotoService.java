@@ -21,44 +21,40 @@ public class PhotoService {
     @Autowired
     private PhotoRepository photoRepository;
 
-    public Photo findById(String id) {
-
-        if (id != null) {
-            Optional<Photo> rta = photoRepository.findById(id);
-            if (rta.isPresent()) {
-                Photo photo = rta.get();
-
-                return photo;
-            }
-        }
-        return null;
-    }
-
     @Transactional
     public Photo save(MultipartFile archivo) throws ErrorServicio {
 
-        Photo photo = new Photo();
+        if (archivo != null) {
+            try {
+                Photo photo = new Photo();
+                photo.setMime(archivo.getContentType());
+                photo.setName(archivo.getName());
+                photo.setContent(archivo.getBytes());
 
-        try {
+                return photoRepository.save(photo);
 
-            photo.setMime(archivo.getContentType());
-            photo.setName(archivo.getName());
-            photo.setContent(archivo.getBytes());
+            } catch (IOException e) {
+                System.out.println(e.getMessage());
 
-            photoRepository.save(photo);
-
-            return photo;
-        } catch (IOException e) {
-            System.out.println(e.getMessage());
-
-            return null;
-        } catch (NullPointerException ee) {
-
-            System.out.println(ee.getMessage());
-
+                return null;
+            }
+        } else {
             return null;
         }
+    }
+    
+       @Transactional
+    public Photo findById(String idProduct) throws ErrorServicio {
+        System.out.println(idProduct + "aca esta el error");
 
+        Optional<Photo> wer = photoRepository.findById(idProduct);
+
+        if (wer.isPresent() && wer != null) {
+            Photo photo = wer.get();
+            return photo;
+        } else {
+            throw new ErrorServicio("no se encontro ningun producto");
+        }
     }
 
     @Transactional
@@ -77,9 +73,12 @@ public class PhotoService {
                 photo.setMime(archivo.getContentType());
                 photo.setName(archivo.getName());
                 photo.setContent(archivo.getBytes());
+
                 return photoRepository.save(photo);
+
             } catch (IOException e) {
                 System.out.println(e.getMessage());
+                return null;
             }
         }
         return null;

@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+x<!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
@@ -40,7 +40,8 @@
                     </select>
                   <br>
               
-            <label for="photo">Foto [[${product.photo?.name}]] </label>
+            <label for="photo">Foto</label>
+            <img id="Photoproduct" th:if="${product.photo != null}" th:src="${'/photo/modifyproduct/' + product.idProduct}" alt="productimg">
             <input name="archivo" type="file" class="" placeholder="seleccione una Foto para subir" >
             <input type="submit" name="" value="Submit" class="button" >
         </form>

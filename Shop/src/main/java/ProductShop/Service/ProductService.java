@@ -22,7 +22,6 @@ public class ProductService {
     @Autowired
     private PhotoService photoService;
 
-    
     @Transactional
     public Product CreateProduct(MultipartFile archivo, Integer CodeProduct, String Name, Double Price, String TradeMark, String category, Integer Stock) throws ErrorServicio {
 
@@ -61,72 +60,64 @@ public class ProductService {
             product.setPrice(Price);
             product.setStock(Stock);
 
-            if (product.getStock()>0) {
+            if (product.getStock() > 0) {
                 product.setAvailableStock(Boolean.TRUE);
             }
             product.setTradeMark(TradeMark);
             product.setCategory(Category.valueOf(category));
 
-            String idPhoto = null;
-            
-            if (archivo != null) {
-                if (product.getPhoto() != null) {
-                    idPhoto = product.getPhoto().getId();
+            if (product.getPhoto() != null) {
+                String idPhoto = product.getPhoto().getId();
 
-                    Photo photo = photoService.updatePhoto(idPhoto, archivo);
-                    product.setPhoto(photo);
-                   
-                    product.getPhoto();
-                } else {
-                    Photo photo = photoService.save(archivo);
-                    product.setPhoto(photo);
+                Photo photo = photoService.updatePhoto(idPhoto, archivo);
+                product.setPhoto(photo);
 
-                }
+                productrepository.save(product);
+            } else {
+                throw new ErrorServicio("No se encontro el producto solicitado");
             }
-        
 
-        if (Stock > 0) {
-            product.setAvailableStock(true);
-        } else {
-            product.setAvailableStock(false);
+            if (Stock > 0) {
+                product.setAvailableStock(true);
+            } else {
+                product.setAvailableStock(false);
+            }
+            productrepository.save(product);
         }
-        productrepository.save(product);
     }
-}
-
 
     public List<Product> listarProduct() {
 
         return productrepository.findByAvailableStockTrue();
     }
 
-   public List<Product> listarProductAll() {
+    public List<Product> listarProductAll() {
 
         return productrepository.findAll();
     }
 
+    @Transactional
+    public Product findProductById(String idProduct) throws ErrorServicio {
+        System.out.println(idProduct + "aca esta el error");
 
+        Optional<Product> wer = productrepository.findById(idProduct);
 
-    public Product findProductById(String idProduct) {
-
-        Optional<Product> answer = productrepository.findById(idProduct);
-        if (answer.isPresent()) {
-            Product product = answer.get();
+        if (wer.isPresent() && wer != null) {
+            Product product = wer.get();
             return product;
         } else {
-            return null;
+            throw new ErrorServicio("no se encontro ningun producto");
         }
     }
-    public List<Product> searchbycat(Category category){
-        
+
+    public List<Product> searchbycat(Category category) {
+
         return productrepository.findByCategory(category);
     }
-    
-    public List<Product> searchbyname(String Name){
+
+    public List<Product> searchbyname(String Name) {
         System.out.println(Name);
-      
-      
-       
-        return  productrepository.findByName(Name);
+
+        return productrepository.findByName(Name);
     }
 }

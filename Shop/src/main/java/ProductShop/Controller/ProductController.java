@@ -2,12 +2,8 @@ package ProductShop.Controller;
 
 import ProductShop.Entity.Photo;
 import ProductShop.Entity.Product;
-import ProductShop.Enums.Category;
-import ProductShop.Repository.ProductRepository;
 import ProductShop.Service.ProductService;
 import ProductShop.errores.ErrorServicio;
-import java.util.ArrayList;
-import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
@@ -26,7 +22,7 @@ public class ProductController {
 
     @PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_SELLER')")
     @GetMapping("/modifyproduct/{idProduct}")
-    public String Index(@PathVariable String idProduct, ModelMap model) {
+    public String Index(@PathVariable String idProduct, ModelMap model) throws ErrorServicio {
 
         Product product = productservice.findProductById(idProduct);
 

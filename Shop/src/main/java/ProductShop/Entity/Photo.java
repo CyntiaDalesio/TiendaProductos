@@ -1,4 +1,4 @@
-package ProductShop.Entity;
+    package ProductShop.Entity;
 
 import java.io.Serializable;
 import javax.persistence.Basic;
