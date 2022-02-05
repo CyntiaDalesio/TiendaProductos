@@ -30,13 +30,13 @@
             <div class="container">
                 <h2 class="register-title">Regis<span>trate</span></h2>
             <form th:action="@{/register}" method="post" class="col-6 mx-auto">
-                <label> Nombre y Apellido </label><br />
+                <label> Usuario </label><br />
 
-                <input type="text" name="username" placeholder="Nombre y apellido" required/><br />
+                <input type="text" name="username" placeholder="Usuario" required/><br />
 
                 <label> Email </label><br />
 
-                <input type="text" name="email" placeholder="Email" required/><br />
+                <input type="email" name="email" placeholder="Email" required/><br />
 
                 <label> DNI </label><br />
 
@@ -52,7 +52,8 @@
 
                 <br />
 
-                <input type="submit" name="login" value="Submit" class="button" >
+                <input type="submit" name="login" value="Registrarse" class="button" >
+                <input type="button" name="" value="Cancelar"  onclick="location.href='../'">
             </form>
              </div>
         </main>
