@@ -124,17 +124,16 @@ public List<Product> listarProductBaja(Boolean availableStock) {
     }
     public List<Product> searchbycat(Category category){
        List<Product> productos = productrepository.findByCategory(category);
+        List<Product> p = new ArrayList();
         if(productos.iterator().hasNext()){
             for (Product producto : productos) {
                 producto.getAvailableStock();
-                if(producto.getAvailableStock() == false){
-                    productos.remove(producto);
+                if(producto.getAvailableStock() == true){
+                    p.add(producto);
                 }
             }
         }
-     
-
-    return productos;}
+    return p;}
     
     public List<Product> searchbyname(String Name){
         System.out.println(Name);
