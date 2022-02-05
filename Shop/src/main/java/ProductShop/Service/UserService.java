@@ -69,7 +69,7 @@ public class UserService implements UserDetailsService {
             user.setEmail(email);
             user.setStartDate(Calendar.getInstance().getTime());
             user.setRol(Role.USER);
- 
+
             return userRepository.save(user);
         }
 
@@ -153,7 +153,7 @@ public class UserService implements UserDetailsService {
 
         } else {
 
-            throw new Error("No se encontró el autor ingresado");
+            throw new Error("No se encontró el usuario ingresado");
         }
 
     }
@@ -171,7 +171,28 @@ public class UserService implements UserDetailsService {
 
         } else {
 
-            throw new Error("No se encontró el autor ingresado");
+            throw new Error("No se encontró el usuario ingresado");
+        }
+
+    }
+// eliminar Seller
+
+    @Transactional
+    public void deleteUser(String id) {
+        try {
+            Optional<Usuario> answer = userRepository.findById(id);
+            if (answer.isPresent()) {
+                Usuario user = answer.get();
+
+                if (user.getPurchase().isEmpty()) {
+                    userRepository.delete(user);
+                }
+
+            }
+
+        } catch (Exception e) {
+            throw new Error("El usuario posee compras realizadas");
+
         }
 
     }
