@@ -5,6 +5,8 @@ import ProductShop.Entity.Product;
 import ProductShop.Enums.Category;
 import ProductShop.Repository.ProductRepository;
 import ProductShop.errores.ErrorServicio;
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
 
@@ -22,6 +24,7 @@ public class ProductService {
     @Autowired
     private PhotoService photoService;
 
+    
     @Transactional
     public Product CreateProduct(MultipartFile archivo, Integer CodeProduct, String Name, Double Price, String TradeMark, String category, Integer Stock) throws ErrorServicio {
 
@@ -60,64 +63,99 @@ public class ProductService {
             product.setPrice(Price);
             product.setStock(Stock);
 
-            if (product.getStock() > 0) {
+            if (product.getStock()>0) {
                 product.setAvailableStock(Boolean.TRUE);
             }
             product.setTradeMark(TradeMark);
             product.setCategory(Category.valueOf(category));
 
-            if (product.getPhoto() != null) {
-                String idPhoto = product.getPhoto().getId();
+            String idPhoto = null;
+            
+            if (archivo != null) {
+                if (product.getPhoto() != null) {
+                    idPhoto = product.getPhoto().getId();
 
-                Photo photo = photoService.updatePhoto(idPhoto, archivo);
-                product.setPhoto(photo);
+                    Photo photo = photoService.updatePhoto(idPhoto, archivo);
+                    product.setPhoto(photo);
+                   
+                    product.getPhoto();
+                } else {
+                    Photo photo = photoService.save(archivo);
+                    product.setPhoto(photo);
 
-                productrepository.save(product);
-            } else {
-                throw new ErrorServicio("No se encontro el producto solicitado");
+                }
             }
+        
 
-            if (Stock > 0) {
-                product.setAvailableStock(true);
-            } else {
-                product.setAvailableStock(false);
-            }
-            productrepository.save(product);
+        if (Stock > 0) {
+            product.setAvailableStock(true);
+        } else {
+            product.setAvailableStock(false);
         }
+        productrepository.save(product);
     }
+}
+
 
     public List<Product> listarProduct() {
 
         return productrepository.findByAvailableStockTrue();
     }
 
-    public List<Product> listarProductAll() {
+   public List<Product> listarProductAll() {
 
         return productrepository.findAll();
     }
+public List<Product> listarProductBaja(Boolean availableStock) {
 
-    @Transactional
-    public Product findProductById(String idProduct) throws ErrorServicio {
-        System.out.println(idProduct + "aca esta el error");
+        return productrepository.findByAvailableStockFalse(availableStock);
+    }
 
-        Optional<Product> wer = productrepository.findById(idProduct);
 
-        if (wer.isPresent() && wer != null) {
-            Product product = wer.get();
+    public Product findProductById(String idProduct) {
+
+        Optional<Product> answer = productrepository.findById(idProduct);
+        if (answer.isPresent()) {
+            Product product = answer.get();
             return product;
         } else {
-            throw new ErrorServicio("no se encontro ningun producto");
+            return null;
         }
     }
+    public List<Product> searchbycat(Category category){
+       List<Product> productos = productrepository.findByCategory(category);
+        if(productos.iterator().hasNext()){
+            for (Product producto : productos) {
+                producto.getAvailableStock();
+                if(producto.getAvailableStock() == false){
+                    productos.remove(producto);
+                }
+            }
+        }
+     
 
-    public List<Product> searchbycat(Category category) {
-
-        return productrepository.findByCategory(category);
-    }
-
-    public List<Product> searchbyname(String Name) {
+    return productos;}
+    
+    public List<Product> searchbyname(String Name){
         System.out.println(Name);
-
-        return productrepository.findByName(Name);
+      
+      
+       
+        return  productrepository.findByName(Name);
+    }
+    
+    public List<Product> searchbyprice(Double Price){
+        
+    return productrepository.findByPrice(Price);
+    }
+    public List<Product> searchbycode (Integer CodeProduct){
+        
+        return productrepository.findByCodeProduct(CodeProduct);
+        
+    }
+    public void DeleteProduct (Product product){
+       product.setStock(0);
+       product.setAvailableStock(false);
+       productrepository.save(product);
     }
 }

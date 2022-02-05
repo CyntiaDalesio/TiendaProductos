@@ -26,10 +26,10 @@ public class PurchaseService {
 
     @Transactional
     public Purchase createPurchase(String paymentMehtod, Double priceUnit) {
-        Purchase purchase = new Purchase();        
+        Purchase purchase = new Purchase();
         purchase.setDate(new Date());
         purchase.setPaymentMethod(PaymentMethod.valueOf(paymentMehtod));
-        
+
         return purchaseRepository.save(purchase);
 
     }
@@ -53,4 +53,19 @@ public class PurchaseService {
         return purchaseRepository.findById(idPurchase);
     }
 
+    public List<Purchase> showPurchaseByIdUser(String idUsuario) {
+        return purchaseRepository.findByIdUser(idUsuario);
+    }
+
+    public List<Purchase> showPurchaseByCodPurchase() {
+        return purchaseRepository.findAllOrderByCodPurchase();
+    }
+    
+    public List<Purchase> showPurchaseByCliente(String name) {
+        return purchaseRepository.findByClient(name);
+    }
+    
+    public List<Purchase> showPurchaseByArticulo(String articulo) {
+        return purchaseRepository.findByArticulo(articulo);
+    }
 }

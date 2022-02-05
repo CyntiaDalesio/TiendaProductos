@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+  xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+
+</html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ventas</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+  <link rel="stylesheet" type="text/css" media="all" href="/src/main/resources/static/styles/style.css"
+    th:href="@{/styles/style.css}" />
+    <link rel="stylesheet" type="text/css" media="all" href="/src/main/resources/static/styles/sales.css"
+    th:href="@{/styles/sales.css}" />
+  
+
+</head>
+
+<body>
+  <header>
+    <section class="main-title">
+      <a href="/">
+        <h1 id="home">E-Gam<span>Egg</span></h1>
+      </a>
+    </section>
+  </header>
+  <section class="container-sales">
+  <form  th:action="@{/searchclient/}+${user?.name}" method="post">
+    <input name="cliente" placeholder="Cliente" type="text" th:value="${user?.name}" class="search-client">
+    <button type="submit" class="button">Buscar</button>
+  </form>
+  <br>
+  <form class="filter" action="/purchase/sales" method="get">
+    <button type="submit" class="cleanFilter">Limpiar Filtros</button>
+  </form>
+  </section>
+  <h2>Ventas Realizadas</h2>
+
+
+
+  <table class="table table-dark table-hover">
+
+    <tr>
+
+      <th>Codigo Venta</th>
+      <th>Fecha Venta</th>
+      <th>Cliente</th>
+      <th>Articulo</th>
+      <th>Cantidad</th>
+      <th>Precio</th>
+      <th>Total</th>
+      <th>Forma de Pago</th>
+
+    </tr>
+
+    <tr th:each="venta : ${ventas}">
+
+      <td th:text="${venta.purchaseCode}"></td>
+      <td th:text="${venta.date}"></td>
+      <td th:text="${venta.usuario.username}"></td>
+      <td th:text="${venta.purchaseDetail.product.Name}"></td>
+      <td th:text="${venta.purchaseDetail.cantity}"></td>
+      <td th:text="${venta.purchaseDetail.product.Price}"></td>
+      <td th:text="${venta.purchaseDetail.subtotal}"></td>
+      <td th:text="${venta.paymentMethod}"></td>
+
+    </tr>
+
+  </table>
+
+
+
+
+  <section>
+    <article>
+      <a href="/" class="btn btn-secondary">Volver</a>
+    </article>
+  </section>
+  <br>
+  <br>
+  <br>
+
+  <footer>
+    <h3>Todos los derechos reservados E-GamEgg</h3>
+
+
+  </footer>
+
+</body>
+
+</html>

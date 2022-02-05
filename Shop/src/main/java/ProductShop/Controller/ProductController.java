@@ -2,6 +2,7 @@ package ProductShop.Controller;
 
 import ProductShop.Entity.Photo;
 import ProductShop.Entity.Product;
+import ProductShop.Repository.ProductRepository;
 import ProductShop.Service.ProductService;
 import ProductShop.errores.ErrorServicio;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,13 +17,17 @@ import org.springframework.web.multipart.MultipartFile;
 @Controller
 
 public class ProductController {
+@Autowired
+private ProductRepository productRepository;
 
+    public ProductController() {
+    }
     @Autowired
     private ProductService productservice;
 
     @PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_SELLER')")
     @GetMapping("/modifyproduct/{idProduct}")
-    public String Index(@PathVariable String idProduct, ModelMap model) throws ErrorServicio {
+    public String Index(@PathVariable String idProduct, ModelMap model) {
 
         Product product = productservice.findProductById(idProduct);
 
@@ -31,7 +36,7 @@ public class ProductController {
         return "modify";
     }
 
-    @PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_SELLER')")
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN')")
     @GetMapping("addproduct")
     public String addProduct() {
         return "addProduct.html";
@@ -53,7 +58,13 @@ public class ProductController {
         return "redirect:/";
     }
 //
-   
-
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN')")
+    @GetMapping("/delete/{idProduct}")
+    public String DeleteProduct(@PathVariable String idProduct) {
+     
+       Product product = productservice.findProductById(idProduct);
+  
+        productservice.DeleteProduct(product);
+        return "redirect:/";
+    }
 }
-

@@ -1,4 +1,3 @@
-
 package ProductShop.Entity;
 
 import ProductShop.Enums.PaymentMethod;
@@ -21,26 +20,23 @@ public class Purchase {
     @GeneratedValue(generator = "uuid")
     @GenericGenerator(name = "uuid", strategy = "uuid2")
     private String Id;
-    
-//    private Integer purchaseCode;
-
+    private Integer purchaseCode;
     private Double total;
-
     @Enumerated(EnumType.STRING)
     private PaymentMethod paymentMethod;
-
     @Temporal(TemporalType.DATE)
     private Date date;
-    
-    
     @ManyToOne
     private Usuario usuario;
-
     @OneToOne
     private PurchaseDetails purchaseDetail;
-
+    
+    public Purchase() {
+//        this.purchaseCode = purchaseCode + 1; 
+    }
+    
     public Purchase(Integer purchaseCode, Double total, PaymentMethod paymentMethod, Date date, Usuario usuario, PurchaseDetails purchaseDetail) {
-//        this.purchaseCode = purchaseCode;
+        this.purchaseCode = purchaseCode + 1;
         this.total = total;
         this.paymentMethod = paymentMethod;
         this.date = date;
@@ -48,12 +44,6 @@ public class Purchase {
         this.purchaseDetail = purchaseDetail;
     }
     
-    
-    
-
-    public Purchase() {
-    }
-
     public String getId() {
         return Id;
     }
@@ -94,7 +84,6 @@ public class Purchase {
         this.purchaseDetail = purchaseDetail;
     }
 
-    
     public PaymentMethod getPaymentMethod() {
         return paymentMethod;
     }
@@ -103,12 +92,12 @@ public class Purchase {
         this.paymentMethod = paymentMethod;
     }
 
-//    public Integer getPurchaseCode() {
-//        return purchaseCode;
-//    }
-//
-//    public void setPurchaseCode(Integer purchaseCode) {
-//        this.purchaseCode = purchaseCode;
-//    }
+    public Integer getPurchaseCode() {
+        return purchaseCode;
+    }
+
+    public void setPurchaseCode(Integer purchaseCode) {
+        this.purchaseCode = purchaseCode;
+    }
 
 }

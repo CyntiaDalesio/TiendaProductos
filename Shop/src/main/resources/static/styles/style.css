@@ -1,8 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Domine:wght@700&family=Roboto:wght@400;700&family=Work+Sans:wght@400;500;600;700&display=swap');
 *{
     margin: 0px;
     padding: 0px;
     box-sizing: border-box;
-    font-family: 'Times New Roman', Times, serif;
+    font-family: 'Roboto', sans-serif;
    /*background-color:#2B2B2B;*/
    color: #ffffff;
 }
@@ -46,12 +47,16 @@ nav h3{
     height:50px;
     width: 100px;
     cursor: pointer;
-    font-size: 12px;
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+
+    color:#E78A00;
     border: 1px solid #FFFFFF;
     background-color: #000000;
 }
 nav h3:hover{
-    background-color: #ffffff;
+    background: rgba(255, 255, 255, 0.568);
     color: #2B2B2B;
 }
 nav button{
@@ -129,7 +134,7 @@ nav button:hover{
     align-items: center;
     justify-content: space-evenly;
     text-align: center;
-    margin-top: 20px;
+    margin-top: 50px;
     margin-left: 50px ;
     margin-right: 50px;
 }
@@ -142,34 +147,65 @@ nav button:hover{
     font-size: 1.5rem ;
     margin-right: 10px ;
 }
-
+form{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 15px;
+}
 .filter{
-    width: 300px;
+    width: 200px;
+    margin-rigth: 10px;
     height: 40px;
     border-radius: 15px;
-    background-color: #000000;
     color: #ffff;
+    background: #000000;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #434343, #000000);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #434343, #000000);
+}
+.filter input{
+    background: transparent;
+    border-style: none;
+    color: #2B2B2B;
+}
+.filtros2{
+    display: flex;
+    align-items: center;
+    justify-content:center;
+    
 }
 select:hover{
     border: 1px solid #E78A00;
-   
 }
-.top-products button{
-    height: 40px;
+.cleanFilter{
+    background: transparent;
+    border-style: none;
+    border: 1px solid #000000;
+    border-radius: 15px;
+    width: 100%;
+    height: 100%;
+}
+.cleanFilter:hover{
+    border-color: #E78A00;
+}
+.searchButton{
+    height: 50px;
     width: 100px;
     border-radius: 15px;
     color: #ffff ;
     background-color: #2B2B2B;
     border-style: none;
     margin-left: 5px;
-
+}
+.searchButton:hover{
+    border-color: #E78A00;
 }
 .cards-conteiner{
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
     align-items: center;
-
+    margin-top: 50px;
 }
 .cards-product{
    /* background-color: rgba(251, 250, 246, 1);*/
@@ -178,10 +214,11 @@ select:hover{
     background: linear-gradient(to right, #F9D423, #e65c00); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
     border: 1px solid;
     border-radius: 2px;
-    margin: 20px;
+    margin: 15px;
     text-align: center;
-    width: 280px;
-    height: 420px;
+    width: 400px;
+    height: 500px;
+    margin-top: 15px;
     transition: transform 1s;
     cursor:pointer;
 }
@@ -199,7 +236,7 @@ select:hover{
     
 }
 .cards-product img{
-    margin:  15px;
+    margin:  10px;
 }
 .add-product{
     display: flex;
@@ -245,8 +282,8 @@ footer h3{
 
 .imgProduct{
 
-width: 200px;
-height: 250px;
+width: 300px;
+height: 300px;
 object-fit: cover;
 }
 ul{
@@ -361,6 +398,15 @@ ul{
     display: none;
 }
 
+
+.input-filter2 input{
+    border-radius: 15px;
+    height:2.5rem;
+    margin: 5px;
+    border-style: none;
+    background: #000000;  /* fallback for old browsers */
+}
+
 @media screen and (max-width: 768px){
     .menuResponsive {
         display: block;
@@ -369,6 +415,9 @@ ul{
         display: none;
     }
     .top-products{
-        display: block;
+        display: none;
+    }
+    .filter{
+        margin: 10px;
     }
 }

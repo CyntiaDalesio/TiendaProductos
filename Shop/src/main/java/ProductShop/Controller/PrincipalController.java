@@ -27,9 +27,9 @@ public class PrincipalController {
 
         List<Product> products;
         Usuario user = userService.obtenerUsuarioSesion();
-        if (user != null && user.getRol()== Role.ADMIN) {
+        if (user != null && user.getRol() == Role.ADMIN) {
 
-            products = productservice.listarProductAll();
+            products = productservice.listarProduct();
 
         } else {
 
@@ -41,16 +41,39 @@ public class PrincipalController {
     }
 
     @PostMapping("/searchcat")
-    public String SearchCat(ModelMap model, Category category) {
-        List<Product> products = productservice.searchbycat(category);
+    public String SearchCat(ModelMap model,Category category) {
+       
+        List<Product> productos =  productservice.searchbycat(category);
+       
+        model.put("products", productos);
+        return "index.html";
+    }
+
+    @PostMapping("/searchname/{Name}")
+    public String SearchName(ModelMap model, String Name) {
+        List<Product> products = productservice.searchbyname(Name);
         model.put("products", products);
         return "index.html";
     }
-    
- @GetMapping("/searchname/{Name}")
-    public String SearchName(ModelMap model, String Name){
-         List<Product> products = productservice.searchbyname(Name);
+
+    @PostMapping("/searchprice/{Price}")
+    public String SearchPrice(ModelMap model, Double Price) {
+        List<Product> products = productservice.searchbyprice(Price);
         model.put("products", products);
         return "index.html";
     }
+
+    @PostMapping("/searchcode/{CodeProduct}")
+    public String SearchCode(ModelMap model, Integer CodeProduct) {
+        List<Product> products = productservice.searchbycode(CodeProduct);
+        model.put("products", products);
+        return "index.html";
+    }
+    @PostMapping("/searchbaja/{availableStock}")
+     public String SearchBaja(ModelMap model, Boolean availableStock) {
+        List<Product> products = productservice.listarProductBaja(availableStock);
+        model.put("products", products);
+        return "index.html";
+            
 }
+   }

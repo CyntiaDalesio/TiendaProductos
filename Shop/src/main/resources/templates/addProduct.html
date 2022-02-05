@@ -19,7 +19,7 @@
 
 <header>
   <section class="main-title">
-      <a href="/"><h1 id="home">E-Game<span>Egg</span></h1></a>
+      <a href="/"><h1 id="home">E-Gam<span>Egg</span></h1></a>
   </section>
 </header>
   <main class="main-product">
@@ -29,27 +29,27 @@
     <section class="container-form">
     <form  id="contact_form" action="/addproduct" method="post" enctype="multipart/form-data" class="product-form">
           <label>CODIGO</label>
-              <input name="CodeProduct" placeholder="Code Product"  type="text"/>
+              <input name="CodeProduct" placeholder="Code Product"  type="text" required/>
           <label>NOMBRE</label>
-              <input name="Name" placeholder="Name" type="text"/>
+              <input name="Name" placeholder="Name" type="text" required/>
           <label >PRECIO</label>
-          <input name="Price" placeholder="Price" type="number">    
+          <input name="Price" placeholder="Price" type="number" required>    
           <label class="col-md-4 control-label">MARCA</label>
-          <input name="TradeMark" placeholder="TradeMark"  type="text">
+          <input name="TradeMark" placeholder="TradeMark"  type="text" required>
           <label >CATEGORIA</label>
                   <select name="category">
                   <option th:each="Category : ${T(ProductShop.Enums.Category).values()}" th:value="${Category}"
                     th:text="${Category}">
                   </option>
           <label >STOCK</label>
-          <input name="Stock" placeholder="Stock" type="number">
+          <input name="Stock" placeholder="Stock" type="number" required>
           <p>Seleccionar archivo:<input type="file" name="archivo" /></p>
-          <input type="submit" value="Enviar" />
+          <input type="submit" value="Cargar Producto" required/>
     </form>
   </section>
 </main>
 <footer>
-  <h3>Todos los derechos reservados E-GameEgg</h3>
+  <h3>Todos los derechos reservados E-GamEgg</h3>
 </footer>
 </body>
 

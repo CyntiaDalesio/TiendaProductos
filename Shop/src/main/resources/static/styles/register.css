@@ -19,6 +19,10 @@
     background-color: transparent;
     margin-bottom:75px;
 }
+form{
+    display: flex;
+    flex-direction: column;
+}
 .register-title{
     margin: 10px;
     font-size: 32px;
@@ -43,4 +47,9 @@ input{
 }
 input:hover{
     border-color: #E78A00;
+}
+footer{
+    position: fixed;
+    bottom: 0; 
+    width: 100%;
 }

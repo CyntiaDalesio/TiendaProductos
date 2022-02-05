@@ -1,0 +1,37 @@
+.button{
+    width: 100px;
+    height: 40px;
+    border-style: none;
+    border-radius: 15px;
+    background: #000000;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #434343, #000000);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #434343, #000000);
+    border: 1px solid #000000;
+    color: #ffff;
+    margin-left: 15px;
+}
+.search-client{
+    height: 40px;
+    border-radius: 15px;
+    background: #000000;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #434343, #000000);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #434343, #000000);
+    border-style: none;
+}
+.button:hover{
+    border-color:  #E78A00;
+}
+footer{
+    position: fixed;
+    bottom: 0; 
+    width: 100%;
+}
+
+.container-sales{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+form{
+    margin: 20px;
+}

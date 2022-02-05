@@ -25,5 +25,9 @@ addProduct.addEventListener("click", () =>{
     location.href = "/addproduct"
 })
 
+//total
+
+let cantity = document.querySelector(".input-cantity").innerHTML; 
+console.log(cantity)
 
 

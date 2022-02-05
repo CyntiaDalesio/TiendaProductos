@@ -69,7 +69,7 @@ public class UserService implements UserDetailsService {
             user.setEmail(email);
             user.setStartDate(Calendar.getInstance().getTime());
             user.setRol(Role.USER);
-
+ 
             return userRepository.save(user);
         }
 

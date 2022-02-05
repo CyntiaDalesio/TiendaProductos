@@ -19,7 +19,7 @@ import javax.transaction.Transactional;
 
 @Service
 public class PurchaseDetailsService {
-
+    
     @Autowired
     private PurchaseDetailsRepository purchaseDetailsRepository;
     @Autowired
@@ -32,15 +32,24 @@ public class PurchaseDetailsService {
     private PurchaseService purchaseService;
     @Autowired
     private ProductService productService;
-
+    
     @Transactional
     public void createDetailsPurchase(String idProduct, String idUser, Integer quantity, String payMethod) throws ErrorServicio {
-
+        
         validateNull(idProduct, idUser, payMethod, quantity);
-    System.out.println("Pasando Validate null");
         PurchaseDetails purchaseDetails = new PurchaseDetails();
         Purchase purchase = new Purchase();
-
+        
+        List<Integer> listCodPurchase = purchaseRepository.findOrderByCodPurchase();
+        if (listCodPurchase.isEmpty()) {
+            purchase.setPurchaseCode(1);
+        } else {
+            for (int i = 0; i < listCodPurchase.size(); i++) {
+                purchase.setPurchaseCode(listCodPurchase.get(0) + 1);
+            }
+        }
+        
+        
         purchaseDetails.setProduct(validateProduct(idProduct));
         purchase.setUsuario(validateUser(idUser));
         if (validateStock(quantity, purchaseDetails.getProduct().getStock())) {
@@ -54,18 +63,18 @@ public class PurchaseDetailsService {
         System.out.println("Pasando PM");
         purchase.setDate(new Date());
         purchase.setTotal(purchaseDetails.getSubtotal());
-  System.out.println("Pasando Set sub total");
+        System.out.println("Pasando Set sub total");
         purchase.setPurchaseDetail(purchaseDetails);
-
+        
         purchaseDetailsRepository.save(purchaseDetails);
         purchaseRepository.save(purchase);
     }
-
+    
     @Transactional
     public PurchaseDetails modifyDetail(String idDetail, String idProduct, String idUser, Integer cantity, String payMethod) throws ErrorServicio {
-
+        
         validateNullDetail(idDetail);
-
+        
         Optional<PurchaseDetails> optionalDetail = purchaseDetailsRepository.findById(idDetail);
         if (optionalDetail.isPresent()) {
             PurchaseDetails purchaseDetails = optionalDetail.get();
@@ -78,12 +87,12 @@ public class PurchaseDetailsService {
             throw new Error("El detalle no existe");
         }
     }
-
+    
     @Transactional
     public void deleteDetail(String idDetail) throws ErrorServicio {
-
+        
         validateNullDetail(idDetail);
-
+        
         Optional<PurchaseDetails> optionalDetail = purchaseDetailsRepository.findById(idDetail);
         if (optionalDetail.isPresent()) {
             PurchaseDetails purchaseDetails = optionalDetail.get();
@@ -92,13 +101,13 @@ public class PurchaseDetailsService {
             throw new Error("El detalle no existe");
         }
     }
-
+    
     public Double calculateSubtotal(Double priceUnit, Integer cantity) {
         Double subtotal = 0.00;
         subtotal = priceUnit * cantity;
         return subtotal;
     }
-
+    
     public Boolean validateStock(Integer quantity, Integer availableStock) {
         Boolean stock = true;
         if (quantity > availableStock) {
@@ -107,15 +116,15 @@ public class PurchaseDetailsService {
             return stock;
         }
     }
-
+    
     public List<PurchaseDetails> showDetail() {
         return purchaseDetailsRepository.findAll();
     }
-
+    
     public Optional<PurchaseDetails> findById(String idDetails) {
         return purchaseDetailsRepository.findById(idDetails);
     }
-
+    
     public void validateNull(String idProduct, String idUser, String payMethod, Integer cantity) {
         try {
             if (idUser.isEmpty()) {
@@ -134,17 +143,17 @@ public class PurchaseDetailsService {
             e.getMessage();
         }
     }
-
+    
     public void validateNullDetail(String idDetail) {
         if (idDetail.isEmpty()) {
             throw new Error("El detalle no puede ser null");
         }
     }
-
+    
     public Product validateProduct(String idProduct) {
-
+        
         Optional<Product> optionalProduct = productRepository.findById(idProduct);
-
+        
         if (optionalProduct.isPresent()) {
             Product product = optionalProduct.get();
             return product;
@@ -152,11 +161,11 @@ public class PurchaseDetailsService {
             throw new Error("El producto no existe");
         }
     }
-
+    
     public Usuario validateUser(String idUser) {
-
+        
         Optional<Usuario> optionalUser = userRepository.findById(idUser);
-
+        
         if (optionalUser.isPresent()) {
             Usuario user = optionalUser.get();
             return user;
@@ -164,23 +173,23 @@ public class PurchaseDetailsService {
             throw new Error("El Usuario no existe");
         }
     }
-
+    
     @Transactional
     public void decreaseStock(String idProduct, Integer cantity) {
-            Optional<Product> productOptional = productRepository.findById(idProduct);
-            if (productOptional.isPresent()) {
-                Product product = productOptional.get();
-                product.setStock(product.getStock() - cantity);
-                if ((product.getStock())==0) {
-                    product.setAvailableStock(Boolean.FALSE);
-                }
-                productRepository.save(product);
-            } else {
-                throw new Error("El producto no existe");
+        Optional<Product> productOptional = productRepository.findById(idProduct);
+        if (productOptional.isPresent()) {
+            Product product = productOptional.get();
+            product.setStock(product.getStock() - cantity);
+            if ((product.getStock()) == 0) {
+                product.setAvailableStock(Boolean.FALSE);
             }
+            productRepository.save(product);
+        } else {
+            throw new Error("El producto no existe");
+        }
         
     }
-
+    
     public Product showStock(String idPurchaseDetails) {
         Product product = new Product();
         try {
@@ -197,7 +206,7 @@ public class PurchaseDetailsService {
             return product;
         }
         return product;
-
+        
     }
-
+    
 }
