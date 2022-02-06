@@ -56,19 +56,12 @@
 
       <td>
 
-
-
-      
-          
-
           <a href="#" th:href="@{/users/editRole/}+${usuario.idUser}" class="btn btn-primary"
             th:if="${usuario.rol==T(ProductShop.Enums.Role).USER}">Editar Rol a vendedor</a>
 
           <a th:href="@{/users/deleteUser/}+${usuario.idUser}" class="btn btn-success"
-            th:if="${usuario.rol==T(ProductShop.Enums.Role).SELLER}" th:else="${error}" role="alert">Eliminar Vendedor</a>
-            <p th:text="${error}"></p>
-          <!-- <a th:href="@{/prestamoDevolucion/eliminar/}+${prestamo.id}" class="btn btn-danger">Eliminar </a> -->
-
+            th:if="${usuario.rol==T(ProductShop.Enums.Role).SELLER}">Eliminar Vendedor</a>
+         
         
       </td>
 

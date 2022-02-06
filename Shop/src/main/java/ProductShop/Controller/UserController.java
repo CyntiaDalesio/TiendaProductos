@@ -2,12 +2,14 @@ package ProductShop.Controller;
 
 import ProductShop.Entity.Usuario;
 import ProductShop.Service.UserService;
+import ProductShop.errores.ErrorServicio;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -93,12 +95,34 @@ public class UserController {
 
  @PreAuthorize("hasAnyRole('ROLE_ADMIN')")
     @GetMapping("/users/deleteUser/{id}")
-    public String deleteRole(@PathVariable String id, ModelMap model) throws Error {
+    public String deleteRole(@PathVariable String id, ModelMap model) throws Error, ErrorServicio {
 
         userService.deleteUser(id);
 
         return "redirect:/users";
     }
+
+
+
+
+  @PreAuthorize("hasAnyRole('ROLE_ADMIN')")
+    @GetMapping("/users/deleteUser/error")
+        public String login(Model model, @RequestParam(required=false) String error,
+                @RequestParam(required=false) String username,@RequestParam(required=false) String logout) throws InterruptedException{
+
+            if (error!= null) {
+                model.addAttribute("error", "El vendedor posee compras, no se puede eliminar");
+            }
+            if (username!= null) {
+               model.addAttribute("username", username);
+            }
+
+Thread.sleep(1000);
+        return "redirect:/users";
+        }
+
+
+
 
 
 

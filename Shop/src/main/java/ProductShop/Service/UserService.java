@@ -5,6 +5,7 @@ import ProductShop.Entity.Usuario;
 import ProductShop.Enums.Role;
 import ProductShop.Repository.ContactRepository;
 import ProductShop.Repository.UserRepository;
+import ProductShop.errores.ErrorServicio;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -178,7 +179,7 @@ public class UserService implements UserDetailsService {
 // eliminar Seller
 
     @Transactional
-    public void deleteUser(String id) {
+    public void deleteUser(String id) throws ErrorServicio {
         try {
             Optional<Usuario> answer = userRepository.findById(id);
             if (answer.isPresent()) {
@@ -191,7 +192,7 @@ public class UserService implements UserDetailsService {
             }
 
         } catch (Exception e) {
-            throw new Error("El usuario posee compras realizadas");
+            throw new ErrorServicio("El usuario posee compras realizadas");
 
         }
 
