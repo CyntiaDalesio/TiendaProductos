@@ -5,6 +5,7 @@
     box-sizing: border-box;
     font-family: 'Roboto', sans-serif;
    /*background-color:#2B2B2B;*/
+   scroll-behavior: smooth ;
    color: #ffffff;
 }
 body{
@@ -166,7 +167,7 @@ form{
 .filter input{
     background: transparent;
     border-style: none;
-    color: #2B2B2B;
+    
 }
 .filtros2{
     display: flex;
@@ -268,6 +269,7 @@ a{
 }
 footer{
     display: flex;
+    font-weight: 700;
     align-items: center;
     justify-content: center;
     background: #e65c00;  /* fallback for old browsers */

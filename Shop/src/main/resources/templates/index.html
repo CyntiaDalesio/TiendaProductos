@@ -9,6 +9,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>E-GamEgg</title>
+    <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+    />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
         integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -23,8 +27,7 @@
     <header>
         <section class="main-title">
             <a href="/">
-                <h1 id="home">E-Gam<span>Egg</span></h1>
-            </a>
+                <h1 id="home" class="animate__animated animate__bounce">E-Gam<span>Egg</span></h1>
         </section>
         <nav class="completeNav">
 
@@ -60,9 +63,9 @@
                         <li><a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/users/}" class=" m">Listar Usuarios</a>
                         </li>
                         <li><a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/purchase/sales}"
-                                class="a-button">Ventas Realizadas</a></li>
+                                class="">Ventas Realizadas</a></li>
                         <li><a sec:authorize="hasRole('ROLE_USER')" th:href="@{/purchase/myShopping}"
-                                class="a-button">Mis Compras</a></li>
+                                class=" m">Mis Compras</a></li>
                         <li><a sec:authorize="isAuthenticated()" th:href="@{/users/edit}" class=" m">Modificar
                                 perfil</a></li>
                         <li><a sec:authorize="isAuthenticated()" href="/logout" type="logOut" id="LogOut"
