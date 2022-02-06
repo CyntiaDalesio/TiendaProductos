@@ -75,8 +75,9 @@
     border-radius: 10px;
     text-align: center;
 }
-.payment h3{
-    margin: 5px;
+
+.payment-h3{
+    margin-top: 50px;
 }
 .buttons{
     display: flex;    
@@ -98,7 +99,7 @@
 }
 footer{
     
-
+    margin-top: 100px;
     width: 100%;
 }
 
