@@ -5,8 +5,8 @@
     box-sizing: border-box;
     font-family: 'Roboto', sans-serif;
    /*background-color:#2B2B2B;*/
-   scroll-behavior: smooth ;
-   color: #ffffff;
+    scroll-behavior: smooth ;
+    color: #ffffff;
 }
 body{
     background: #000000;  /* fallback for old browsers */
@@ -27,6 +27,7 @@ header{
 }
 .main-title h1{
     font-size:27px;
+    font-weight: bold;
     cursor: pointer;
 }
 .main-title span{
@@ -95,16 +96,15 @@ nav button:hover{
 .search{
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
     width: 100%;
     height:40px;
 }
 .search input{
-    width: 50%;
-    border-radius: 5px;
     border-style: none;
     text-align: center;
-    height: 30px;
+    border-radius: 15px;
+    height: 50px;
     background-color: rgba(80, 79, 79, 0.274);
     border: 1px solid #000000;
 }
@@ -133,7 +133,7 @@ nav button:hover{
 .top-products{
     display: flex;
     align-items: center;
-    justify-content: space-evenly;
+    justify-content: space-between;
     text-align: center;
     margin-top: 50px;
     margin-left: 50px ;
@@ -156,7 +156,7 @@ form{
 }
 .filter{
     width: 200px;
-    margin-rigth: 10px;
+    margin-right: 10px;
     height: 40px;
     border-radius: 15px;
     color: #ffff;
@@ -167,14 +167,10 @@ form{
 .filter input{
     background: transparent;
     border-style: none;
-    
+    width: 200px;
 }
-.filtros2{
-    display: flex;
-    align-items: center;
-    justify-content:center;
-    
-}
+
+
 select:hover{
     border: 1px solid #E78A00;
 }
@@ -183,20 +179,32 @@ select:hover{
     border-style: none;
     border: 1px solid #000000;
     border-radius: 15px;
-    width: 100%;
-    height: 100%;
+    width: 200px;
+    height: 50px;
 }
 .cleanFilter:hover{
     border-color: #E78A00;
 }
 .searchButton{
-    height: 50px;
-    width: 100px;
+    height: 100px;
+    width: 200px;
     border-radius: 15px;
     color: #ffff ;
-    background-color: #2B2B2B;
+    background-color: transparent;
     border-style: none;
     margin-left: 5px;
+}
+.buttonFilter{
+    height: 60px;
+    width: 200px;
+    border-radius: 15px;
+    color: #ffff ;
+    border: 1px solid #000000;
+    background-color: transparent;
+    margin-left: 5px;
+}
+.buttonFilter:hover{
+    border-color: #E78A00;
 }
 .searchButton:hover{
     border-color: #E78A00;
@@ -213,7 +221,7 @@ select:hover{
     background: #e65c00;  /* fallback for old browsers */
     background: -webkit-linear-gradient(to right, #F9D423, #e65c00);  /* Chrome 10-25, Safari 5.1-6 */
     background: linear-gradient(to right, #F9D423, #e65c00); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-    border: 1px solid;
+    border: 1px solid #000000;
     border-radius: 2px;
     margin: 15px;
     text-align: center;
@@ -269,17 +277,16 @@ a{
 }
 footer{
     display: flex;
-    font-weight: 700;
-    align-items: center;
-    justify-content: center;
+    justify-content:center;
     background: #e65c00;  /* fallback for old browsers */
     background: -webkit-linear-gradient(to right, #F9D423, #e65c00);  /* Chrome 10-25, Safari 5.1-6 */
     background: linear-gradient(to right, #F9D423, #e65c00); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-    height: 30px;
+    height: auto;
 }
 footer h3{
     font-size: 20px;
     color: #000000;
+    font-weight: bold;
 }
 
 .imgProduct{
