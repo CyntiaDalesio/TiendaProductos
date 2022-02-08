@@ -53,3 +53,9 @@ footer{
     bottom: 0; 
     width: 100%;
 }
+
+@media screen and (max-width: 768px){
+    .container{
+        border: none;
+    }
+}

@@ -42,7 +42,7 @@
             <a sec:authorize="isAuthenticated()" href="/logout" type="logOut" id="LogOut" class="a-button">Salir</a>
             <br>
             <br>
-            <a sec:authorize="hasRole('ROLE_USER') or hasRole('ROLE_SELLER')" th:href="@{/contact/}"
+            <a sec:authorize="hasRole('ROLE_USER')" th:href="@{/contact/}"
                 class="a-button">Contactanos</a>
         </nav>
         <div class="movil menuResponsive">
@@ -63,10 +63,10 @@
                         <li><a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/users/}" class=" m">Listar Usuarios</a>
                         </li>
                         <li><a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/purchase/sales}"
-                                class="">Ventas Realizadas</a></li>
+                                class="m">Ventas Realizadas</a></li>
                         <li><a sec:authorize="hasRole('ROLE_USER')" th:href="@{/purchase/myShopping}"
                                 class=" m">Mis Compras</a></li>
-                        <li><a sec:authorize="isAuthenticated()" th:href="@{/users/edit}" class=" m">Modificar
+                        <li><a sec:authorize="isAuthenticated()" th:href="@{/editUser}" class=" m">Modificar
                                 perfil</a></li>
                         <li><a sec:authorize="isAuthenticated()" href="/logout" type="logOut" id="LogOut"
                                 class=" m">Salir</a></li>
