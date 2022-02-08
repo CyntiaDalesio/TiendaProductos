@@ -9,6 +9,8 @@
     color: #ffffff;
 }
 body{
+    width: 100%;
+    height: 100%;
     background: #000000;  /* fallback for old browsers */
     background: -webkit-linear-gradient(to right, #434343, #000000);  /* Chrome 10-25, Safari 5.1-6 */
     background: linear-gradient(to right, #434343, #000000); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
@@ -23,12 +25,15 @@ header{
 
 .main-title{
     margin-left: 15px;
-    
+    transition: transform 0.5s;
 }
 .main-title h1{
     font-size:27px;
     font-weight: bold;
     cursor: pointer;
+}
+.main-title:hover{
+    transform: scale(1.1);
 }
 .main-title span{
     color: #E78A00;
@@ -95,10 +100,12 @@ nav button:hover{
 }
 .search{
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
     justify-content: space-between;
     width: 100%;
     height:40px;
+    margin-bottom: 50px;
 }
 .search input{
     border-style: none;
