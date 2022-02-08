@@ -156,7 +156,13 @@
         </section>
 
         <section class="cards-conteiner">
+            <div class="cards-product add-product" sec:authorize="hasRole('ROLE_ADMIN')">
+                <a sec:authorize="hasRole('ROLE_ADMIN')" class="add-product" th:href="addproduct">
 
+                    <i class="fas fa-plus fa-2x"></i>
+                    <h3>Agregar Producto</h3>
+                </a>
+            </div>
 
             <th:block th:each="product : ${products}">
                 <div class="cards-product">
@@ -185,13 +191,13 @@
             </th:block>
 
             </div>
-            <div class="cards-product add-product" sec:authorize="hasRole('ROLE_ADMIN')">
+            <!-- <div class="cards-product add-product" sec:authorize="hasRole('ROLE_ADMIN')">
                 <a sec:authorize="hasRole('ROLE_ADMIN')" class="add-product" th:href="addproduct">
 
                     <i class="fas fa-plus fa-2x"></i>
                     <h3>Agregar Producto</h3>
                 </a>
-            </div>
+            </div> -->
         </section>
     </main>
     <footer>
